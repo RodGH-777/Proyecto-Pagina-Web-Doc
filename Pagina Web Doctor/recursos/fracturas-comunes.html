@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fracturas comunes: primeros pasos | Dr. Mario Portillo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --azul-primario: #1D5C7A;
+    --azul-oscuro: #12384B;
+    --dorado-acento: #C98A32;
+    --dorado-hover: #C08430;
+    --fondo-general: #F4F6F5;
+    --superficie-blanca: #FFFFFF;
+    --texto-principal: #1E2A33;
+    --texto-secundario: #52626C;
+    --linea-borde: #DBE2E3;
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --radius-sm: 4px;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background-color: var(--fondo-general); color: var(--texto-principal); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--font-serif); color: var(--azul-oscuro); font-weight: 600; line-height: 1.25; }
+  a { color: inherit; }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--azul-primario); outline-offset: 2px; }
+
+  header.site-header { background-color: var(--superficie-blanca); border-bottom: 1px solid var(--linea-borde); padding: 1.25rem 0; }
+  header.site-header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; flex-wrap: wrap; gap: 0.75rem; }
+  .logo-name { font-family: var(--font-serif); font-weight: 700; font-size: 1.2rem; color: var(--azul-oscuro); }
+  .logo-spec { font-size: 0.78rem; color: var(--texto-secundario); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .back-link { font-size: 0.9rem; color: var(--azul-primario); font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s ease, transform 140ms var(--ease-out); }
+  .back-link:hover { color: var(--azul-oscuro); }
+  @media (hover: hover) and (pointer: fine) {
+    .back-link:hover { transform: translateX(-3px); }
+  }
+
+  main { padding: 3.5rem 0 4rem; }
+
+  .eyebrow-link { margin-bottom: 1.5rem; display: inline-flex; }
+
+  h1.article-title { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 1rem; letter-spacing: -0.01em; }
+  p.lead { font-size: 1.1rem; color: var(--texto-secundario); margin-bottom: 2rem; }
+
+  .article-body h2 { font-size: 1.3rem; margin: 2rem 0 0.75rem; }
+  .article-body p { margin-bottom: 1rem; }
+  .article-body ul { margin: 0 0 1rem 1.25rem; }
+  .article-body li { margin-bottom: 0.5rem; }
+
+  .warning-box {
+    background-color: rgba(29, 92, 122, 0.06);
+    border: 1px solid rgba(29, 92, 122, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+  .warning-box p { margin-bottom: 0; }
+
+  .disclaimer {
+    background-color: rgba(201, 138, 50, 0.08);
+    border: 1px solid rgba(201, 138, 50, 0.3);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+    font-size: 0.85rem;
+    color: var(--texto-secundario);
+    margin: 2.5rem 0;
+  }
+
+  .cta-box {
+    padding: 2rem;
+    background-color: var(--superficie-blanca);
+    border: 1px solid var(--linea-borde);
+    border-radius: var(--radius-sm);
+    text-align: center;
+  }
+  .cta-box h3 { margin-bottom: 0.5rem; }
+  .cta-box p { color: var(--texto-secundario); margin-bottom: 1.25rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.75rem 1.75rem; background-color: var(--dorado-acento); color: var(--texto-principal);
+    font-family: var(--font-sans); font-weight: 500; font-size: 0.95rem;
+    border-radius: var(--radius-sm); text-decoration: none; border: none; cursor: pointer;
+    transition: background-color 0.2s ease, transform 140ms var(--ease-out);
+  }
+  .btn:hover { background-color: var(--dorado-hover); }
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover { transform: translateY(-2px); }
+  }
+  .btn:active { transform: scale(0.97); }
+
+  footer.site-footer { background-color: var(--azul-oscuro); color: rgba(255, 255, 255, 0.75); padding: 2rem 0; text-align: center; font-size: 0.85rem; margin-top: 2rem; }
+  footer.site-footer a { color: rgba(255, 255, 255, 0.9); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div>
+        <div class="logo-name">Dr. Mario Portillo</div>
+        <div class="logo-spec">Cirujano Ortopedista</div>
+      </div>
+      <a href="../index.html" class="back-link">&larr; Volver al inicio</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <a href="../index.html#para-pacientes" class="back-link eyebrow-link">&larr; Para pacientes</a>
+
+      <h1 class="article-title">Fracturas comunes: primeros pasos</h1>
+      <p class="lead">Ante una caída o un golpe fuerte, saber qué hacer en los primeros minutos puede marcar la diferencia en la recuperación. Esta es una guía general mientras llegas a atención médica.</p>
+
+      <div class="article-body">
+        <h2>Cómo reconocer una posible fractura</h2>
+        <ul>
+          <li>Dolor intenso que empeora al mover o apoyar la zona afectada.</li>
+          <li>Hinchazón, moretón o deformidad visible.</li>
+          <li>Incapacidad para mover o soportar peso con la extremidad.</li>
+          <li>En algunos casos, un chasquido audible al momento de la lesión.</li>
+        </ul>
+        <p>Ninguno de estos signos por sí solo confirma una fractura — solo una radiografía puede confirmarlo — pero su presencia justifica evaluación médica pronta.</p>
+
+        <h2>Qué hacer mientras llegas a atención médica</h2>
+        <ul>
+          <li><strong>Inmoviliza la zona</strong> con una férula improvisada o cabestrillo si es posible, evitando forzar la articulación.</li>
+          <li><strong>Aplica hielo</strong> envuelto en tela para reducir la hinchazón, nunca directo sobre la piel.</li>
+          <li><strong>Eleva la extremidad</strong> por encima del nivel del corazón cuando sea posible.</li>
+          <li><strong>Busca atención médica</strong> lo antes posible para una evaluación con imágenes.</li>
+        </ul>
+
+        <div class="warning-box">
+          <p><strong>Qué NO hacer:</strong> no intentes "acomodar" un hueso o articulación desplazada, no apliques calor en las primeras 48 horas, y no ignores el dolor esperando que mejore solo si hay deformidad visible.</p>
+        </div>
+
+        <h2>Cuándo es una urgencia inmediata</h2>
+        <p>Busca atención de urgencia sin demora si hay deformidad evidente, el hueso perfora la piel, hay pérdida de sensibilidad o color pálido/azulado en la extremidad, o si la fractura ocurrió junto con un golpe importante en la cabeza o el torso.</p>
+      </div>
+
+      <div class="disclaimer">
+        Este contenido es informativo y de ejemplo; no sustituye una evaluación médica. Ante una sospecha de fractura, acude a un servicio de urgencias o agenda una consulta cuanto antes.
+      </div>
+
+      <div class="cta-box">
+        <h3>¿Tuviste una lesión reciente?</h3>
+        <p>Agenda una evaluación con el Dr. Mario Portillo y recibe un plan de tratamiento claro.</p>
+        <a href="../index.html#contacto" class="btn">Agendar una consulta</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      &copy; 2026 Dr. Mario Portillo — Cirujano Ortopedista. <a href="../index.html">Volver al sitio principal</a>
+    </div>
+  </footer>
+
+</body>
+</html>

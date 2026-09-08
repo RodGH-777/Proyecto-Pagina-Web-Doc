@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-07T00:00:00.000Z",
+  "title": "Design System: Dr. Mario Portillo — Cirujano Ortopedista",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Steady Slate Blue",
+        "canonical": "#1D5C7A",
+        "tonalRamp": ["#0F2F3E", "#1A546F", "#2679A1", "#359DCF", "#67B5DB", "#98CDE7", "#C9E5F2", "#EAF5FA"]
+      },
+      "primary-deep": {
+        "role": "primary",
+        "displayName": "Deep Navy",
+        "canonical": "#12384B",
+        "tonalRamp": ["#0F2E3E", "#1B536F", "#2678A0", "#359CCF", "#67B4DA", "#98CCE6", "#CAE5F2", "#EAF5FA"]
+      },
+      "accent-gold": {
+        "role": "accent",
+        "displayName": "Burnished Gold",
+        "canonical": "#C98A32",
+        "tonalRamp": ["#3D2A0F", "#6E4C1B", "#9F6D28", "#CD8E37", "#D9AA68", "#E6C699", "#F2E1CA", "#FAF4EB"]
+      },
+      "accent-gold-hover": {
+        "role": "accent",
+        "displayName": "Burnished Gold, Hover",
+        "canonical": "#C08430",
+        "tonalRamp": ["#3D2A0F", "#6E4C1C", "#9F6D28", "#CD8F37", "#D9AA68", "#E6C699", "#F2E1CA", "#FAF4EB"]
+      },
+      "neutral-bg": {
+        "role": "neutral",
+        "displayName": "Mist Background",
+        "canonical": "#F4F6F5",
+        "tonalRamp": ["#222A26", "#3E4C45", "#5A6D63", "#768F82", "#97AAA1", "#B9C6BF", "#DBE1DE", "#F1F4F2"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#262626", "#454545", "#636363", "#828282", "#A1A1A1", "#BFBFBF", "#DEDEDE", "#F2F2F2"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1E2A33",
+        "tonalRamp": ["#1C2830", "#334757", "#4A677D", "#6287A2", "#88A4B9", "#AFC2D0", "#D5DFE6", "#EFF3F6"]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#52626C",
+        "tonalRamp": ["#21272B", "#3B474E", "#566771", "#718693", "#94A4AE", "#B7C1C8", "#D9DFE2", "#F1F3F4"]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#DBE2E3",
+        "tonalRamp": ["#212A2B", "#3C4B4D", "#576D70", "#728E92", "#95A9AC", "#B7C5C7", "#DAE1E2", "#F1F3F4"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The hero headline only." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles." },
+      "title": { "displayName": "Title", "purpose": "Card and profile titles — doctor name, service names, body-part names, credential entries." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy and descriptions." },
+      "label": { "displayName": "Label", "purpose": "Section eyebrow tags and footer column headers, always uppercase." }
+    },
+    "shadows": [
+      { "name": "card-active", "value": "0 2px 8px rgba(0,0,0,0.03)", "purpose": "State signal on the active body-part accordion card; not a resting elevation." },
+      { "name": "shadow-lift", "value": "0 8px 24px rgba(18, 56, 75, 0.08)", "purpose": "The confirmed elevation exception, applied only to the doctor-profile card and the contact-section card." },
+      { "name": "floating-contact", "value": "0 10px 28px rgba(18, 56, 75, 0.28)", "purpose": "Stronger shadow for the fixed floating contact button, which needs to read as detached from the page." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Strong ease-out curve used for hover lifts, the floating contact button, the mobile nav dropdown, and hotspot/accordion transitions." },
+      { "name": "interaction-fast", "value": "0.2s ease", "purpose": "Button/link background-color and card border-color hover transitions." },
+      { "name": "interaction-reveal", "value": "0.3s ease-out", "purpose": "Accordion max-height reveal and anatomy-diagram hotspot radius transitions." },
+      { "name": "press-feedback", "value": "140ms ease-out", "purpose": "Button :active scale(0.97) press feedback." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "992px" },
+      { "name": "sm", "value": "768px" },
+      { "name": "xs", "value": "480px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The site's one true call-to-action style — gold fill with dark ink text (white failed contrast at ~2.9:1), used for booking actions. Lifts on hover and presses on click.",
+      "html": "<button class=\"ds-btn-primary\">Solicitar una cita</button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; padding:0.75rem 1.5rem; font-family:'IBM Plex Sans',sans-serif; font-weight:500; font-size:0.95rem; border-radius:4px; border:1px solid transparent; cursor:pointer; background-color:#C98A32; color:#1E2A33; transition:background-color 0.2s ease, transform 140ms cubic-bezier(0.23,1,0.32,1); } .ds-btn-primary:hover { background-color:#C08430; } @media (hover:hover) and (pointer:fine) { .ds-btn-primary:hover { transform:translateY(-2px); } } .ds-btn-primary:active { transform:scale(0.97); } .ds-btn-primary:focus-visible { outline:2px solid #1D5C7A; outline-offset:2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Steady Slate Blue fill — used for the always-visible header CTA.",
+      "html": "<button class=\"ds-btn-secondary\">Agendar cita</button>",
+      "css": ".ds-btn-secondary { display:inline-flex; align-items:center; justify-content:center; padding:0.75rem 1.5rem; font-family:'IBM Plex Sans',sans-serif; font-weight:500; font-size:0.95rem; border-radius:4px; border:1px solid transparent; cursor:pointer; background-color:#1D5C7A; color:#FFFFFF; transition:background-color 0.2s ease; } .ds-btn-secondary:hover { background-color:#12384B; } .ds-btn-secondary:focus-visible { outline:2px solid #C98A32; outline-offset:2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Transparent, bordered — used for lower-emphasis secondary actions.",
+      "html": "<button class=\"ds-btn-ghost\">¿Dónde te duele?</button>",
+      "css": ".ds-btn-ghost { display:inline-flex; align-items:center; justify-content:center; padding:0.75rem 1.5rem; font-family:'IBM Plex Sans',sans-serif; font-weight:500; font-size:0.95rem; border-radius:4px; border:1px solid #1D5C7A; cursor:pointer; background-color:transparent; color:#1D5C7A; transition:background-color 0.2s ease; } .ds-btn-ghost:hover { background-color:rgba(29,92,122,0.05); } .ds-btn-ghost:focus-visible { outline:2px solid #1D5C7A; outline-offset:2px; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat, bordered card with an icon tile — the system's default content card.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-icon\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg></div><h3 class=\"ds-card-title\">Ortopedia General</h3><p class=\"ds-card-desc\">Diagnóstico integral de padecimientos óseos y articulares, manejo de fracturas y dolor articular agudo.</p></div>",
+      "css": ".ds-card { background-color:#FFFFFF; border:1px solid #DBE2E3; border-radius:4px; padding:2rem 1.5rem; transition:border-color 0.2s ease; } .ds-card:hover { border-color:#1D5C7A; } .ds-card-icon { width:48px; height:48px; background-color:rgba(29,92,122,0.08); color:#1D5C7A; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; } .ds-card-title { font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:1.2rem; color:#12384B; margin-bottom:0.75rem; } .ds-card-desc { color:#52626C; font-size:0.9rem; line-height:1.5; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Bordered input with a resting Mist Background fill that turns white on focus.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-label\" for=\"ds-name\">Nombre completo *</label><input class=\"ds-input\" id=\"ds-name\" type=\"text\" placeholder=\"Ej. Ana María Gómez\"></div>",
+      "css": ".ds-field { display:flex; flex-direction:column; gap:0.4rem; font-family:'IBM Plex Sans',sans-serif; } .ds-label { font-size:0.85rem; font-weight:500; color:#1E2A33; } .ds-input { width:100%; padding:0.75rem; border:1px solid #DBE2E3; border-radius:4px; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; color:#1E2A33; background-color:#F4F6F5; outline:none; transition:border-color 0.2s ease, background-color 0.2s ease; } .ds-input:focus { border-color:#1D5C7A; background-color:#FFFFFF; }"
+    },
+    {
+      "name": "Primary Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky header nav links — color-only hover/active state.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Dónde te duele</a><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\">Atención</a><a class=\"ds-nav-link\" href=\"#\">Contacto</a></nav>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:2rem; } .ds-nav-link { font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:400; color:#1E2A33; text-decoration:none; transition:color 0.2s ease; } .ds-nav-link:hover, .ds-nav-link--active { color:#1D5C7A; } .ds-nav-link:focus-visible { outline:2px solid #1D5C7A; outline-offset:2px; }"
+    },
+    {
+      "name": "Anatomy Hotspot",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Signature interactive marker overlaid on the real skeleton photograph by percentage position — a gold ring-and-dot that turns blue on hover/active, synchronized with the body-part list at left. Also keyboard-operable (tabindex, role=button, Enter/Space). Div-based (not SVG) so it positions independently of the photo's own coordinate space.",
+      "html": "<div class=\"ds-hotspot\" style=\"left:34%; top:20%;\" tabindex=\"0\" role=\"button\" aria-label=\"Rodilla\"><span class=\"ds-hotspot-ring\"></span><span class=\"ds-hotspot-dot\"></span></div>",
+      "css": ".ds-hotspot { position:absolute; width:28px; height:28px; transform:translate(-50%,-50%); cursor:pointer; } .ds-hotspot-ring { position:absolute; inset:0; border-radius:50%; background-color:#C98A32; opacity:0.25; transition:opacity 0.3s ease, transform 0.3s cubic-bezier(0.23,1,0.32,1); } .ds-hotspot-dot { position:absolute; left:50%; top:50%; width:10px; height:10px; margin:-5px 0 0 -5px; border-radius:50%; background-color:#C98A32; box-shadow:0 0 0 2px #FFFFFF; transition:background-color 0.3s ease; } .ds-hotspot:hover .ds-hotspot-ring, .ds-hotspot.active .ds-hotspot-ring { opacity:0.5; transform:scale(1.3); } .ds-hotspot:hover .ds-hotspot-dot, .ds-hotspot.active .ds-hotspot-dot { background-color:#1D5C7A; } .ds-hotspot:focus-visible { outline:2px solid #1D5C7A; outline-offset:2px; }"
+    },
+    {
+      "name": "Floating Contact Button",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Fixed bottom-right pill CTA. Hidden until the visitor scrolls past ~60% of the hero, then fades and slides in. Click scrolls to the contact section and focuses the name field.",
+      "html": "<a href=\"#contacto\" class=\"ds-floating-contact\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 14l5 2v4a2 2 0 0 1-2 2C9.5 22 2 14.5 2 7a2 2 0 0 1 2-2z\"/></svg><span>Contáctanos</span></a>",
+      "css": ".ds-floating-contact { display:inline-flex; align-items:center; gap:0.6rem; padding:0.85rem 1.4rem; background-color:#C98A32; color:#1E2A33; font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:0.92rem; white-space:nowrap; border-radius:50px; box-shadow:0 10px 28px rgba(18,56,75,0.28); text-decoration:none; transition:background-color 0.2s ease, transform 220ms cubic-bezier(0.23,1,0.32,1); } .ds-floating-contact:hover { background-color:#C08430; } @media (hover:hover) and (pointer:fine) { .ds-floating-contact:hover { transform:translateY(-3px); } } .ds-floating-contact:active { transform:scale(0.96); } .ds-floating-contact:focus-visible { outline:2px solid #1D5C7A; outline-offset:2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Trusted Consult",
+    "overview": "This is a private orthopedic practice's site, not a hospital brochure and not a SaaS landing page — the two looks it explicitly rejects. Steady Slate Blue is the resting state: calm, professional, never cold. Burnished Gold is reserved for the moments that matter — the primary call to action, section eyebrows, the interactive points on the anatomy diagram — so its warmth reads as deliberate, not decorative; its text is set in Ink rather than white, since white-on-gold falls short of AA contrast. Structure comes from hairline borders rather than shadows: cards sit in flat, bordered planes, with a stronger shadow reserved for the two cards meant to command attention (doctor profile, contact section). Fraunces serif headlines against IBM Plex Sans body copy give the page an editorial, slightly literary register that reads as \"attending physician's office,\" not \"clinic intake form.\"\n\nThe system leans warmer than strictly clinical: buttons lift on hover and press on click rather than only recoloring, service cards lift with a soft shadow, and a persistent gold floating contact button appears once the visitor has engaged with the page, collapsing \"find the phone number\" and \"start the form\" into one tap.",
+    "keyCharacteristics": [
+      "Flat, bordered surfaces; shadow is a state signal, not a resting style.",
+      "One accent color (Burnished Gold) used sparingly for calls to action and points of interactivity.",
+      "Editorial serif display type (Fraunces) paired with a clean, technical sans body (IBM Plex Sans).",
+      "A consistent 4px corner radius across buttons, cards, and inputs — no sharp corners, no heavy rounding.",
+      "Section rhythm built on an 8px-rooted spacing scale (0.5rem through 5rem)."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Burnished Gold appears only on things the visitor can act on or should notice first (primary CTA, the floating contact button, hotspots, timeline markers). It never fills a large surface or appears on more than one element per view without a specific reason. Text set on a gold surface is Ink, not white.", "section": "colors" },
+      { "name": "The Serif-Names-Sans-Explains Rule", "body": "Fraunces is reserved for anything acting as a name or title (the doctor, a section, a body part, a credential). IBM Plex Sans carries everything the visitor reads for information — descriptions, form labels, navigation. Never swap the two roles.", "section": "typography" },
+      { "name": "The Border-First Rule", "body": "Reach for a 1px hairline border before reaching for a shadow. Shadow is earned by an active/hover state or by one of the confirmed high-priority exceptions (doctor profile, contact form) — it is never the default way two surfaces separate.", "section": "elevation" },
+      { "name": "The Warmth-on-Touch Rule", "body": "Interactive elements respond to the visitor, not just recolor: primary buttons lift 2px on hover (gated to hover-capable pointers) and every button presses to scale(0.97) on :active. Keep it small; this is a clinical-trust brand, not a playful one.", "section": "components" }
+    ],
+    "dos": [
+      "Do keep Burnished Gold rare — one primary action or emphasis point per view (The One Accent Rule).",
+      "Do use Fraunces only for names/titles and IBM Plex Sans for everything read for information (The Serif-Names-Sans-Explains Rule).",
+      "Do default new surfaces to hairline borders before adding shadow (The Border-First Rule).",
+      "Do add a small hover/focus motion signal to interactive elements going forward, not just a color swap (The Warmth-on-Touch Rule).",
+      "Do keep the anatomy diagram's list-and-hotspot sync intact when touching that section."
+    ],
+    "donts": [
+      "Don't let the page read as a generic corporate hospital brochure or a generic tech-startup landing page — both were explicitly rejected as anti-references.",
+      "Don't introduce a second saturated accent color; Steady Slate Blue and Burnished Gold are the complete palette.",
+      "Don't apply the doctor-profile/contact-form shadow exception to ordinary cards (service, step, testimonial) — they stay flat.",
+      "Don't invent real contact details, credentials, statistics, or testimonials — every instance currently on the page is a confirmed placeholder (see PRODUCT.md's Evidence on Hand).",
+      "Don't add a kicker/eyebrow label above a section heading. The heading carries its own weight.",
+      "Don't set text directly on Burnished Gold in white — it fails contrast. Use Ink (or Deep Navy for large decorative marks) instead."
+    ]
+  }
+}

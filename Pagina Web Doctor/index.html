@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Mario Portillo | Cirujano Ortopedista en San Salvador</title>
+
+  <!-- Google Fonts: Fraunces & IBM Plex Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       VARIABLES Y PALETA DE COLOR (ESTRICTAMENTE SEGÚN ESPECIFICACIÓN)
+       ========================================================================== */
+    :root {
+      --azul-primario: #1D5C7A;
+      --azul-oscuro: #12384B;
+      --dorado-acento: #C98A32;
+      --dorado-hover: #C08430;
+      --fondo-general: #F4F6F5;
+      --superficie-blanca: #FFFFFF;
+      --texto-principal: #1E2A33;
+      --texto-secundario: #52626C;
+      --linea-borde: #DBE2E3;
+
+      --font-serif: 'Fraunces', Georgia, serif;
+      --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-pill: 9999px;
+      --max-width: 1200px;
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --shadow-lift: 0 8px 24px rgba(18, 56, 75, 0.08);
+    }
+
+    /* ==========================================================================
+       RESETS Y ESTILOS BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--fondo-general);
+      color: var(--texto-principal);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-serif {
+      font-family: var(--font-serif);
+      color: var(--azul-oscuro);
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 0.95rem;
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s ease, transform 140ms var(--ease-out);
+      cursor: pointer;
+      text-align: center;
+      border: 1px solid transparent;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--azul-primario);
+      outline-offset: 2px;
+    }
+
+    .btn-gold {
+      background-color: var(--dorado-acento);
+      color: var(--texto-principal);
+    }
+    .btn-gold:hover {
+      background-color: var(--dorado-hover);
+    }
+
+    .btn-primary {
+      background-color: var(--azul-primario);
+      color: #FFFFFF;
+    }
+    .btn-primary:hover {
+      background-color: var(--azul-oscuro);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--azul-primario);
+      color: var(--azul-primario);
+    }
+    .btn-outline:hover {
+      background-color: rgba(29, 92, 122, 0.05);
+    }
+
+    .btn-white {
+      background-color: #FFFFFF;
+      color: var(--azul-oscuro);
+      font-weight: 600;
+    }
+    .btn-white:hover {
+      background-color: var(--fondo-general);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .btn-gold:hover,
+      .btn-primary:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    /* Componentes de sección */
+    .section-padding {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--texto-secundario);
+      max-width: 650px;
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ==========================================================================
+       1. BARRA SUPERIOR
+       ========================================================================== */
+    .top-bar {
+      background-color: var(--azul-oscuro);
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.85rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .top-bar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .top-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .top-bar-link {
+      color: var(--dorado-acento);
+      font-weight: 500;
+    }
+    .top-bar-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       2. HEADER STICKY
+       ========================================================================== */
+    .header-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--superficie-blanca);
+      border-bottom: 1px solid var(--linea-borde);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-name {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--azul-oscuro);
+      line-height: 1.1;
+    }
+
+    .logo-spec {
+      font-size: 0.8rem;
+      color: var(--texto-secundario);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      color: var(--texto-principal);
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--azul-primario);
+    }
+
+    /* Mobile menu button */
+    .mobile-nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: var(--azul-oscuro);
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    /* ==========================================================================
+       3. HERO
+       ========================================================================== */
+    .hero {
+      padding: 4.5rem 0 3.5rem;
+      background-color: var(--superficie-blanca);
+      border-bottom: 1px solid var(--linea-borde);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 3.25rem;
+      margin-bottom: 1.25rem;
+      color: var(--azul-oscuro);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--texto-secundario);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .trust-checks {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--linea-borde);
+      flex-wrap: wrap;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--texto-principal);
+    }
+
+    .check-icon {
+      color: var(--dorado-acento);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(201, 138, 50, 0.15);
+      flex-shrink: 0;
+    }
+
+    .check-icon svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    /* ==========================================================================
+       4. SECCIÓN ANATÓMICA Y ZONAS
+       ========================================================================== */
+    .anatomy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+
+    .body-parts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .body-part-card {
+      background: var(--superficie-blanca);
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .body-part-card.active {
+      border-color: var(--dorado-acento);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .body-part-header {
+      width: 100%;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      background: var(--superficie-blanca);
+      border: none;
+      font: inherit;
+      text-align: left;
+      color: inherit;
+    }
+
+    .body-part-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--azul-oscuro);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .body-part-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--linea-borde);
+      transition: background-color 0.2s;
+    }
+
+    .body-part-card.active .body-part-indicator {
+      background-color: var(--dorado-acento);
+    }
+
+    .body-part-arrow {
+      color: var(--texto-secundario);
+      display: inline-flex;
+      flex-shrink: 0;
+      transition: transform 0.3s var(--ease-out), color 0.2s ease;
+    }
+
+    .body-part-arrow svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .body-part-card.active .body-part-arrow {
+      transform: rotate(180deg);
+      color: var(--dorado-acento);
+    }
+
+    .body-part-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s var(--ease-out);
+      background-color: #FAFCFC;
+    }
+
+    .body-part-card.active .body-part-content {
+      grid-template-rows: 1fr;
+    }
+
+    .body-part-content-inner {
+      overflow: hidden;
+      padding: 0 1.5rem;
+      color: var(--texto-secundario);
+      font-size: 0.95rem;
+    }
+
+    .body-part-card.active .body-part-content-inner {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid #F0F4F5;
+    }
+
+    /* Diagrama SVG interactivo */
+    .skeleton-container {
+      background-color: var(--superficie-blanca);
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-sm);
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .skeleton-photo-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .skeleton-photo {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hotspot {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+
+    .hotspot-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background-color: var(--dorado-acento);
+      opacity: 0.25;
+      transition: opacity 0.3s ease, transform 0.3s var(--ease-out);
+    }
+
+    .hotspot-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      margin: -5px 0 0 -5px;
+      border-radius: 50%;
+      background-color: var(--dorado-acento);
+      box-shadow: 0 0 0 2px #FFFFFF;
+      transition: background-color 0.3s ease;
+    }
+
+    .hotspot:hover .hotspot-ring,
+    .hotspot.active .hotspot-ring {
+      opacity: 0.5;
+      transform: scale(1.3);
+    }
+
+    .hotspot:hover .hotspot-dot,
+    .hotspot.active .hotspot-dot {
+      background-color: var(--azul-primario);
+    }
+
+    /* ==========================================================================
+       5. BANNER CTA COMPACTO / ANCHO COMPLETO
+       ========================================================================== */
+    .cta-banner {
+      background-color: var(--azul-oscuro);
+      color: #FFFFFF;
+      padding: 3.5rem 0;
+      text-align: center;
+    }
+
+    .cta-banner-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .cta-banner h2 {
+      color: #FFFFFF;
+      font-size: 2rem;
+      text-align: left;
+    }
+
+    .cta-banner p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.05rem;
+      text-align: left;
+      margin-top: 0.25rem;
+    }
+
+    /* ==========================================================================
+       6. SECCIÓN GAMA DE ATENCIÓN
+       ========================================================================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      background: var(--superficie-blanca);
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-sm);
+      padding: 2rem 1.5rem;
+      transition: border-color 0.2s ease, transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+    }
+
+    .service-card:hover {
+      border-color: var(--azul-primario);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .service-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(18, 56, 75, 0.06);
+      }
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background-color: rgba(29, 92, 122, 0.08);
+      color: var(--azul-primario);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .service-desc {
+      color: var(--texto-secundario);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       7. TARJETA PERFIL DEL DOCTOR Y CREDENCIALES
+       ========================================================================== */
+    .doctor-profile-card {
+      background-color: var(--superficie-blanca);
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-sm);
+      padding: 2.5rem;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow-lift);
+    }
+
+    .doctor-avatar {
+      width: 120px;
+      height: 120px;
+      min-width: 120px;
+      border-radius: 50%;
+      background-color: var(--azul-oscuro);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 700;
+      border: 3px solid var(--dorado-acento);
+    }
+
+    .doctor-info h3 {
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .doctor-role {
+      color: var(--azul-primario);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .doctor-bio {
+      color: var(--texto-secundario);
+      margin-bottom: 1.25rem;
+      font-size: 0.98rem;
+    }
+
+    /* Timeline de Credenciales */
+    .credentials-timeline {
+      border-left: 2px solid var(--dorado-acento);
+      padding-left: 1.5rem;
+      margin-left: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.9rem;
+      top: 0.35rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--azul-oscuro);
+    }
+
+    .timeline-title {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--azul-oscuro);
+    }
+
+    .timeline-sub {
+      color: var(--texto-secundario);
+      font-size: 0.9rem;
+    }
+
+    /* ==========================================================================
+       8. QUÉ ESPERAR EN TU PRIMERA CONSULTA
+       ========================================================================== */
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      position: relative;
+      margin-top: 3rem;
+    }
+
+    .steps-container::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background-color: var(--linea-borde);
+      z-index: 1;
+    }
+
+    .step-card {
+      background: var(--superficie-blanca);
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-sm);
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--fondo-general);
+      border: 1px solid var(--linea-borde);
+      color: var(--azul-oscuro);
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .step-card:hover .step-number {
+      background-color: var(--azul-primario);
+      color: #FFFFFF;
+      border-color: var(--azul-primario);
+    }
+
+    .step-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: var(--texto-secundario);
+    }
+
+    /* ==========================================================================
+       9. TESTIMONIOS
+       ========================================================================== */
+    .trust-pills {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background-color: rgba(201, 138, 50, 0.1);
+      color: var(--azul-oscuro);
+      border: 1px solid rgba(201, 138, 50, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .trust-pill svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background-color: var(--superficie-blanca);
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-sm);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .quote-mark {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      color: var(--azul-oscuro);
+      line-height: 1;
+      margin-bottom: -0.5rem;
+    }
+
+    .testimonial-text {
+      color: var(--texto-principal);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .patient-info {
+      border-top: 1px solid var(--linea-borde);
+      padding-top: 1rem;
+    }
+
+    .patient-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--azul-oscuro);
+    }
+
+    .patient-procedure {
+      font-size: 0.85rem;
+      color: var(--texto-secundario);
+    }
+
+    /* ==========================================================================
+       9b. PARA PACIENTES (RECURSOS)
+       ========================================================================== */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .resource-card {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--superficie-blanca);
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s ease, transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+    }
+
+    .resource-card:hover {
+      border-color: var(--azul-primario);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .resource-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(18, 56, 75, 0.06);
+      }
+    }
+
+    .resource-card-visual {
+      background-color: rgba(29, 92, 122, 0.06);
+      color: var(--azul-primario);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.25rem 1rem;
+    }
+
+    .resource-card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      flex: 1;
+    }
+
+    .resource-card-title {
+      font-size: 1.05rem;
+      line-height: 1.3;
+    }
+
+    .resource-card-desc {
+      color: var(--texto-secundario);
+      font-size: 0.88rem;
+      flex: 1;
+    }
+
+    .resource-card-cta {
+      color: var(--azul-primario);
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+
+    /* ==========================================================================
+       10. SECCIÓN DE CONTACTO
+       ========================================================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      background-color: var(--superficie-blanca);
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-sm);
+      padding: 3rem;
+      box-shadow: var(--shadow-lift);
+    }
+
+    .contact-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .contact-info-item h3 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-info-item p {
+      color: var(--texto-secundario);
+      font-size: 0.95rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--texto-principal);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--texto-principal);
+      background-color: var(--fondo-general);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--azul-primario);
+      background-color: #FFFFFF;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* ==========================================================================
+       11. FOOTER
+       ========================================================================== */
+    .site-footer {
+      background-color: var(--azul-oscuro);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 4rem 0 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      color: #FFFFFF;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-desc {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    .footer-title {
+      color: #FFFFFF;
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--dorado-acento);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ==========================================================================
+       BOTÓN FLOTANTE DE CONTACTO
+       ========================================================================== */
+    .floating-contact {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      z-index: 200;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.4rem;
+      background-color: var(--dorado-acento);
+      color: var(--texto-principal);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.92rem;
+      white-space: nowrap;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 28px rgba(18, 56, 75, 0.28);
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(16px) scale(0.96);
+      pointer-events: none;
+      transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out), background-color 0.2s ease;
+    }
+
+    .floating-contact.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .floating-contact:hover {
+      background-color: var(--dorado-hover);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .floating-contact.visible:hover {
+        transform: translateY(-3px) scale(1);
+      }
+    }
+
+    .floating-contact:active {
+      transform: scale(0.96);
+    }
+
+    .floating-contact svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 400px) {
+      .floating-contact {
+        right: 1rem;
+        bottom: 1rem;
+        padding: 0.75rem 1.1rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header-container .btn-primary {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN (MOBILE FIRST OVERRIDES)
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .anatomy-grid {
+        grid-template-columns: 1fr;
+      }
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .steps-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .resources-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .steps-container::before {
+        display: none;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .top-bar-right {
+        display: none;
+      }
+      .nav-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        position: absolute;
+        top: 100%;
+        right: 1.5rem;
+        left: 1.5rem;
+        margin-top: 0.5rem;
+        background-color: var(--superficie-blanca);
+        border: 1px solid var(--linea-borde);
+        border-radius: var(--radius-sm);
+        padding: 1rem 1.5rem;
+        box-shadow: var(--shadow-lift);
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+      }
+
+      .nav-menu.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .mobile-nav-toggle {
+        display: flex;
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+      .trust-checks {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cta-banner-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .cta-banner h2, .cta-banner p {
+        text-align: center;
+      }
+      .doctor-profile-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .credentials-timeline {
+        text-align: left;
+      }
+      .services-grid, .steps-container, .resources-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .contact-grid {
+        padding: 1.5rem;
+      }
+    }
+
+    /* ==========================================================================
+       MOVIMIENTO REDUCIDO
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      .btn-gold:hover,
+      .btn-primary:hover,
+      .service-card:hover,
+      .floating-contact,
+      .floating-contact.visible,
+      .floating-contact.visible:hover,
+      .nav-menu,
+      .nav-menu.open {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. BARRA SUPERIOR DELGADA -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-info">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>San Salvador, El Salvador</span>
+      </div>
+      <div class="top-bar-right">
+        <span>Teléfono Directo: <strong>+503 2200-8888</strong></span>
+        <a href="#contacto" class="top-bar-link">Agendar consulta &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. HEADER STICKY -->
+  <header class="header-sticky">
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <span class="logo-name">Dr. Mario Portillo</span>
+        <span class="logo-spec">Cirujano Ortopedista</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="#donde-duele" class="nav-link">Dónde te duele</a>
+        <a href="#atencion" class="nav-link">Atención</a>
+        <a href="#sobre-el-doctor" class="nav-link">Sobre el doctor</a>
+        <a href="#testimonios" class="nav-link">Testimonios</a>
+        <a href="#para-pacientes" class="nav-link">Para pacientes</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
+
+      <a href="#contacto" class="btn btn-primary">Agendar cita</a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 3. HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">Cirugía Ortopédica de Confianza en San Salvador</h1>
+        <p class="hero-subtitle">Atención personalizada y de alta especialidad en patologías de rodilla, cadera y reemplazo articular. Devuélvele la movilidad y calidad a tu vida con un enfoque quirúrgico moderno.</p>
+        
+        <div class="hero-actions">
+          <a href="#contacto" class="btn btn-gold">Solicitar una cita</a>
+          <a href="#donde-duele" class="btn btn-outline">¿Dónde te duele?</a>
+        </div>
+
+        <div class="trust-checks">
+          <div class="check-item">
+            <span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+            <span>Atención de primer nivel</span>
+          </div>
+          <div class="check-item">
+            <span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+            <span>Tiempo real con tu doctor</span>
+          </div>
+          <div class="check-item">
+            <span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+            <span>Personal cercano y dedicado</span>
+          </div>
+          <div class="check-item">
+            <span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+            <span>Pacientes 5 estrellas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SECCIÓN "DONDEQUIERA QUE TE DUELA, PODEMOS AYUDARTE" -->
+  <section id="donde-duele" class="section-padding">
+    <div class="container">
+      <h2 class="section-title">Dondequiera que te duela, podemos ayudarte</h2>
+      <p class="section-subtitle">Selecciona la zona afectada para conocer los padecimientos comunes y las opciones de tratamiento especializado que ofrecemos.</p>
+
+      <div class="anatomy-grid">
+        <!-- Lista Clickeable -->
+        <div class="body-parts-list">
+          
+          <div class="body-part-card active" data-part="hombro">
+            <button type="button" class="body-part-header" aria-expanded="true">
+              <span class="body-part-title">
+                <span class="body-part-indicator"></span> Hombro
+              </span>
+              <span class="body-part-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <div class="body-part-content"><div class="body-part-content-inner">
+              Tratamiento de lesiones del manguito rotador, inestabilidad articular, pinzamiento y artrosis de hombro mediante artroscopía de mínima invasión.
+            </div></div>
+          </div>
+
+          <div class="body-part-card" data-part="columna">
+            <button type="button" class="body-part-header" aria-expanded="false">
+              <span class="body-part-title">
+                <span class="body-part-indicator"></span> Columna y espalda
+              </span>
+              <span class="body-part-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <div class="body-part-content"><div class="body-part-content-inner">
+              Evaluación y manejo de hernias discales, lumbalgia crónica, ciática y estenosis espinal con enfoque conservador o intervención quirúrgica avanzada.
+            </div></div>
+          </div>
+
+          <div class="body-part-card" data-part="cadera">
+            <button type="button" class="body-part-header" aria-expanded="false">
+              <span class="body-part-title">
+                <span class="body-part-indicator"></span> Cadera y pelvis
+              </span>
+              <span class="body-part-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <div class="body-part-content"><div class="body-part-content-inner">
+              Especialista en reemplazo total de cadera (prótesis), pinzamiento femoroacetabular, bursitis y fracturas complejas de pelvis.
+            </div></div>
+          </div>
+
+          <div class="body-part-card" data-part="rodilla">
+            <button type="button" class="body-part-header" aria-expanded="false">
+              <span class="body-part-title">
+                <span class="body-part-indicator"></span> Rodilla
+              </span>
+              <span class="body-part-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <div class="body-part-content"><div class="body-part-content-inner">
+              Reconstrucción de ligamento cruzado, reparación de meniscos, reconstrucción articular y prótesis total o parcial de rodilla.
+            </div></div>
+          </div>
+
+          <div class="body-part-card" data-part="tobillo">
+            <button type="button" class="body-part-header" aria-expanded="false">
+              <span class="body-part-title">
+                <span class="body-part-indicator"></span> Pie y tobillo
+              </span>
+              <span class="body-part-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <div class="body-part-content"><div class="body-part-content-inner">
+              Atención a esguinces crónicos, fascitis plantar, tendinitis de Aquiles, deformidades como juanetes (hallux valgus) y fracturas.
+            </div></div>
+          </div>
+
+          <div class="body-part-card" data-part="codo">
+            <button type="button" class="body-part-header" aria-expanded="false">
+              <span class="body-part-title">
+                <span class="body-part-indicator"></span> Mano / muñeca / codo
+              </span>
+              <span class="body-part-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+            <div class="body-part-content"><div class="body-part-content-inner">
+              Tratamiento del túnel carpiano, codo de tenista (epicondilitis), fracturas de radio distal y rigidez articular.
+            </div></div>
+          </div>
+
+        </div>
+
+        <!-- Ilustración Esqueleto Humano Anatómico (fotografía real) -->
+        <div class="skeleton-container">
+          <div class="skeleton-photo-wrap">
+            <img class="skeleton-photo" src="assets/esqueleto.jpg" alt="Fotografía de un esqueleto humano completo, vista frontal, usado como mapa anatómico interactivo">
+
+            <div class="hotspot" id="hs-hombro" data-part="hombro" tabindex="0" role="button" aria-label="Hombro" style="left: 34.1%; top: 20.1%;">
+              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
+            </div>
+
+            <div class="hotspot" id="hs-columna" data-part="columna" tabindex="0" role="button" aria-label="Columna y espalda" style="left: 50%; top: 25.5%;">
+              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
+            </div>
+
+            <div class="hotspot" id="hs-cadera" data-part="cadera" tabindex="0" role="button" aria-label="Cadera y pelvis" style="left: 62.5%; top: 47%;">
+              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
+            </div>
+
+            <div class="hotspot" id="hs-rodilla" data-part="rodilla" tabindex="0" role="button" aria-label="Rodilla" style="left: 40.5%; top: 69.8%;">
+              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
+            </div>
+
+            <div class="hotspot" id="hs-tobillo" data-part="tobillo" tabindex="0" role="button" aria-label="Pie y tobillo" style="left: 64.6%; top: 88.6%;">
+              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
+            </div>
+
+            <div class="hotspot" id="hs-codo" data-part="codo" tabindex="0" role="button" aria-label="Mano, muñeca y codo" style="left: 71.7%; top: 36.2%;">
+              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. BANNER CTA DE ANCHO COMPLETO -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner-content">
+        <div>
+          <h2>No tienes que vivir con el dolor</h2>
+          <p>Una evaluación a tiempo previene el desgaste articular severo. Agenda tu cita de valoración hoy.</p>
+        </div>
+        <a href="#contacto" class="btn btn-white">Solicitar una cita</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECCIÓN "NUESTRA GAMA DE ATENCIÓN" -->
+  <section id="atencion" class="section-padding">
+    <div class="container">
+      <h2 class="section-title">Nuestra gama de atención</h2>
+      <p class="section-subtitle">Soluciones médicas avanzadas con técnicas quirúrgicas modernas y tratamientos no invasivos de vanguardia.</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3 class="service-title">Ortopedia General</h3>
+          <p class="service-desc">Diagnóstico integral de padecimientos óseos y articulares, manejo de fracturas, luxaciones y dolor articular agudo.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3 class="service-title">Medicina Deportiva</h3>
+          <p class="service-desc">Recuperación acelerada para atletas y personas activas con lesiones de ligamentos, tendones y meniscos.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="service-title">Cuidado de Columna</h3>
+          <p class="service-desc">Tratamiento conservador e intervencionista para hernias discales, desgaste vertebral y desalineación espinal.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><path d="M12 8v13M8 12h8"/></svg>
+          </div>
+          <h3 class="service-title">Reemplazo Articular</h3>
+          <p class="service-desc">Cirugía de prótesis de alta precisión para cadera y rodilla con materiales duraderos de última generación.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3z"/><path d="M12 8v6M9 11h6"/></svg>
+          </div>
+          <h3 class="service-title">Traumatología y Fracturas de Urgencia</h3>
+          <p class="service-desc">Atención inmediata de fracturas, luxaciones y lesiones traumáticas agudas, con manejo quirúrgico o conservador según el caso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. TARJETA DE PERFIL DEL DOCTOR Y CREDENCIALES -->
+  <section id="sobre-el-doctor" class="section-padding" style="background-color: var(--superficie-blanca); border-top: 1px solid var(--linea-borde); border-bottom: 1px solid var(--linea-borde);">
+    <div class="container">
+      
+      <div class="doctor-profile-card">
+        <div class="doctor-avatar">MP</div>
+        <div class="doctor-info">
+          <h3>Mario Portillo, MD</h3>
+          <div class="doctor-role">Cirujano Ortopedista Principal</div>
+          <p class="doctor-bio">El Dr. Mario Portillo es especialista en ortopedia y traumatología, con subespecialidad en cirugía de reemplazo articular y artroscopía realizada en centros hospitalarios de alto prestigio en EE.UU. Su práctica se basa en la precisión técnica y un trato humano, transparente y directo con cada paciente.</p>
+          <a href="#contacto" class="btn btn-outline">Conoce más &rarr;</a>
+        </div>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto;">
+        <h4 class="font-serif" style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--azul-oscuro);">Formación y Certificaciones Académicas</h4>
+        
+        <div class="credentials-timeline">
+          <div class="timeline-item">
+            <div class="timeline-title">Subespecialidad en Reemplazo Articular Complejo</div>
+            <div class="timeline-sub">Center for Joint Replacement, EE.UU.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-title">Fellowship en Artroscopía y Medicina Deportiva</div>
+            <div class="timeline-sub">Orthopedic Health Alliance, EE.UU.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-title">Residencia en Ortopedia y Traumatología</div>
+            <div class="timeline-sub">Hospital Nacional Especializado, El Salvador</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-title">Doctorado en Medicina General</div>
+            <div class="timeline-sub">Universidad de El Salvador</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. QUÉ ESPERAR EN TU PRIMERA CONSULTA -->
+  <section class="section-padding">
+    <div class="container">
+      <div style="text-align: center;">
+        <h2 class="section-title">Qué esperar en tu primera consulta</h2>
+        <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">Queremos que te sientas seguro y acompañado desde el primer segundo.</p>
+      </div>
+
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Agenda tu cita</h3>
+          <p class="step-desc">Elige la fecha y horario que mejor se adapten a tu agenda vía web o teléfono.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Evaluación inicial</h3>
+          <p class="step-desc">Examen físico minucioso y revisión clínica detallada sin prisas.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Diagnóstico y plan</h3>
+          <p class="step-desc">Análisis de radiografías/resonancias e indicación del plan adecuado.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Tratamiento</h3>
+          <p class="step-desc">Inicio del tratamiento conservador o programación de cirugía con seguimiento lineal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. TESTIMONIOS -->
+  <section id="testimonios" class="section-padding" style="background-color: #EBF0F2;">
+    <div class="container">
+      <div style="text-align: center;">
+        <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
+        
+        <div class="trust-pills">
+          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Atención de primer nivel</span>
+          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Ubicación conveniente</span>
+          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Personal amable</span>
+        </div>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div>
+            <div class="quote-mark">“</div>
+            <p class="testimonial-text">El Dr. Portillo me explicó exactamente qué pasaba con mi rodilla. Tras la cirugía de reemplazo, he vuelto a caminar sin dolor en menos tiempo del que esperaba.</p>
+          </div>
+          <div class="patient-info">
+            <div class="patient-name">Roberto Mendoza</div>
+            <div class="patient-procedure">Reemplazo de Rodilla</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div>
+            <div class="quote-mark">“</div>
+            <p class="testimonial-text">Llevaba más de dos años con dolor constante en la cadera. Su enfoque quirúrgico y el trato personalizado de todo su equipo hicieron toda la diferencia.</p>
+          </div>
+          <div class="patient-info">
+            <div class="patient-name">Elena de Reyes</div>
+            <div class="patient-procedure">Cirugía de Cadera</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div>
+            <div class="quote-mark">“</div>
+            <p class="testimonial-text">Excelente profesional. Me operó del manguito rotador y la atención postoperatoria fue constante y clara. Altamente recomendado en San Salvador.</p>
+          </div>
+          <div class="patient-info">
+            <div class="patient-name">Carlos Avelar</div>
+            <div class="patient-procedure">Artroscopía de Hombro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9b. PARA PACIENTES (RECURSOS) -->
+  <section id="para-pacientes" class="section-padding">
+    <div class="container">
+      <h2 class="section-title">Para pacientes</h2>
+      <p class="section-subtitle">Información verificada sobre las dudas más comunes antes y después de un tratamiento. Haz clic en cualquier tema para leer la guía completa.</p>
+
+      <div class="resources-grid">
+        <a href="recursos/protesis-rodilla-cadera.html" class="resource-card">
+          <div class="resource-card-visual">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v5a4 4 0 0 0 8 0V3"/><path d="M8 21v-5a4 4 0 0 1 8 0v5"/></svg>
+          </div>
+          <div class="resource-card-body">
+            <h3 class="resource-card-title">Prótesis de rodilla y cadera: qué esperar</h3>
+            <p class="resource-card-desc">Cuándo se recomienda un reemplazo articular, cómo es la recuperación y qué tan duradera es una prótesis moderna.</p>
+            <span class="resource-card-cta">Leer más &rarr;</span>
+          </div>
+        </a>
+
+        <a href="recursos/ligamento-cruzado-anterior.html" class="resource-card">
+          <div class="resource-card-visual">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M6 8l12 8M18 8L6 16"/></svg>
+          </div>
+          <div class="resource-card-body">
+            <h3 class="resource-card-title">Ligamento cruzado anterior: preguntas frecuentes</h3>
+            <p class="resource-card-desc">¿Un LCA roto puede sanar sin cirugía? Señales de alarma y opciones de tratamiento según el nivel de actividad.</p>
+            <span class="resource-card-cta">Leer más &rarr;</span>
+          </div>
+        </a>
+
+        <a href="recursos/hernia-discal.html" class="resource-card">
+          <div class="resource-card-visual">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="4" rx="1"/><rect x="7" y="10" width="10" height="4" rx="1"/><rect x="7" y="17.5" width="10" height="4" rx="1"/></svg>
+          </div>
+          <div class="resource-card-body">
+            <h3 class="resource-card-title">Hernia discal y dolor de espalda: cuándo preocuparse</h3>
+            <p class="resource-card-desc">Diferencias entre un dolor muscular pasajero y señales que sí requieren evaluación con un especialista.</p>
+            <span class="resource-card-cta">Leer más &rarr;</span>
+          </div>
+        </a>
+
+        <a href="recursos/fracturas-comunes.html" class="resource-card">
+          <div class="resource-card-visual">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>
+          </div>
+          <div class="resource-card-body">
+            <h3 class="resource-card-title">Fracturas comunes: primeros pasos</h3>
+            <p class="resource-card-desc">Qué hacer (y qué no) ante una sospecha de fractura mientras llegas a una evaluación médica.</p>
+            <span class="resource-card-cta">Leer más &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. SECCIÓN DE CONTACTO -->
+  <section id="contacto" class="section-padding">
+    <div class="container">
+      <div class="contact-grid">
+        
+        <!-- Info Izquierda -->
+        <div>
+          <h2 class="section-title">Agenda tu cita médica</h2>
+          <p style="color: var(--texto-secundario); margin-bottom: 1.5rem;">Estamos para atenderte en instalaciones médicas de primer nivel en San Salvador.</p>
+
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <h3>Ubicación de la Clínica</h3>
+              <p>Torre Médica Medicentro, Nivel 4, Local 402<br>San Salvador, El Salvador</p>
+            </div>
+
+            <div class="contact-info-item">
+              <h3>Teléfonos y WhatsApp</h3>
+              <p>+503 2200-8888<br>+503 7890-1234 (WhatsApp)</p>
+            </div>
+
+            <div class="contact-info-item">
+              <h3>Correo Electrónico</h3>
+              <p>contacto@drmarioportillo.com</p>
+            </div>
+
+            <div class="contact-info-item">
+              <h3>Horarios de Atención</h3>
+              <p>Lunes a Viernes: 8:00 AM – 5:00 PM<br>Sábados: 8:00 AM – 12:00 MD</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario Derecha -->
+        <div>
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Solicitud enviada con éxito. Nos comunicaremos contigo en breve.');">
+            <div class="form-group">
+              <label for="nombre">Nombre completo *</label>
+              <input type="text" id="nombre" placeholder="Ej. Ana María Gómez" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="telefono">Teléfono *</label>
+                <input type="tel" id="telefono" placeholder="Ej. 7000-0000" required>
+              </div>
+              <div class="form-group">
+                <label for="correo">Correo electrónico *</label>
+                <input type="email" id="correo" placeholder="ejemplo@correo.com" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="motivo">Motivo de consulta</label>
+                <select id="motivo">
+                  <option value="">Selecciona una opción</option>
+                  <option value="dolor-rodilla">Dolor / Lesión en Rodilla</option>
+                  <option value="dolor-cadera">Dolor / Problema en Cadera</option>
+                  <option value="hombro">Dolor / Lesión en Hombro</option>
+                  <option value="columna">Dolor de Columna / Espalda</option>
+                  <option value="segunda-opinion">Segunda Opinión Quirúrgica</option>
+                  <option value="otro">Otro Padecimiento</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="fecha">Fecha preferida</label>
+                <input type="date" id="fecha">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="mensaje">Mensaje o síntomas</label>
+              <textarea id="mensaje" placeholder="Describe brevemente tus molestias o consulta..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 0.5rem;">Enviar solicitud</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div>
+          <div class="footer-logo">Dr. Mario Portillo</div>
+          <p class="footer-desc">Cirugía ortopédica y traumatología de alta especialidad en San Salvador, El Salvador. Devolviéndote la movilidad con un trato cercano y ético.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navegación</h4>
+          <div class="footer-links">
+            <a href="#donde-duele">Dónde te duele</a>
+            <a href="#atencion">Atención</a>
+            <a href="#sobre-el-doctor">Sobre el doctor</a>
+            <a href="#testimonios">Testimonios</a>
+            <a href="#para-pacientes">Para pacientes</a>
+            <a href="#contacto">Contacto</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Contacto</h4>
+          <div class="footer-links">
+            <span>Torre Médica Medicentro, Nivel 4</span>
+            <span>San Salvador, El Salvador</span>
+            <span>+503 2200-8888</span>
+            <span>contacto@drmarioportillo.com</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Dr. Mario Portillo — Cirujano Ortopedista. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÓN FLOTANTE DE CONTACTO -->
+  <a href="#contacto" class="floating-contact" id="floatingContact" aria-label="Contáctanos: ir al teléfono, dirección y formulario de contacto">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 14l5 2v4a2 2 0 0 1-2 2C9.5 22 2 14.5 2 7a2 2 0 0 1 2-2z"/></svg>
+    <span>Contáctanos</span>
+  </a>
+
+  <!-- JAVASCRIPT DE INTERACTIVIDAD -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const bodyCards = document.querySelectorAll('.body-part-card');
+      const hotspots = document.querySelectorAll('.hotspot');
+
+      function activatePart(partName) {
+        // Activar tarjeta y encabezado correspondientes
+        bodyCards.forEach(card => {
+          const isActive = card.dataset.part === partName;
+          card.classList.toggle('active', isActive);
+          const header = card.querySelector('.body-part-header');
+          if (header) header.setAttribute('aria-expanded', String(isActive));
+        });
+
+        // Activar hotspot correspondiente en el SVG
+        hotspots.forEach(hs => {
+          hs.classList.toggle('active', hs.dataset.part === partName);
+        });
+      }
+
+      // Clics en la lista vertical (el encabezado ya es un <button>, con soporte de teclado nativo)
+      document.querySelectorAll('.body-part-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const card = header.closest('.body-part-card');
+          activatePart(card.dataset.part);
+        });
+      });
+
+      // Clics, teclado o hover en hotspots del SVG
+      hotspots.forEach(hs => {
+        hs.addEventListener('click', () => activatePart(hs.dataset.part));
+        hs.addEventListener('mouseenter', () => activatePart(hs.dataset.part));
+        hs.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activatePart(hs.dataset.part);
+          }
+        });
+      });
+
+      // --- Menú móvil ---
+      const mobileToggle = document.getElementById('mobileNavToggle');
+      const navMenu = document.getElementById('navMenu');
+      mobileToggle.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('open');
+        mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+      navMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('open');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // --- Botón flotante de contacto ---
+      const floatingContact = document.getElementById('floatingContact');
+      const heroSection = document.querySelector('.hero');
+      const revealThreshold = heroSection
+        ? heroSection.offsetTop + heroSection.offsetHeight * 0.6
+        : 400;
+
+      function toggleFloatingContact() {
+        floatingContact.classList.toggle('visible', window.scrollY > revealThreshold);
+      }
+      toggleFloatingContact();
+      window.addEventListener('scroll', toggleFloatingContact, { passive: true });
+
+      floatingContact.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('contacto');
+        if (!target) return;
+        target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+        const firstField = document.getElementById('nombre');
+        if (firstField) {
+          window.setTimeout(() => firstField.focus({ preventScroll: true }), prefersReducedMotion ? 50 : 700);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
