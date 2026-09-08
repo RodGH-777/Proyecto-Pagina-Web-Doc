@@ -15,25 +15,27 @@
        VARIABLES Y PALETA DE COLOR (ESTRICTAMENTE SEGÚN ESPECIFICACIÓN)
        ========================================================================== */
     :root {
-      --azul-primario: #1D5C7A;
-      --azul-oscuro: #12384B;
-      --dorado-acento: #C98A32;
-      --dorado-hover: #C08430;
-      --fondo-general: #F4F6F5;
+      /* Paleta 2.0: turquesa vivo + azul marino saturado (reemplaza azul-slate + dorado) */
+      --azul-primario: #0B3D91;   /* Azul marino saturado */
+      --azul-oscuro: #072659;     /* Azul marino profundo */
+      --dorado-acento: #0F766E;   /* Turquesa vivo (acento principal) */
+      --dorado-hover: #0B5D57;    /* Turquesa, estado hover */
+      --turquesa-claro: #5EEAD4;  /* Turquesa claro — solo como texto sobre fondos marino oscuros */
+      --fondo-general: #F0FAF9;   /* Fondo general con tinte verde-azulado suave */
       --superficie-blanca: #FFFFFF;
       --texto-principal: #1E2A33;
       --texto-secundario: #52626C;
-      --linea-borde: #DBE2E3;
+      --linea-borde: #D3E6E3;
 
       --font-serif: 'Fraunces', Georgia, serif;
       --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
       --radius-sm: 4px;
-      --radius-md: 6px;
+      --radius-md: 12px;
       --radius-pill: 9999px;
       --max-width: 1200px;
       --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-      --shadow-lift: 0 8px 24px rgba(18, 56, 75, 0.08);
+      --shadow-lift: 0 8px 24px rgba(7, 38, 89, 0.08);
     }
 
     /* ==========================================================================
@@ -86,12 +88,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.75rem 1.5rem;
+      padding: 0.8rem 1.75rem;
       font-family: var(--font-sans);
-      font-weight: 500;
+      font-weight: 600;
       font-size: 0.95rem;
-      border-radius: var(--radius-sm);
-      transition: background-color 0.2s ease, transform 140ms var(--ease-out);
+      border-radius: var(--radius-pill);
+      transition: background-color 0.2s ease, transform 140ms var(--ease-out), box-shadow 0.2s ease;
       cursor: pointer;
       text-align: center;
       border: 1px solid transparent;
@@ -113,18 +115,22 @@
 
     .btn-gold {
       background-color: var(--dorado-acento);
-      color: var(--texto-principal);
+      color: #FFFFFF;
+      box-shadow: 0 8px 20px rgba(15, 118, 110, 0.35);
     }
     .btn-gold:hover {
       background-color: var(--dorado-hover);
+      box-shadow: 0 12px 26px rgba(15, 118, 110, 0.45);
     }
 
     .btn-primary {
       background-color: var(--azul-primario);
       color: #FFFFFF;
+      box-shadow: 0 8px 20px rgba(11, 61, 145, 0.35);
     }
     .btn-primary:hover {
       background-color: var(--azul-oscuro);
+      box-shadow: 0 12px 26px rgba(11, 61, 145, 0.45);
     }
 
     .btn-outline {
@@ -133,13 +139,24 @@
       color: var(--azul-primario);
     }
     .btn-outline:hover {
-      background-color: rgba(29, 92, 122, 0.05);
+      background-color: rgba(11, 61, 145, 0.06);
+    }
+
+    .btn-outline-light {
+      background-color: transparent;
+      border-color: rgba(255, 255, 255, 0.6);
+      color: #FFFFFF;
+    }
+    .btn-outline-light:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: #FFFFFF;
     }
 
     .btn-white {
       background-color: #FFFFFF;
       color: var(--azul-oscuro);
       font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
     }
     .btn-white:hover {
       background-color: var(--fondo-general);
@@ -199,7 +216,7 @@
     }
 
     .top-bar-link {
-      color: var(--dorado-acento);
+      color: var(--turquesa-claro);
       font-weight: 500;
     }
     .top-bar-link:hover {
@@ -277,9 +294,12 @@
        3. HERO
        ========================================================================== */
     .hero {
-      padding: 4.5rem 0 3.5rem;
-      background-color: var(--superficie-blanca);
-      border-bottom: 1px solid var(--linea-borde);
+      padding: 5rem 0 3.5rem;
+      background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-primario) 100%);
+    }
+
+    .hero :focus-visible {
+      outline-color: #FFFFFF;
     }
 
     .hero-content {
@@ -291,13 +311,13 @@
     .hero-title {
       font-size: 3.25rem;
       margin-bottom: 1.25rem;
-      color: var(--azul-oscuro);
+      color: #FFFFFF;
       letter-spacing: -0.02em;
     }
 
     .hero-subtitle {
       font-size: 1.2rem;
-      color: var(--texto-secundario);
+      color: rgba(255, 255, 255, 0.82);
       margin-bottom: 2rem;
       line-height: 1.6;
     }
@@ -314,7 +334,7 @@
       justify-content: space-between;
       gap: 1rem;
       padding-top: 2rem;
-      border-top: 1px solid var(--linea-borde);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
       flex-wrap: wrap;
     }
 
@@ -324,24 +344,54 @@
       gap: 0.5rem;
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--texto-principal);
+      color: rgba(255, 255, 255, 0.92);
     }
 
     .check-icon {
-      color: var(--dorado-acento);
+      color: #FFFFFF;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: rgba(201, 138, 50, 0.15);
+      background: rgba(255, 255, 255, 0.16);
       flex-shrink: 0;
     }
 
     .check-icon svg {
       width: 10px;
       height: 10px;
+    }
+
+    /* ==========================================================================
+       3b. BANNER DE CIFRAS
+       ========================================================================== */
+    .stats-banner {
+      background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-primario) 100%);
+      padding: 3rem 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--turquesa-claro);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+      font-weight: 500;
     }
 
     /* ==========================================================================
@@ -431,7 +481,7 @@
       display: grid;
       grid-template-rows: 0fr;
       transition: grid-template-rows 0.3s var(--ease-out);
-      background-color: #FAFCFC;
+      background-color: #F5FBFA;
     }
 
     .body-part-card.active .body-part-content {
@@ -447,7 +497,7 @@
 
     .body-part-card.active .body-part-content-inner {
       padding: 1.25rem 1.5rem;
-      border-top: 1px solid #F0F4F5;
+      border-top: 1px solid #E8F5F2;
     }
 
     /* Diagrama SVG interactivo */
@@ -570,14 +620,14 @@
     @media (hover: hover) and (pointer: fine) {
       .service-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(18, 56, 75, 0.06);
+        box-shadow: 0 10px 20px rgba(7, 38, 89, 0.08);
       }
     }
 
     .service-icon {
       width: 48px;
       height: 48px;
-      background-color: rgba(29, 92, 122, 0.08);
+      background-color: rgba(11, 61, 145, 0.08);
       color: var(--azul-primario);
       border-radius: var(--radius-sm);
       display: flex;
@@ -763,9 +813,9 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background-color: rgba(201, 138, 50, 0.1);
+      background-color: rgba(15, 118, 110, 0.1);
       color: var(--azul-oscuro);
-      border: 1px solid rgba(201, 138, 50, 0.3);
+      border: 1px solid rgba(15, 118, 110, 0.3);
       padding: 0.4rem 1rem;
       border-radius: var(--radius-pill);
       font-size: 0.85rem;
@@ -854,12 +904,12 @@
     @media (hover: hover) and (pointer: fine) {
       .resource-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(18, 56, 75, 0.06);
+        box-shadow: 0 10px 20px rgba(7, 38, 89, 0.08);
       }
     }
 
     .resource-card-visual {
-      background-color: rgba(29, 92, 122, 0.06);
+      background-color: rgba(11, 61, 145, 0.06);
       color: var(--azul-primario);
       display: flex;
       align-items: center;
@@ -895,6 +945,10 @@
     /* ==========================================================================
        10. SECCIÓN DE CONTACTO
        ========================================================================== */
+    #contacto {
+      background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-primario) 100%);
+    }
+
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -1023,7 +1077,7 @@
     }
 
     .footer-links a:hover {
-      color: var(--dorado-acento);
+      color: var(--turquesa-claro);
     }
 
     .footer-bottom {
@@ -1047,13 +1101,13 @@
       gap: 0.6rem;
       padding: 0.85rem 1.4rem;
       background-color: var(--dorado-acento);
-      color: var(--texto-principal);
+      color: #FFFFFF;
       font-family: var(--font-sans);
       font-weight: 600;
       font-size: 0.92rem;
       white-space: nowrap;
       border-radius: var(--radius-pill);
-      box-shadow: 0 10px 28px rgba(18, 56, 75, 0.28);
+      box-shadow: 0 10px 28px rgba(15, 118, 110, 0.45);
       text-decoration: none;
       opacity: 0;
       transform: translateY(16px) scale(0.96);
@@ -1103,6 +1157,264 @@
     }
 
     /* ==========================================================================
+       ASISTENTE VIRTUAL (BOT DE PREGUNTAS Y RESPUESTAS)
+       ========================================================================== */
+    .chatbot-toggle {
+      position: fixed;
+      left: 1.5rem;
+      bottom: 1.5rem;
+      z-index: 200;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--azul-primario);
+      color: #FFFFFF;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 28px rgba(11, 61, 145, 0.4);
+      transition: background-color 0.2s ease, transform 140ms var(--ease-out), box-shadow 0.2s ease;
+    }
+
+    .chatbot-toggle:hover {
+      background-color: var(--azul-oscuro);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .chatbot-toggle:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 32px rgba(11, 61, 145, 0.5);
+      }
+    }
+
+    .chatbot-toggle:active {
+      transform: scale(0.94);
+    }
+
+    .chatbot-toggle svg {
+      width: 26px;
+      height: 26px;
+      transition: transform 0.2s var(--ease-out), opacity 0.2s ease;
+    }
+
+    .chatbot-toggle .icon-close {
+      position: absolute;
+      opacity: 0;
+      transform: scale(0.5) rotate(-45deg);
+    }
+
+    .chatbot-toggle.open .icon-chat {
+      opacity: 0;
+      transform: scale(0.5) rotate(45deg);
+    }
+
+    .chatbot-toggle.open .icon-close {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    .chatbot-panel {
+      position: fixed;
+      left: 1.5rem;
+      bottom: 5.75rem;
+      z-index: 199;
+      width: 360px;
+      max-width: calc(100vw - 2rem);
+      height: min(560px, 70vh);
+      background-color: var(--superficie-blanca);
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 48px rgba(7, 38, 89, 0.22);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(16px) scale(0.97);
+      pointer-events: none;
+      transform-origin: bottom left;
+      transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+    }
+
+    .chatbot-panel.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .chatbot-header {
+      background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-primario) 100%);
+      color: #FFFFFF;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .chatbot-header-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .chatbot-avatar {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .chatbot-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    .chatbot-subtitle {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .chatbot-close {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.85);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+      border-radius: 50%;
+      transition: background-color 0.2s ease;
+    }
+
+    .chatbot-close:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background-color: var(--fondo-general);
+    }
+
+    .chatbot-bubble {
+      max-width: 85%;
+      padding: 0.65rem 0.9rem;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      animation: chatbot-bubble-in 0.25s var(--ease-out);
+    }
+
+    @keyframes chatbot-bubble-in {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chatbot-bubble.bot {
+      align-self: flex-start;
+      background-color: var(--superficie-blanca);
+      border: 1px solid var(--linea-borde);
+      color: var(--texto-principal);
+      border-bottom-left-radius: 2px;
+    }
+
+    .chatbot-bubble.user {
+      align-self: flex-end;
+      background-color: var(--azul-primario);
+      color: #FFFFFF;
+      border-bottom-right-radius: 2px;
+    }
+
+    .chatbot-choices {
+      flex-shrink: 0;
+      padding: 0.85rem 1rem;
+      border-top: 1px solid var(--linea-borde);
+      background-color: var(--superficie-blanca);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 40%;
+      overflow-y: auto;
+    }
+
+    .chatbot-choice {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background-color: var(--fondo-general);
+      border: 1px solid var(--linea-borde);
+      color: var(--azul-oscuro);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.6rem 0.9rem;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 140ms var(--ease-out);
+    }
+
+    .chatbot-choice:hover {
+      background-color: rgba(11, 61, 145, 0.06);
+      border-color: var(--azul-primario);
+    }
+
+    .chatbot-choice:active {
+      transform: scale(0.98);
+    }
+
+    .chatbot-choice.chatbot-choice-cta {
+      background-color: var(--dorado-acento);
+      border-color: var(--dorado-acento);
+      color: #FFFFFF;
+    }
+
+    .chatbot-choice.chatbot-choice-cta:hover {
+      background-color: var(--dorado-hover);
+      border-color: var(--dorado-hover);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .chatbot-toggle:hover,
+      .chatbot-panel,
+      .chatbot-panel.open,
+      .chatbot-bubble {
+        transform: none;
+        animation: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .chatbot-panel {
+        left: 1rem;
+        right: 1rem;
+        width: auto;
+        max-width: none;
+        bottom: 5.25rem;
+        height: min(70vh, 520px);
+      }
+      .chatbot-toggle {
+        left: 1rem;
+        bottom: 1rem;
+        width: 54px;
+        height: 54px;
+      }
+    }
+
+    /* ==========================================================================
        RESPONSIVE DESIGN (MOBILE FIRST OVERRIDES)
        ========================================================================== */
     @media (max-width: 992px) {
@@ -1120,6 +1432,10 @@
       }
       .resources-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.75rem;
       }
       .steps-container::before {
         display: none;
@@ -1268,7 +1584,7 @@
         
         <div class="hero-actions">
           <a href="#contacto" class="btn btn-gold">Solicitar una cita</a>
-          <a href="#donde-duele" class="btn btn-outline">¿Dónde te duele?</a>
+          <a href="#donde-duele" class="btn btn-outline-light">¿Dónde te duele?</a>
         </div>
 
         <div class="trust-checks">
@@ -1288,6 +1604,30 @@
             <span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
             <span>Pacientes 5 estrellas</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3b. BANNER DE CIFRAS -->
+  <section class="stats-banner">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">+15</div>
+          <div class="stat-label">Años de Experiencia</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">+800</div>
+          <div class="stat-label">Cirugías Realizadas</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">+2,000</div>
+          <div class="stat-label">Pacientes Atendidos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Sociedades y Asociaciones Médicas</div>
         </div>
       </div>
     </div>
@@ -1512,6 +1852,19 @@
         </div>
       </div>
 
+      <div style="max-width: 800px; margin: 2.5rem auto 0;">
+        <h4 class="font-serif" style="font-size: 1.3rem; margin-bottom: 1.25rem; color: var(--azul-oscuro);">Miembro de estas asociaciones</h4>
+
+        <div class="trust-pills" style="justify-content: flex-start;">
+          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Asociación Salvadoreña de Ortopedia y Traumatología</span>
+          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> American Academy of Orthopaedic Surgeons (AAOS)</span>
+          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Médicos de El Salvador</span>
+          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> SOFCOT Francia</span>
+          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Colegio Médico de El Salvador</span>
+          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Sociedad Latinoamericana de Ortopedia y Traumatología (SLAOT)</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1552,7 +1905,7 @@
   </section>
 
   <!-- 9. TESTIMONIOS -->
-  <section id="testimonios" class="section-padding" style="background-color: #EBF0F2;">
+  <section id="testimonios" class="section-padding" style="background-color: #E3F3F1;">
     <div class="container">
       <div style="text-align: center;">
         <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
@@ -1685,6 +2038,11 @@
               <h3>Horarios de Atención</h3>
               <p>Lunes a Viernes: 8:00 AM – 5:00 PM<br>Sábados: 8:00 AM – 12:00 MD</p>
             </div>
+
+            <div class="contact-info-item">
+              <h3>Aseguradoras</h3>
+              <p>Trabajamos con SISA, ASESUISA, MAPFRE y Seguros e Inversiones.</p>
+            </div>
           </div>
         </div>
 
@@ -1785,6 +2143,29 @@
     <span>Contáctanos</span>
   </a>
 
+  <!-- ASISTENTE VIRTUAL -->
+  <button type="button" class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir asistente virtual de preguntas frecuentes" aria-expanded="false" aria-controls="chatbotPanel">
+    <svg class="icon-chat" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    <svg class="icon-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+
+  <div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-modal="false" aria-label="Asistente virtual de preguntas frecuentes" aria-hidden="true">
+    <div class="chatbot-header">
+      <div class="chatbot-header-info">
+        <span class="chatbot-avatar">MP</span>
+        <div>
+          <div class="chatbot-title">Asistente virtual</div>
+          <div class="chatbot-subtitle">Consultorio Dr. Mario Portillo</div>
+        </div>
+      </div>
+      <button type="button" class="chatbot-close" id="chatbotClose" aria-label="Cerrar asistente virtual">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+    <div class="chatbot-choices" id="chatbotChoices"></div>
+  </div>
+
   <!-- JAVASCRIPT DE INTERACTIVIDAD -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -1862,6 +2243,341 @@
         const firstField = document.getElementById('nombre');
         if (firstField) {
           window.setTimeout(() => firstField.focus({ preventScroll: true }), prefersReducedMotion ? 50 : 700);
+        }
+      });
+
+      // --- Asistente virtual (bot de preguntas y respuestas en grafo) ---
+      const chatbotGraph = {
+        start: {
+          message: '¡Hola! Soy el asistente virtual del consultorio del Dr. Mario Portillo. ¿En qué puedo ayudarte hoy?',
+          choices: [
+            { label: 'Quiero agendar una cita', next: 'agendar-menu' },
+            { label: 'Tengo dolor o una lesión', next: 'sintomas-menu' },
+            { label: 'Preguntas sobre cirugía', next: 'cirugia-menu' },
+            { label: 'Horarios, ubicación y seguros', next: 'consultorio-menu' },
+            { label: 'Hablar con alguien directamente', next: 'contacto-directo' },
+          ],
+        },
+
+        'agendar-menu': {
+          message: 'Claro, aquí tienes las dudas más comunes sobre agendar una cita:',
+          choices: [
+            { label: '¿Cómo agendo una cita?', next: 'agendar-como' },
+            { label: '¿Qué debo llevar a mi primera consulta?', next: 'agendar-llevar' },
+            { label: '¿Necesito una referencia médica?', next: 'agendar-referencia' },
+            { label: '¿Cuánto cuesta la consulta?', next: 'agendar-costo' },
+            { label: '¿Atienden citas de urgencia?', next: 'agendar-urgencia' },
+            { label: '← Menú principal', next: 'start' },
+          ],
+        },
+        'agendar-como': {
+          message: 'Puedes agendar tu cita de tres formas: completando el formulario en la sección de Contacto de esta página, llamando al +503 2200-8888, o escribiéndonos por WhatsApp al +503 7890-1234. Te confirmaremos fecha y hora lo antes posible.',
+          choices: [
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: 'Escribir por WhatsApp', action: 'whatsapp' },
+            { label: '← Volver', next: 'agendar-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+        'agendar-llevar': {
+          message: 'Si tienes radiografías, resonancias o estudios previos relacionados con tu molestia, tráelos — ayudan mucho en la primera evaluación. También trae tu identificación y el carnet de tu seguro médico si aplica. Si no tienes estudios previos, no te preocupes: el doctor indicará los que sean necesarios.',
+          choices: [
+            { label: '¿Qué seguros aceptan?', next: 'consultorio-seguros' },
+            { label: '← Volver', next: 'agendar-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+        'agendar-referencia': {
+          message: 'No es obligatoria una referencia de otro médico para agendar tu primera cita, aunque si ya tienes una, es útil traerla junto con cualquier estudio relacionado.',
+          choices: [
+            { label: '← Volver', next: 'agendar-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+        'agendar-costo': {
+          message: 'El costo de la consulta puede variar según el tipo de evaluación y si tu seguro cubre parte del servicio. Para darte un monto exacto, lo mejor es que nos contactes directamente antes de tu cita.',
+          choices: [
+            { label: 'Escribir por WhatsApp', action: 'whatsapp' },
+            { label: '← Volver', next: 'agendar-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+        'agendar-urgencia': {
+          message: 'Sí, intentamos dar espacio a casos urgentes lo antes posible. Si tu dolor o lesión es reciente e intenso, llámanos o escríbenos por WhatsApp directamente para que te indiquemos la disponibilidad más próxima. Si se trata de una emergencia médica grave, acude de inmediato a un servicio de urgencias.',
+          choices: [
+            { label: 'Escribir por WhatsApp', action: 'whatsapp' },
+            { label: '¿Cuándo es una emergencia?', next: 'sintomas-emergencia' },
+            { label: '← Volver', next: 'agendar-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+
+        'sintomas-menu': {
+          message: 'Entiendo. Cuéntame más sobre dónde sientes la molestia:',
+          choices: [
+            { label: 'Dolor de rodilla', next: 'sintomas-rodilla' },
+            { label: 'Dolor de cadera', next: 'sintomas-cadera' },
+            { label: 'Dolor de columna o espalda', next: 'sintomas-columna' },
+            { label: 'Dolor de hombro', next: 'sintomas-hombro' },
+            { label: 'Lesión deportiva', next: 'sintomas-deportiva' },
+            { label: 'Creo que tengo una fractura', next: 'sintomas-fractura' },
+            { label: '¿Cuándo es una emergencia?', next: 'sintomas-emergencia' },
+            { label: '← Menú principal', next: 'start' },
+          ],
+        },
+        'sintomas-rodilla': {
+          message: 'El dolor de rodilla puede deberse a lesiones de ligamentos o meniscos, desgaste articular (artrosis) o sobreuso. El Dr. Portillo evalúa desde molestias leves hasta casos que requieren reemplazo articular.',
+          choices: [
+            { label: 'Leer sobre prótesis de rodilla', action: 'article', url: 'recursos/protesis-rodilla-cadera.html' },
+            { label: 'Leer sobre ligamento cruzado', action: 'article', url: 'recursos/ligamento-cruzado-anterior.html' },
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'sintomas-menu' },
+          ],
+        },
+        'sintomas-cadera': {
+          message: 'El dolor de cadera es frecuente por desgaste articular, pinzamiento femoroacetabular o bursitis. Si limita tu movilidad al caminar o dormir, vale la pena una evaluación.',
+          choices: [
+            { label: 'Leer sobre prótesis de cadera', action: 'article', url: 'recursos/protesis-rodilla-cadera.html' },
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'sintomas-menu' },
+          ],
+        },
+        'sintomas-columna': {
+          message: 'El dolor de espalda o columna suele mejorar con reposo relativo, pero si se irradia hacia una pierna, causa hormigueo o debilidad, o persiste por semanas, es momento de una evaluación especializada.',
+          choices: [
+            { label: 'Leer sobre hernia discal', action: 'article', url: 'recursos/hernia-discal.html' },
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'sintomas-menu' },
+          ],
+        },
+        'sintomas-hombro': {
+          message: 'El dolor de hombro puede originarse en el manguito rotador, inestabilidad articular o desgaste. El Dr. Portillo trata estos casos frecuentemente mediante artroscopía de mínima invasión cuando es necesario.',
+          choices: [
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'sintomas-menu' },
+          ],
+        },
+        'sintomas-deportiva': {
+          message: 'Las lesiones deportivas más comunes involucran ligamentos, tendones y meniscos. Mientras más pronto se evalúen, más rápida suele ser la recuperación y el regreso a la actividad física.',
+          choices: [
+            { label: 'Leer sobre ligamento cruzado (LCA)', action: 'article', url: 'recursos/ligamento-cruzado-anterior.html' },
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'sintomas-menu' },
+          ],
+        },
+        'sintomas-fractura': {
+          message: 'Si sospechas una fractura: inmoviliza la zona, aplica hielo (nunca directo sobre la piel) y busca atención médica lo antes posible. No intentes acomodar el hueso ni ignores el dolor si hay deformidad visible.',
+          choices: [
+            { label: 'Leer guía completa de primeros pasos', action: 'article', url: 'recursos/fracturas-comunes.html' },
+            { label: '¿Cuándo es una emergencia?', next: 'sintomas-emergencia' },
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'sintomas-menu' },
+          ],
+        },
+        'sintomas-emergencia': {
+          message: 'Acude de inmediato a un servicio de urgencias si hay deformidad evidente, el hueso perfora la piel, pérdida de sensibilidad o color pálido/azulado en la extremidad, o si la lesión ocurrió junto con un golpe importante en la cabeza o el torso. Para todo lo demás, con gusto te agendamos una consulta.',
+          choices: [
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'sintomas-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+
+        'cirugia-menu': {
+          message: 'Con gusto. Estas son las dudas más comunes sobre cirugía ortopédica:',
+          choices: [
+            { label: '¿Qué cirugías realiza el Dr. Portillo?', next: 'cirugia-tipos' },
+            { label: '¿Siempre es necesaria la cirugía?', next: 'cirugia-necesaria' },
+            { label: '¿Cuánto dura la recuperación?', next: 'cirugia-recuperacion' },
+            { label: 'Tengo miedo a la cirugía, ¿qué hago?', next: 'cirugia-miedo' },
+            { label: '← Menú principal', next: 'start' },
+          ],
+        },
+        'cirugia-tipos': {
+          message: 'El Dr. Portillo realiza cirugía de reemplazo articular (prótesis de rodilla y cadera), artroscopía de rodilla y hombro, reconstrucción de ligamentos, y manejo quirúrgico de fracturas complejas, entre otros procedimientos ortopédicos.',
+          choices: [
+            { label: 'Leer sobre prótesis de rodilla y cadera', action: 'article', url: 'recursos/protesis-rodilla-cadera.html' },
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'cirugia-menu' },
+          ],
+        },
+        'cirugia-necesaria': {
+          message: 'No. Siempre que es posible, se priorizan tratamientos conservadores — fisioterapia, medicamentos, infiltraciones o inmovilización — antes de considerar una cirugía. La cirugía se recomienda cuando estas opciones ya no son suficientes o el daño estructural lo requiere.',
+          choices: [
+            { label: '← Volver', next: 'cirugia-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+        'cirugia-recuperacion': {
+          message: 'Varía según el procedimiento: una artroscopía puede tener una recuperación de semanas, mientras que un reemplazo articular suele tomar de 3 a 6 meses para una recuperación funcional completa, con fisioterapia progresiva desde los primeros días.',
+          choices: [
+            { label: 'Leer más sobre recuperación de prótesis', action: 'article', url: 'recursos/protesis-rodilla-cadera.html' },
+            { label: '← Volver', next: 'cirugia-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+        'cirugia-miedo': {
+          message: 'Es completamente normal sentir dudas antes de una cirugía. El Dr. Portillo dedica tiempo a explicar cada paso del procedimiento y responder tus preguntas antes de decidir en conjunto el mejor camino — nada se hace sin que entiendas y estés de acuerdo con el plan.',
+          choices: [
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'cirugia-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+
+        'consultorio-menu': {
+          message: 'Aquí tienes la información del consultorio:',
+          choices: [
+            { label: '¿Cuáles son los horarios?', next: 'consultorio-horarios' },
+            { label: '¿Dónde están ubicados?', next: 'consultorio-ubicacion' },
+            { label: '¿Qué seguros aceptan?', next: 'consultorio-seguros' },
+            { label: '¿Puedo enviar mis estudios antes de la cita?', next: 'consultorio-estudios' },
+            { label: '← Menú principal', next: 'start' },
+          ],
+        },
+        'consultorio-horarios': {
+          message: 'Atendemos de lunes a viernes de 8:00 AM a 5:00 PM, y sábados de 8:00 AM a 12:00 MD.',
+          choices: [
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'consultorio-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+        'consultorio-ubicacion': {
+          message: 'Estamos en Torre Médica Medicentro, Nivel 4, Local 402, San Salvador, El Salvador.',
+          choices: [
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: '← Volver', next: 'consultorio-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+        'consultorio-seguros': {
+          message: 'Trabajamos con SISA, ASESUISA, MAPFRE y Seguros e Inversiones. Si tienes otro seguro, contáctanos para confirmar la cobertura antes de tu cita.',
+          choices: [
+            { label: 'Escribir por WhatsApp', action: 'whatsapp' },
+            { label: '← Volver', next: 'consultorio-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+        'consultorio-estudios': {
+          message: 'Sí, puedes escribirnos por WhatsApp o correo electrónico antes de tu cita para enviarnos radiografías, resonancias u otros estudios previos, y así aprovechar mejor el tiempo de tu consulta.',
+          choices: [
+            { label: 'Escribir por WhatsApp', action: 'whatsapp' },
+            { label: '← Volver', next: 'consultorio-menu' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+
+        'contacto-directo': {
+          message: 'Claro, puedes escribirnos o llamarnos directamente: +503 2200-8888 (también WhatsApp: +503 7890-1234) o contacto@drmarioportillo.com. También puedes usar el formulario en la sección de Contacto de esta página.',
+          choices: [
+            { label: 'Agendar cita ahora', action: 'contact', cta: true },
+            { label: 'Escribir por WhatsApp', action: 'whatsapp' },
+            { label: 'Menú principal', next: 'start' },
+          ],
+        },
+      };
+
+      const chatbotToggle = document.getElementById('chatbotToggle');
+      const chatbotPanel = document.getElementById('chatbotPanel');
+      const chatbotClose = document.getElementById('chatbotClose');
+      const chatbotMessages = document.getElementById('chatbotMessages');
+      const chatbotChoices = document.getElementById('chatbotChoices');
+      let chatbotStarted = false;
+
+      function addChatbotBubble(text, sender) {
+        const bubble = document.createElement('div');
+        bubble.className = 'chatbot-bubble ' + sender;
+        bubble.textContent = text;
+        chatbotMessages.appendChild(bubble);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      }
+
+      function renderChatbotNode(nodeId) {
+        const node = chatbotGraph[nodeId];
+        if (!node) return;
+        addChatbotBubble(node.message, 'bot');
+        chatbotChoices.innerHTML = '';
+        node.choices.forEach((choice) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'chatbot-choice' + (choice.cta ? ' chatbot-choice-cta' : '');
+          btn.textContent = choice.label;
+          btn.addEventListener('click', () => handleChatbotChoice(choice));
+          chatbotChoices.appendChild(btn);
+        });
+      }
+
+      function handleChatbotChoice(choice) {
+        addChatbotBubble(choice.label, 'user');
+
+        if (choice.action === 'contact') {
+          closeChatbot();
+          const target = document.getElementById('contacto');
+          if (target) {
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+            const firstField = document.getElementById('nombre');
+            if (firstField) {
+              window.setTimeout(() => firstField.focus({ preventScroll: true }), prefersReducedMotion ? 50 : 700);
+            }
+          }
+          return;
+        }
+
+        if (choice.action === 'whatsapp') {
+          window.open('https://wa.me/50378901234', '_blank', 'noopener');
+          addChatbotBubble('Te estamos abriendo WhatsApp en una nueva pestaña. Si no se abrió, escríbenos al +503 7890-1234.', 'bot');
+          return;
+        }
+
+        if (choice.action === 'article') {
+          window.open(choice.url, '_blank', 'noopener');
+          return;
+        }
+
+        if (choice.next) {
+          renderChatbotNode(choice.next);
+        }
+      }
+
+      function openChatbot() {
+        chatbotPanel.classList.add('open');
+        chatbotPanel.setAttribute('aria-hidden', 'false');
+        chatbotToggle.classList.add('open');
+        chatbotToggle.setAttribute('aria-expanded', 'true');
+        chatbotToggle.setAttribute('aria-label', 'Cerrar asistente virtual');
+        if (!chatbotStarted) {
+          chatbotStarted = true;
+          renderChatbotNode('start');
+        }
+        window.setTimeout(() => {
+          const firstChoice = chatbotChoices.querySelector('.chatbot-choice');
+          if (firstChoice) firstChoice.focus();
+        }, 250);
+      }
+
+      function closeChatbot() {
+        chatbotPanel.classList.remove('open');
+        chatbotPanel.setAttribute('aria-hidden', 'true');
+        chatbotToggle.classList.remove('open');
+        chatbotToggle.setAttribute('aria-expanded', 'false');
+        chatbotToggle.setAttribute('aria-label', 'Abrir asistente virtual de preguntas frecuentes');
+      }
+
+      chatbotToggle.addEventListener('click', () => {
+        if (chatbotPanel.classList.contains('open')) {
+          closeChatbot();
+        } else {
+          openChatbot();
+        }
+      });
+
+      chatbotClose.addEventListener('click', closeChatbot);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && chatbotPanel.classList.contains('open')) {
+          closeChatbot();
+          chatbotToggle.focus();
         }
       });
     });

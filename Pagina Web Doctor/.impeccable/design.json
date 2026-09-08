@@ -6,33 +6,39 @@
     "colorMeta": {
       "primary": {
         "role": "primary",
-        "displayName": "Steady Slate Blue",
-        "canonical": "#1D5C7A",
-        "tonalRamp": ["#0F2F3E", "#1A546F", "#2679A1", "#359DCF", "#67B5DB", "#98CDE7", "#C9E5F2", "#EAF5FA"]
+        "displayName": "Deep Navy",
+        "canonical": "#0B3D91",
+        "tonalRamp": ["#051E47", "#0A3680", "#0E4EB9", "#1767ED", "#508CF2", "#88B1F6", "#C1D7FA", "#E7EFFD"]
       },
       "primary-deep": {
         "role": "primary",
-        "displayName": "Deep Navy",
-        "canonical": "#12384B",
-        "tonalRamp": ["#0F2E3E", "#1B536F", "#2678A0", "#359CCF", "#67B4DA", "#98CCE6", "#CAE5F2", "#EAF5FA"]
+        "displayName": "Navy, Deep",
+        "canonical": "#072659",
+        "tonalRamp": ["#061E47", "#0A3780", "#0F4FB8", "#1768ED", "#508DF1", "#89B2F6", "#C2D7FA", "#E7F0FD"]
       },
-      "accent-gold": {
+      "accent-turquoise": {
         "role": "accent",
-        "displayName": "Burnished Gold",
-        "canonical": "#C98A32",
-        "tonalRamp": ["#3D2A0F", "#6E4C1B", "#9F6D28", "#CD8E37", "#D9AA68", "#E6C699", "#F2E1CA", "#FAF4EB"]
+        "displayName": "Vivid Turquoise",
+        "canonical": "#0F766E",
+        "tonalRamp": ["#09443F", "#107A72", "#16B0A5", "#21E3D4", "#58EADE", "#8EF1E9", "#C4F8F4", "#E8FCFB"]
       },
-      "accent-gold-hover": {
+      "accent-turquoise-hover": {
         "role": "accent",
-        "displayName": "Burnished Gold, Hover",
-        "canonical": "#C08430",
-        "tonalRamp": ["#3D2A0F", "#6E4C1C", "#9F6D28", "#CD8F37", "#D9AA68", "#E6C699", "#F2E1CA", "#FAF4EB"]
+        "displayName": "Vivid Turquoise, Hover",
+        "canonical": "#0B5D57",
+        "tonalRamp": ["#084440", "#0F7B73", "#15B2A6", "#20E5D6", "#56EBE0", "#8DF2EA", "#C4F8F4", "#E8FCFB"]
+      },
+      "accent-turquoise-light": {
+        "role": "accent",
+        "displayName": "Turquoise, Light",
+        "canonical": "#5EEAD4",
+        "tonalRamp": ["#09443A", "#107A69", "#17B098", "#22E2C4", "#58E9D2", "#8EF0E1", "#C4F7EF", "#E8FCF9"]
       },
       "neutral-bg": {
         "role": "neutral",
         "displayName": "Mist Background",
-        "canonical": "#F4F6F5",
-        "tonalRamp": ["#222A26", "#3E4C45", "#5A6D63", "#768F82", "#97AAA1", "#B9C6BF", "#DBE1DE", "#F1F4F2"]
+        "canonical": "#F0FAF9",
+        "tonalRamp": ["#133936", "#226760", "#32958B", "#44C1B4", "#71D0C6", "#9FDFD9", "#CDEEEB", "#ECF9F7"]
       },
       "surface": {
         "role": "neutral",
@@ -55,26 +61,28 @@
       "border": {
         "role": "neutral",
         "displayName": "Hairline",
-        "canonical": "#DBE2E3",
-        "tonalRamp": ["#212A2B", "#3C4B4D", "#576D70", "#728E92", "#95A9AC", "#B7C5C7", "#DAE1E2", "#F1F3F4"]
+        "canonical": "#D3E6E3",
+        "tonalRamp": ["#1C312D", "#325852", "#487F76", "#60A49A", "#87BBB2", "#AED1CB", "#D5E7E4", "#EFF6F5"]
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "The hero headline only." },
+      "display": { "displayName": "Display", "purpose": "The hero headline only, now set in white against the navy gradient." },
       "headline": { "displayName": "Headline", "purpose": "Section titles." },
       "title": { "displayName": "Title", "purpose": "Card and profile titles — doctor name, service names, body-part names, credential entries." },
       "body": { "displayName": "Body", "purpose": "Paragraph copy and descriptions." },
-      "label": { "displayName": "Label", "purpose": "Section eyebrow tags and footer column headers, always uppercase." }
+      "label": { "displayName": "Label", "purpose": "Footer column headers, always uppercase." }
     },
     "shadows": [
       { "name": "card-active", "value": "0 2px 8px rgba(0,0,0,0.03)", "purpose": "State signal on the active body-part accordion card; not a resting elevation." },
-      { "name": "shadow-lift", "value": "0 8px 24px rgba(18, 56, 75, 0.08)", "purpose": "The confirmed elevation exception, applied only to the doctor-profile card and the contact-section card." },
-      { "name": "floating-contact", "value": "0 10px 28px rgba(18, 56, 75, 0.28)", "purpose": "Stronger shadow for the fixed floating contact button, which needs to read as detached from the page." }
+      { "name": "shadow-lift", "value": "0 8px 24px rgba(7, 38, 89, 0.08)", "purpose": "The confirmed elevation exception, applied only to the doctor-profile card and the contact-grid card." },
+      { "name": "glow-turquoise", "value": "0 8px 20px rgba(15, 118, 110, 0.35)", "purpose": "Colored glow shadow on every turquoise-fill button (Colored-Glow Rule), intensifies on hover." },
+      { "name": "glow-navy", "value": "0 8px 20px rgba(11, 61, 145, 0.35)", "purpose": "Colored glow shadow on every navy-fill button." },
+      { "name": "floating-contact", "value": "0 10px 28px rgba(15, 118, 110, 0.45)", "purpose": "Turquoise-tinted shadow for the fixed floating contact button, matching its own fill color." }
     ],
     "motion": [
       { "name": "ease-out", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "Strong ease-out curve used for hover lifts, the floating contact button, the mobile nav dropdown, and hotspot/accordion transitions." },
       { "name": "interaction-fast", "value": "0.2s ease", "purpose": "Button/link background-color and card border-color hover transitions." },
-      { "name": "interaction-reveal", "value": "0.3s ease-out", "purpose": "Accordion max-height reveal and anatomy-diagram hotspot radius transitions." },
+      { "name": "interaction-reveal", "value": "0.3s ease-out", "purpose": "Accordion grid-row reveal and anatomy-diagram hotspot radius transitions." },
       { "name": "press-feedback", "value": "140ms ease-out", "purpose": "Button :active scale(0.97) press feedback." }
     ],
     "breakpoints": [
@@ -88,33 +96,33 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The site's one true call-to-action style — gold fill with dark ink text (white failed contrast at ~2.9:1), used for booking actions. Lifts on hover and presses on click.",
+      "description": "The site's one true call-to-action style — vivid turquoise fill, white text, pill-shaped, with a turquoise-tinted glow shadow. Lifts on hover and presses on click.",
       "html": "<button class=\"ds-btn-primary\">Solicitar una cita</button>",
-      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; padding:0.75rem 1.5rem; font-family:'IBM Plex Sans',sans-serif; font-weight:500; font-size:0.95rem; border-radius:4px; border:1px solid transparent; cursor:pointer; background-color:#C98A32; color:#1E2A33; transition:background-color 0.2s ease, transform 140ms cubic-bezier(0.23,1,0.32,1); } .ds-btn-primary:hover { background-color:#C08430; } @media (hover:hover) and (pointer:fine) { .ds-btn-primary:hover { transform:translateY(-2px); } } .ds-btn-primary:active { transform:scale(0.97); } .ds-btn-primary:focus-visible { outline:2px solid #1D5C7A; outline-offset:2px; }"
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; padding:0.8rem 1.75rem; font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:0.95rem; border-radius:9999px; border:1px solid transparent; cursor:pointer; background-color:#0F766E; color:#FFFFFF; box-shadow:0 8px 20px rgba(15,118,110,0.35); transition:background-color 0.2s ease, transform 140ms cubic-bezier(0.23,1,0.32,1), box-shadow 0.2s ease; } .ds-btn-primary:hover { background-color:#0B5D57; box-shadow:0 12px 26px rgba(15,118,110,0.45); } @media (hover:hover) and (pointer:fine) { .ds-btn-primary:hover { transform:translateY(-2px); } } .ds-btn-primary:active { transform:scale(0.97); } .ds-btn-primary:focus-visible { outline:2px solid #0B3D91; outline-offset:2px; }"
     },
     {
       "name": "Secondary Button",
       "kind": "button",
       "refersTo": "button-secondary",
-      "description": "Steady Slate Blue fill — used for the always-visible header CTA.",
+      "description": "Deep navy fill, white text, pill-shaped with a navy-tinted glow shadow — used for the always-visible header CTA.",
       "html": "<button class=\"ds-btn-secondary\">Agendar cita</button>",
-      "css": ".ds-btn-secondary { display:inline-flex; align-items:center; justify-content:center; padding:0.75rem 1.5rem; font-family:'IBM Plex Sans',sans-serif; font-weight:500; font-size:0.95rem; border-radius:4px; border:1px solid transparent; cursor:pointer; background-color:#1D5C7A; color:#FFFFFF; transition:background-color 0.2s ease; } .ds-btn-secondary:hover { background-color:#12384B; } .ds-btn-secondary:focus-visible { outline:2px solid #C98A32; outline-offset:2px; }"
+      "css": ".ds-btn-secondary { display:inline-flex; align-items:center; justify-content:center; padding:0.8rem 1.75rem; font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:0.95rem; border-radius:9999px; border:1px solid transparent; cursor:pointer; background-color:#0B3D91; color:#FFFFFF; box-shadow:0 8px 20px rgba(11,61,145,0.35); transition:background-color 0.2s ease, transform 140ms cubic-bezier(0.23,1,0.32,1), box-shadow 0.2s ease; } .ds-btn-secondary:hover { background-color:#072659; box-shadow:0 12px 26px rgba(11,61,145,0.45); } .ds-btn-secondary:focus-visible { outline:2px solid #0F766E; outline-offset:2px; }"
     },
     {
-      "name": "Ghost Button",
+      "name": "Ghost Button, Light",
       "kind": "button",
       "refersTo": "button-ghost",
-      "description": "Transparent, bordered — used for lower-emphasis secondary actions.",
-      "html": "<button class=\"ds-btn-ghost\">¿Dónde te duele?</button>",
-      "css": ".ds-btn-ghost { display:inline-flex; align-items:center; justify-content:center; padding:0.75rem 1.5rem; font-family:'IBM Plex Sans',sans-serif; font-weight:500; font-size:0.95rem; border-radius:4px; border:1px solid #1D5C7A; cursor:pointer; background-color:transparent; color:#1D5C7A; transition:background-color 0.2s ease; } .ds-btn-ghost:hover { background-color:rgba(29,92,122,0.05); } .ds-btn-ghost:focus-visible { outline:2px solid #1D5C7A; outline-offset:2px; }"
+      "description": "Transparent, white-bordered pill button for use only on the navy-gradient sections (e.g., the hero's second CTA). Never use the dark-surface Ghost variant here — its navy border disappears on a navy background.",
+      "html": "<button class=\"ds-btn-ghost-light\">¿Dónde te duele?</button>",
+      "css": ".ds-btn-ghost-light { display:inline-flex; align-items:center; justify-content:center; padding:0.8rem 1.75rem; font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:0.95rem; border-radius:9999px; border:1px solid rgba(255,255,255,0.6); cursor:pointer; background-color:transparent; color:#FFFFFF; transition:background-color 0.2s ease, border-color 0.2s ease; } .ds-btn-ghost-light:hover { background-color:rgba(255,255,255,0.12); border-color:#FFFFFF; } .ds-btn-ghost-light:focus-visible { outline:2px solid #FFFFFF; outline-offset:2px; }"
     },
     {
       "name": "Service Card",
       "kind": "card",
       "refersTo": "card",
-      "description": "Flat, bordered card with an icon tile — the system's default content card.",
+      "description": "Flat, bordered card with an icon tile — the system's default content card. Icon tile background is now a navy tint.",
       "html": "<div class=\"ds-card\"><div class=\"ds-card-icon\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg></div><h3 class=\"ds-card-title\">Ortopedia General</h3><p class=\"ds-card-desc\">Diagnóstico integral de padecimientos óseos y articulares, manejo de fracturas y dolor articular agudo.</p></div>",
-      "css": ".ds-card { background-color:#FFFFFF; border:1px solid #DBE2E3; border-radius:4px; padding:2rem 1.5rem; transition:border-color 0.2s ease; } .ds-card:hover { border-color:#1D5C7A; } .ds-card-icon { width:48px; height:48px; background-color:rgba(29,92,122,0.08); color:#1D5C7A; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; } .ds-card-title { font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:1.2rem; color:#12384B; margin-bottom:0.75rem; } .ds-card-desc { color:#52626C; font-size:0.9rem; line-height:1.5; }"
+      "css": ".ds-card { background-color:#FFFFFF; border:1px solid #D3E6E3; border-radius:4px; padding:2rem 1.5rem; transition:border-color 0.2s ease; } .ds-card:hover { border-color:#0B3D91; } .ds-card-icon { width:48px; height:48px; background-color:rgba(11,61,145,0.08); color:#0B3D91; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; } .ds-card-title { font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:1.2rem; color:#072659; margin-bottom:0.75rem; } .ds-card-desc { color:#52626C; font-size:0.9rem; line-height:1.5; }"
     },
     {
       "name": "Text Field",
@@ -122,7 +130,7 @@
       "refersTo": "input",
       "description": "Bordered input with a resting Mist Background fill that turns white on focus.",
       "html": "<div class=\"ds-field\"><label class=\"ds-label\" for=\"ds-name\">Nombre completo *</label><input class=\"ds-input\" id=\"ds-name\" type=\"text\" placeholder=\"Ej. Ana María Gómez\"></div>",
-      "css": ".ds-field { display:flex; flex-direction:column; gap:0.4rem; font-family:'IBM Plex Sans',sans-serif; } .ds-label { font-size:0.85rem; font-weight:500; color:#1E2A33; } .ds-input { width:100%; padding:0.75rem; border:1px solid #DBE2E3; border-radius:4px; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; color:#1E2A33; background-color:#F4F6F5; outline:none; transition:border-color 0.2s ease, background-color 0.2s ease; } .ds-input:focus { border-color:#1D5C7A; background-color:#FFFFFF; }"
+      "css": ".ds-field { display:flex; flex-direction:column; gap:0.4rem; font-family:'IBM Plex Sans',sans-serif; } .ds-label { font-size:0.85rem; font-weight:500; color:#1E2A33; } .ds-input { width:100%; padding:0.75rem; border:1px solid #D3E6E3; border-radius:4px; font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; color:#1E2A33; background-color:#F0FAF9; outline:none; transition:border-color 0.2s ease, background-color 0.2s ease; } .ds-input:focus { border-color:#0B3D91; background-color:#FFFFFF; }"
     },
     {
       "name": "Primary Navigation",
@@ -130,55 +138,85 @@
       "refersTo": "nav",
       "description": "Sticky header nav links — color-only hover/active state.",
       "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#\">Dónde te duele</a><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\">Atención</a><a class=\"ds-nav-link\" href=\"#\">Contacto</a></nav>",
-      "css": ".ds-nav { display:flex; align-items:center; gap:2rem; } .ds-nav-link { font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:400; color:#1E2A33; text-decoration:none; transition:color 0.2s ease; } .ds-nav-link:hover, .ds-nav-link--active { color:#1D5C7A; } .ds-nav-link:focus-visible { outline:2px solid #1D5C7A; outline-offset:2px; }"
+      "css": ".ds-nav { display:flex; align-items:center; gap:2rem; } .ds-nav-link { font-family:'IBM Plex Sans',sans-serif; font-size:0.95rem; font-weight:400; color:#1E2A33; text-decoration:none; transition:color 0.2s ease; } .ds-nav-link:hover, .ds-nav-link--active { color:#0B3D91; } .ds-nav-link:focus-visible { outline:2px solid #0B3D91; outline-offset:2px; }"
     },
     {
       "name": "Anatomy Hotspot",
       "kind": "custom",
       "refersTo": null,
-      "description": "Signature interactive marker overlaid on the real skeleton photograph by percentage position — a gold ring-and-dot that turns blue on hover/active, synchronized with the body-part list at left. Also keyboard-operable (tabindex, role=button, Enter/Space). Div-based (not SVG) so it positions independently of the photo's own coordinate space.",
+      "description": "Signature interactive marker overlaid on the real skeleton photograph by percentage position — a turquoise ring-and-dot that turns navy on hover/active, synchronized with the body-part list at left. Also keyboard-operable (tabindex, role=button, Enter/Space). Div-based (not SVG) so it positions independently of the photo's own coordinate space.",
       "html": "<div class=\"ds-hotspot\" style=\"left:34%; top:20%;\" tabindex=\"0\" role=\"button\" aria-label=\"Rodilla\"><span class=\"ds-hotspot-ring\"></span><span class=\"ds-hotspot-dot\"></span></div>",
-      "css": ".ds-hotspot { position:absolute; width:28px; height:28px; transform:translate(-50%,-50%); cursor:pointer; } .ds-hotspot-ring { position:absolute; inset:0; border-radius:50%; background-color:#C98A32; opacity:0.25; transition:opacity 0.3s ease, transform 0.3s cubic-bezier(0.23,1,0.32,1); } .ds-hotspot-dot { position:absolute; left:50%; top:50%; width:10px; height:10px; margin:-5px 0 0 -5px; border-radius:50%; background-color:#C98A32; box-shadow:0 0 0 2px #FFFFFF; transition:background-color 0.3s ease; } .ds-hotspot:hover .ds-hotspot-ring, .ds-hotspot.active .ds-hotspot-ring { opacity:0.5; transform:scale(1.3); } .ds-hotspot:hover .ds-hotspot-dot, .ds-hotspot.active .ds-hotspot-dot { background-color:#1D5C7A; } .ds-hotspot:focus-visible { outline:2px solid #1D5C7A; outline-offset:2px; }"
+      "css": ".ds-hotspot { position:absolute; width:28px; height:28px; transform:translate(-50%,-50%); cursor:pointer; } .ds-hotspot-ring { position:absolute; inset:0; border-radius:50%; background-color:#0F766E; opacity:0.25; transition:opacity 0.3s ease, transform 0.3s cubic-bezier(0.23,1,0.32,1); } .ds-hotspot-dot { position:absolute; left:50%; top:50%; width:10px; height:10px; margin:-5px 0 0 -5px; border-radius:50%; background-color:#0F766E; box-shadow:0 0 0 2px #FFFFFF; transition:background-color 0.3s ease; } .ds-hotspot:hover .ds-hotspot-ring, .ds-hotspot.active .ds-hotspot-ring { opacity:0.5; transform:scale(1.3); } .ds-hotspot:hover .ds-hotspot-dot, .ds-hotspot.active .ds-hotspot-dot { background-color:#0B3D91; } .ds-hotspot:focus-visible { outline:2px solid #0B3D91; outline-offset:2px; }"
     },
     {
       "name": "Floating Contact Button",
       "kind": "custom",
       "refersTo": null,
-      "description": "Fixed bottom-right pill CTA. Hidden until the visitor scrolls past ~60% of the hero, then fades and slides in. Click scrolls to the contact section and focuses the name field.",
+      "description": "Fixed bottom-right pill CTA, vivid turquoise with white text and a turquoise-tinted glow shadow. Hidden until the visitor scrolls past ~60% of the hero, then fades and slides in. Click scrolls to the contact section and focuses the name field.",
       "html": "<a href=\"#contacto\" class=\"ds-floating-contact\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 14l5 2v4a2 2 0 0 1-2 2C9.5 22 2 14.5 2 7a2 2 0 0 1 2-2z\"/></svg><span>Contáctanos</span></a>",
-      "css": ".ds-floating-contact { display:inline-flex; align-items:center; gap:0.6rem; padding:0.85rem 1.4rem; background-color:#C98A32; color:#1E2A33; font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:0.92rem; white-space:nowrap; border-radius:50px; box-shadow:0 10px 28px rgba(18,56,75,0.28); text-decoration:none; transition:background-color 0.2s ease, transform 220ms cubic-bezier(0.23,1,0.32,1); } .ds-floating-contact:hover { background-color:#C08430; } @media (hover:hover) and (pointer:fine) { .ds-floating-contact:hover { transform:translateY(-3px); } } .ds-floating-contact:active { transform:scale(0.96); } .ds-floating-contact:focus-visible { outline:2px solid #1D5C7A; outline-offset:2px; }"
+      "css": ".ds-floating-contact { display:inline-flex; align-items:center; gap:0.6rem; padding:0.85rem 1.4rem; background-color:#0F766E; color:#FFFFFF; font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:0.92rem; white-space:nowrap; border-radius:9999px; box-shadow:0 10px 28px rgba(15,118,110,0.45); text-decoration:none; transition:background-color 0.2s ease, transform 220ms cubic-bezier(0.23,1,0.32,1); } .ds-floating-contact:hover { background-color:#0B5D57; } @media (hover:hover) and (pointer:fine) { .ds-floating-contact:hover { transform:translateY(-3px); } } .ds-floating-contact:active { transform:scale(0.96); } .ds-floating-contact:focus-visible { outline:2px solid #FFFFFF; outline-offset:2px; }"
+    },
+    {
+      "name": "Virtual Assistant Toggle + Bubble",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Bottom-left circular toggle (mirrors the floating contact button at bottom-right) opening a predefined Q&A chat panel navigated as a directed graph, not a generative AI chat. Bot messages are bordered Paper White bubbles; user-choice echoes are filled Deep Navy. Panel uses --radius-md (12px) with shadow only, no border (see Elevation's gpt-thin-border-wide-shadow note).",
+      "html": "<div class=\"ds-chat-bubble ds-chat-bubble--bot\">El dolor de rodilla puede deberse a...</div><div class=\"ds-chat-bubble ds-chat-bubble--user\">Dolor de rodilla</div>",
+      "css": ".ds-chat-bubble { max-width:85%; padding:0.65rem 0.9rem; border-radius:12px; font-size:0.88rem; line-height:1.5; } .ds-chat-bubble--bot { background-color:#FFFFFF; border:1px solid #D3E6E3; color:#1E2A33; border-bottom-left-radius:2px; } .ds-chat-bubble--user { background-color:#0B3D91; color:#FFFFFF; border-bottom-right-radius:2px; margin-left:auto; }"
+    },
+    {
+      "name": "Stats Banner",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Full-bleed navy-gradient strip beneath the hero showing four figures (years, surgeries, patients, association count). Numbers set in Turquoise Light — never full-strength Turquoise or Ink, both fail contrast on the navy gradient.",
+      "html": "<div class=\"ds-stats\"><div class=\"ds-stat\"><div class=\"ds-stat-number\">+15</div><div class=\"ds-stat-label\">Años de Experiencia</div></div></div>",
+      "css": ".ds-stats { background:linear-gradient(135deg, #072659 0%, #0B3D91 100%); padding:3rem 1.5rem; display:flex; gap:2rem; } .ds-stat { text-align:center; } .ds-stat-number { font-family:'Fraunces',Georgia,serif; font-size:2.75rem; font-weight:700; color:#5EEAD4; line-height:1; margin-bottom:0.5rem; } .ds-stat-label { color:rgba(255,255,255,0.85); font-size:0.9rem; font-weight:500; }"
+    },
+    {
+      "name": "Association Badge",
+      "kind": "chip",
+      "refersTo": null,
+      "description": "Text badge for a confirmed professional-association membership (reuses the Trust Pill pattern). Never a recreated logo — see PRODUCT.md.",
+      "html": "<span class=\"ds-assoc-badge\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 13l4 4L19 7\"/></svg> American Academy of Orthopaedic Surgeons (AAOS)</span>",
+      "css": ".ds-assoc-badge { display:inline-flex; align-items:center; gap:0.4rem; background-color:rgba(15,118,110,0.1); color:#072659; border:1px solid rgba(15,118,110,0.3); padding:0.4rem 1rem; border-radius:9999px; font-size:0.85rem; font-weight:500; }"
     }
   ],
   "narrative": {
     "northStar": "The Trusted Consult",
-    "overview": "This is a private orthopedic practice's site, not a hospital brochure and not a SaaS landing page — the two looks it explicitly rejects. Steady Slate Blue is the resting state: calm, professional, never cold. Burnished Gold is reserved for the moments that matter — the primary call to action, section eyebrows, the interactive points on the anatomy diagram — so its warmth reads as deliberate, not decorative; its text is set in Ink rather than white, since white-on-gold falls short of AA contrast. Structure comes from hairline borders rather than shadows: cards sit in flat, bordered planes, with a stronger shadow reserved for the two cards meant to command attention (doctor profile, contact section). Fraunces serif headlines against IBM Plex Sans body copy give the page an editorial, slightly literary register that reads as \"attending physician's office,\" not \"clinic intake form.\"\n\nThe system leans warmer than strictly clinical: buttons lift on hover and press on click rather than only recoloring, service cards lift with a soft shadow, and a persistent gold floating contact button appears once the visitor has engaged with the page, collapsing \"find the phone number\" and \"start the form\" into one tap.",
+    "overview": "This is a private orthopedic practice's site, not a hospital brochure and not a SaaS landing page — the two looks it explicitly rejects. The system was recolored end to end on the client's explicit request: the original steady-blue-plus-gold palette read as too quiet against a page with few real photographs, and the client wanted a color identity bold enough to carry the page on its own. Vivid Turquoise now does the work Burnished Gold used to do (the one true action color), and a saturated Deep Navy replaces the old muted slate blue as the grounding professional tone — turquoise keeps the register health/wellness-positive, navy keeps it a serious surgical practice.\n\nOrdinary cards still use hairline borders, not shadow. What's new: three sections (hero, stats banner, contact) carry a full navy-gradient background as deliberate rhythm-setting color blocks; buttons are pill-shaped with a glow shadow tinted to their own fill color (the client's explicit \"make it stand out\" request); and the page's neutral background is a soft turquoise-tinted off-white instead of plain gray.",
     "keyCharacteristics": [
-      "Flat, bordered surfaces; shadow is a state signal, not a resting style.",
-      "One accent color (Burnished Gold) used sparingly for calls to action and points of interactivity.",
-      "Editorial serif display type (Fraunces) paired with a clean, technical sans body (IBM Plex Sans).",
-      "A consistent 4px corner radius across buttons, cards, and inputs — no sharp corners, no heavy rounding.",
-      "Section rhythm built on an 8px-rooted spacing scale (0.5rem through 5rem)."
+      "Flat, bordered surfaces for ordinary cards; three intentional full-navy-gradient sections (hero, stats banner, contact) carry the boldest color moments.",
+      "One saturated accent (Vivid Turquoise) for every call to action, plus a light variant reserved strictly for text on the navy sections.",
+      "Every button is pill-shaped with a glow shadow tinted to its own fill color.",
+      "Editorial serif display type (Fraunces) paired with a clean, technical sans body (IBM Plex Sans) — unchanged from the original brief.",
+      "A soft turquoise-tinted off-white replaces the old neutral gray as the page's resting background."
     ],
     "rules": [
-      { "name": "The One Accent Rule", "body": "Burnished Gold appears only on things the visitor can act on or should notice first (primary CTA, the floating contact button, hotspots, timeline markers). It never fills a large surface or appears on more than one element per view without a specific reason. Text set on a gold surface is Ink, not white.", "section": "colors" },
-      { "name": "The Serif-Names-Sans-Explains Rule", "body": "Fraunces is reserved for anything acting as a name or title (the doctor, a section, a body part, a credential). IBM Plex Sans carries everything the visitor reads for information — descriptions, form labels, navigation. Never swap the two roles.", "section": "typography" },
-      { "name": "The Border-First Rule", "body": "Reach for a 1px hairline border before reaching for a shadow. Shadow is earned by an active/hover state or by one of the confirmed high-priority exceptions (doctor profile, contact form) — it is never the default way two surfaces separate.", "section": "elevation" },
-      { "name": "The Warmth-on-Touch Rule", "body": "Interactive elements respond to the visitor, not just recolor: primary buttons lift 2px on hover (gated to hover-capable pointers) and every button presses to scale(0.97) on :active. Keep it small; this is a clinical-trust brand, not a playful one.", "section": "components" }
+      { "name": "The One Accent Rule", "body": "Vivid Turquoise appears only on things the visitor can act on or should notice first (primary CTA, floating contact button, hotspots, timeline markers, trust pills). It never fills a large surface or appears on more than one element per view without a specific reason.", "section": "colors" },
+      { "name": "The Light-on-Navy Rule", "body": "Any text or icon set directly on one of the three navy-gradient sections uses white or Turquoise Light — never Ink, never full-strength Vivid Turquoise or Deep Navy text on a navy background.", "section": "colors" },
+      { "name": "The Pill-Button Rule", "body": "Every button-shaped interactive element is fully rounded (--radius-pill). A 4px-radius button next to a pill-radius button reads as an inconsistency, not a hierarchy.", "section": "shapes" },
+      { "name": "The Colored-Glow Rule", "body": "Every solid-fill button carries a box-shadow tinted to its own fill color, not a neutral gray shadow — the client's explicit request to make buttons stand out.", "section": "components" },
+      { "name": "The Three Dark Sections Rule", "body": "Exactly three sections carry the full navy gradient: hero, stats banner, contact. Don't add a fourth without a specific reason — the effect works because it's rare and purposeful.", "section": "elevation" },
+      { "name": "The Serif-Names-Sans-Explains Rule", "body": "Fraunces is reserved for anything acting as a name or title. IBM Plex Sans carries everything the visitor reads for information. Unchanged by the recolor.", "section": "typography" },
+      { "name": "The Border-First Rule", "body": "Ordinary cards reach for a 1px hairline border before a shadow. Unchanged by the recolor.", "section": "elevation" }
     ],
     "dos": [
-      "Do keep Burnished Gold rare — one primary action or emphasis point per view (The One Accent Rule).",
-      "Do use Fraunces only for names/titles and IBM Plex Sans for everything read for information (The Serif-Names-Sans-Explains Rule).",
-      "Do default new surfaces to hairline borders before adding shadow (The Border-First Rule).",
-      "Do add a small hover/focus motion signal to interactive elements going forward, not just a color swap (The Warmth-on-Touch Rule).",
+      "Do keep Vivid Turquoise rare — one primary action or emphasis point per view (The One Accent Rule).",
+      "Do use white or Turquoise Light for anything set directly on a navy-gradient section (The Light-on-Navy Rule).",
+      "Do make every new button pill-shaped with a glow shadow tinted to its own fill (The Pill-Button Rule, The Colored-Glow Rule).",
+      "Do use Fraunces only for names/titles and IBM Plex Sans for everything read for information.",
+      "Do default ordinary cards to hairline borders before adding shadow (The Border-First Rule).",
       "Do keep the anatomy diagram's list-and-hotspot sync intact when touching that section."
     ],
     "donts": [
-      "Don't let the page read as a generic corporate hospital brochure or a generic tech-startup landing page — both were explicitly rejected as anti-references.",
-      "Don't introduce a second saturated accent color; Steady Slate Blue and Burnished Gold are the complete palette.",
-      "Don't apply the doctor-profile/contact-form shadow exception to ordinary cards (service, step, testimonial) — they stay flat.",
-      "Don't invent real contact details, credentials, statistics, or testimonials — every instance currently on the page is a confirmed placeholder (see PRODUCT.md's Evidence on Hand).",
-      "Don't add a kicker/eyebrow label above a section heading. The heading carries its own weight.",
-      "Don't set text directly on Burnished Gold in white — it fails contrast. Use Ink (or Deep Navy for large decorative marks) instead."
+      "Don't let the page read as a generic corporate hospital brochure or a generic tech-startup landing page.",
+      "Don't introduce a third saturated accent color; Deep Navy and Vivid Turquoise (plus its light, text-only variant) are the complete palette.",
+      "Don't add a fourth full-navy-gradient section without a specific reason (The Three Dark Sections Rule).",
+      "Don't apply the doctor-profile/contact-grid shadow exception to ordinary cards (service, step, testimonial) — they stay flat.",
+      "Don't invent real contact details, credentials, or testimonials, and don't invent new statistics beyond the three explicit placeholders already recorded.",
+      "Don't add a kicker/eyebrow label above a section heading.",
+      "Don't set white or Ink text on Vivid Turquoise interchangeably without checking contrast — Ink fails (~2.7:1), white passes (~5.5:1). Never set full-strength Turquoise as text on a navy background — use Turquoise Light.",
+      "Don't hand-draw or approximate a third-party organization's logo — confirmed associations render as text badges until real logo files are supplied."
     ]
   }
 }

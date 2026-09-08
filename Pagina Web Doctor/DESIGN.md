@@ -1,16 +1,17 @@
 ---
 name: Dr. Mario Portillo — Cirujano Ortopedista
-description: A bordered, editorial medical-practice site pairing steady clinical blue with warm burnished gold.
+description: A bordered, editorial medical-practice site pairing a vivid clinical turquoise with a saturated deep navy.
 colors:
-  primary: "#1D5C7A"
-  primary-deep: "#12384B"
-  accent-gold: "#C98A32"
-  accent-gold-hover: "#C08430"
-  neutral-bg: "#F4F6F5"
+  primary: "#0B3D91"
+  primary-deep: "#072659"
+  accent-turquoise: "#0F766E"
+  accent-turquoise-hover: "#0B5D57"
+  accent-turquoise-light: "#5EEAD4"
+  neutral-bg: "#F0FAF9"
   surface: "#FFFFFF"
   ink: "#1E2A33"
   ink-soft: "#52626C"
-  border: "#DBE2E3"
+  border: "#D3E6E3"
 typography:
   display:
     fontFamily: "Fraunces, Georgia, serif"
@@ -40,6 +41,7 @@ typography:
     letterSpacing: "0.1em"
 rounded:
   sm: "4px"
+  md: "12px"
   pill: "9999px"
 spacing:
   xs: "0.5rem"
@@ -49,24 +51,24 @@ spacing:
   xl: "5rem"
 components:
   button-primary:
-    backgroundColor: "{colors.accent-gold}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    padding: "0.75rem 1.5rem"
+    backgroundColor: "{colors.accent-turquoise}"
+    textColor: "#FFFFFF"
+    rounded: "{rounded.pill}"
+    padding: "0.8rem 1.75rem"
   button-primary-hover:
-    backgroundColor: "{colors.accent-gold-hover}"
+    backgroundColor: "{colors.accent-turquoise-hover}"
   button-secondary:
     backgroundColor: "{colors.primary}"
     textColor: "#FFFFFF"
-    rounded: "{rounded.sm}"
-    padding: "0.75rem 1.5rem"
+    rounded: "{rounded.pill}"
+    padding: "0.8rem 1.75rem"
   button-secondary-hover:
     backgroundColor: "{colors.primary-deep}"
   button-ghost:
     backgroundColor: "transparent"
     textColor: "{colors.primary}"
-    rounded: "{rounded.sm}"
-    padding: "0.75rem 1.5rem"
+    rounded: "{rounded.pill}"
+    padding: "0.8rem 1.75rem"
   card:
     backgroundColor: "{colors.surface}"
     rounded: "{rounded.sm}"
@@ -79,117 +81,146 @@ components:
 
 **Creative North Star: "The Trusted Consult"**
 
-This is a private orthopedic practice's site, not a hospital brochure and not a SaaS landing page — the two looks it explicitly rejects. Steady Slate Blue is the resting state: calm, professional, never cold. Burnished Gold is reserved for the moments that matter — the primary call to action, section eyebrows, the interactive points on the anatomy diagram — so its warmth reads as deliberate, not decorative. Structure comes from hairline borders rather than shadows: cards sit in flat, bordered planes, and the one shadow the system currently uses (a 3%-opacity lift on the active body-part card) is a state response, not a base treatment. Fraunces serif headlines against IBM Plex Sans body copy give the page an editorial, slightly literary register that reads as "attending physician's office," not "clinic intake form."
+This is a private orthopedic practice's site, not a hospital brochure and not a SaaS landing page — the two looks it explicitly rejects. The system was recolored end to end on the client's explicit request: the original steady-blue-plus-gold palette read as too quiet against a page that has few real photographs yet, and the client wanted a color identity bold enough to carry the page on its own. Vivid Turquoise now does the work Burnished Gold used to do (the one true action color), and a saturated deep Navy replaces the old muted slate blue as the grounding professional tone. The health/wellness association of turquoise keeps the register "clinical-positive" rather than corporate-cold — the client's explicit brief — while the navy keeps it a serious surgical practice, not a wellness spa.
 
-The system leans warmer than strictly clinical: buttons and cards should feel responsive to the visitor, not merely present — primary buttons lift on hover and press on click, service cards lift with a soft shadow, rather than recoloring alone. See the Warmth-on-Touch Rule under Components.
+Structure still comes from hairline borders rather than shadows on ordinary cards — that part of the system did not change. What did change: three sections (hero, the new stats banner, the contact section) now carry a fully saturated navy gradient background as deliberate rhythm-setting color blocks, buttons are pill-shaped with a colored glow shadow in their own hue (the client's explicit request — "quiero que se noten"), and the page's neutral background is a soft turquoise-tinted off-white instead of a plain gray. Fraunces serif headlines against IBM Plex Sans body copy are unchanged from the original brief.
 
 **Key Characteristics:**
-- Flat, bordered surfaces; shadow is a state signal, not a resting style.
-- One accent color (Burnished Gold) used sparingly for calls to action and points of interactivity.
-- Editorial serif display type (Fraunces) paired with a clean, technical sans body (IBM Plex Sans).
-- A consistent 4px corner radius across buttons, cards, and inputs — no sharp corners, no heavy rounding.
-- Section rhythm built on an 8px-rooted spacing scale (0.5rem through 5rem).
+- Flat, bordered surfaces for ordinary cards; three intentional full-bleed navy-gradient sections (hero, stats banner, contact) carry the page's boldest color moments.
+- One saturated accent (Vivid Turquoise) used for every call to action, plus a light turquoise variant reserved strictly for text set on the dark navy sections.
+- Buttons are pill-shaped (`--radius-pill`) with a soft shadow tinted to their own fill color — the system's answer to "make the buttons impossible to miss."
+- Editorial serif display type (Fraunces) paired with a clean, technical sans body (IBM Plex Sans) — unchanged from the original brief.
+- A soft turquoise-tinted off-white replaces the old neutral gray as the page's resting background.
 
 ## Colors
 
-Two-color system: a calm, confident blue as the resting professional tone, and a warm gold reserved for action and emphasis.
+Two-color system: a saturated deep navy as the grounding professional tone, and a vivid turquoise reserved for action and emphasis. Both colors are meaningfully more saturated than the palette they replaced — that intensity is the point, not an overshoot to correct later.
 
 ### Primary
-- **Steady Slate Blue** (`#1D5C7A`): buttons that carry secondary actions ("Agendar cita" in the header), active nav-link color, form focus borders, hover states on service cards and step numbers, and the doctor's role label ("Cirujano Ortopedista Principal") — moved here from gold, which fell short of AA contrast on white at that text size.
-- **Deep Navy** (`#12384B`): all heading text, the sticky top-bar and footer background, and the hover-darken state for Steady Slate Blue buttons.
+- **Deep Navy** (`#0B3D91`): the header CTA ("Agendar cita"), active nav-link color, form focus borders, hover states on service cards and step numbers, and the doctor's role label. Also the lighter end of the navy gradient used on the hero, stats banner, and contact section.
+- **Navy, Deep** (`#072659`): all heading text on light surfaces, the sticky top-bar and footer background, the darker end of the navy gradient, and the hover-darken state for Deep Navy buttons.
 
 ### Accent
-- **Burnished Gold** (`#C98A32`): the primary CTA ("Solicitar una cita"), the floating contact button, trust pills, credential timeline markers, and the anatomy diagram's interactive hotspots. This is the only saturated color in the system — it must stay rare to keep its authority as "the action color." Text on a gold surface is set in Ink, not white — white-on-gold only reaches ~2.9:1 contrast (fails the 4.5:1 floor for normal-size text); Ink on gold reaches ~5:1. The testimonial quote mark is set in Deep Navy, not gold, for the same reason (a 3rem glyph still falls short of the 3:1 large-text floor at ~2.9:1).
-- **Burnished Gold, Hover** (`#C08430`): the darken-on-hover state for gold buttons only, tuned to a shallower shift than a naive darken so Ink text stays above 4.5:1 in the hover state too.
+- **Vivid Turquoise** (`#0F766E`): the primary CTA ("Solicitar una cita," "Enviar solicitud"), the floating contact button, trust pills, credential timeline markers, and the anatomy diagram's interactive hotspots. This is the only saturated non-navy color in the system — it stays rare to keep its authority as "the action color." Text on a turquoise surface is white, not the page's dark ink — ink-on-turquoise only reaches ~2.7:1 (fails 4.5:1); white-on-turquoise reaches ~5.5:1.
+- **Vivid Turquoise, Hover** (`#0B5D57`): the darken-on-hover state for turquoise buttons, tuned to keep white text above 4.5:1 in the hover state too.
+- **Turquoise, Light** (`#5EEAD4`): used exclusively as text/icon color set directly on a navy background (the top-bar's "Agendar consulta" link, footer link hover, the stats banner's numbers). Regular Vivid Turquoise fails contrast against the navy sections (~1.8–2.7:1) — this lighter tint is the fix, and it must never be used as text on a light surface (it fails there in the other direction, ~1.5:1 on white).
 
 ### Neutral
 - **Paper White** (`#FFFFFF`): card and header surfaces.
-- **Mist Background** (`#F4F6F5`): the page background and resting input fill.
+- **Mist Background** (`#F0FAF9`): the page's resting background — a soft turquoise-tinted off-white, replacing a plain neutral gray so the page reads as intentionally colored even where no accent is present.
 - **Ink** (`#1E2A33`): primary body and label text.
 - **Soft Ink** (`#52626C`): secondary text — subtitles, descriptions, metadata.
-- **Hairline** (`#DBE2E3`): the border color used on every card, input, and section divider in the system.
+- **Hairline** (`#D3E6E3`): the border color used on every ordinary card, input, and section divider — tinted to match the new neutral rather than a cool gray.
 
 ### Named Rules
-**The One Accent Rule.** Burnished Gold appears only on things the visitor can act on or should notice first (primary CTA, the floating contact button, hotspots, timeline markers). It never fills a large surface or appears on more than one element per view without a specific reason.
+**The One Accent Rule.** Vivid Turquoise appears only on things the visitor can act on or should notice first (primary CTA, the floating contact button, hotspots, timeline markers, trust pills). It never fills a large surface or appears on more than one element per view without a specific reason.
+
+**The Light-on-Navy Rule.** Any text or icon set directly on one of the three navy-gradient sections uses white or Turquoise Light — never Ink, never full-strength Vivid Turquoise or Deep Navy text on a navy background. Check every new element added to the hero, stats banner, or contact section against this before shipping it.
 
 ## Typography
 
 **Display Font:** Fraunces (with Georgia, serif fallback)
 **Body Font:** IBM Plex Sans (with -apple-system, BlinkMacSystemFont, sans-serif fallback)
 
-**Character:** A warm editorial serif for anything that names or titles something, set against a clean, technical sans for anything the visitor reads to understand or act — the pairing is what keeps "trusted physician" from tipping into either "sterile clinic" or "casual blog."
+**Character:** A warm editorial serif for anything that names or titles something, set against a clean, technical sans for anything the visitor reads to understand or act. Unchanged by the recolor.
 
 ### Hierarchy
-- **Display** (600, 3.25rem, line-height 1.25, letter-spacing -0.02em): the hero headline only.
+- **Display** (600, 3.25rem, line-height 1.25, letter-spacing -0.02em): the hero headline only, now set in white against the navy gradient.
 - **Headline** (600, 2.25rem, line-height 1.25): section titles ("Nuestra gama de atención," "Dondequiera que te duela…").
 - **Title** (600, 1.1–1.75rem, line-height 1.25): card and profile titles (doctor name, service names, body-part names, credential entries).
 - **Body** (400, 1rem/16px, line-height 1.6): paragraph copy; secondary body text drops to 0.9–0.98rem at the same weight and line-height.
-- **Label** (600, 0.8rem, letter-spacing 0.1em, uppercase): footer column headers only, white on the dark footer. The system does not use kicker/eyebrow labels above headings — the heading carries its own weight (see Do's and Don'ts).
+- **Label** (600, 0.8rem, letter-spacing 0.1em, uppercase): footer column headers only, white on the dark footer. The system does not use kicker/eyebrow labels above headings.
 
 ### Named Rules
-**The Serif-Names-Sans-Explains Rule.** Fraunces is reserved for anything acting as a name or title (the doctor, a section, a body part, a credential). IBM Plex Sans carries everything the visitor reads for information — descriptions, form labels, navigation. Never swap the two roles.
+**The Serif-Names-Sans-Explains Rule.** Fraunces is reserved for anything acting as a name or title. IBM Plex Sans carries everything the visitor reads for information. Unchanged by the recolor.
 
 ## Layout
 
-Content sits inside a single centered container (max-width 1200px, 1.5rem side padding). Sections use a consistent vertical rhythm of 5rem top/bottom padding (`.section-padding`); tighter internal component gaps step down through 2.5rem → 1.5rem → 0.75rem → 0.5rem depending on how closely related the elements are. Grids are the default composition tool: a 2-column split for the anatomy map and doctor-profile areas, a 5-column grid for services (4 for process steps), a 3-column grid for testimonials — all collapsing to 2 columns at 992px and 1 column at 768px, in that order. The contact section is the one asymmetric grid (1fr / 1.2fr) to give the form slightly more room than the info column.
+Content sits inside a single centered container (max-width 1200px, 1.5rem side padding). Sections use a consistent vertical rhythm of 5rem top/bottom padding; tighter internal component gaps step down through 2.5rem → 1.5rem → 0.75rem → 0.5rem. Grids remain the default composition tool: 2-column for the anatomy map and doctor-profile areas, 5-column for services, 4-column for process steps and the new stats banner, 3-column for testimonials — all collapsing to 2 columns at 992px and 1 column at 768px. The contact section stays the one asymmetric grid (1fr / 1.2fr). None of this changed in the recolor; it is a color-and-shape pass, not a layout pass.
 
 ## Elevation & Depth
 
-The system is flat by default: separation between surfaces comes from a 1px hairline border (`#DBE2E3`), not shadow. The active body-part accordion card carries a faint `0 2px 8px rgba(0,0,0,0.03)` as a state signal, not a resting elevation. The confirmed exception is implemented as `--shadow-lift: 0 8px 24px rgba(18, 56, 75, 0.08)`, applied only to the doctor-profile card and the contact-section card — the two surfaces meant to command attention on their section. No other card carries a resting shadow.
+Ordinary cards are still flat by default: separation comes from a 1px hairline border, not shadow. The active body-part accordion card still carries a faint `0 2px 8px rgba(0,0,0,0.03)` as a state signal. The confirmed shadow exception (`--shadow-lift: 0 8px 24px rgba(7, 38, 89, 0.08)`) still applies only to the doctor-profile card and the contact-grid card.
+
+What's new: three sections now carry a full-bleed `linear-gradient(135deg, var(--azul-oscuro), var(--azul-primario))` background — the hero, the stats banner directly beneath it (visually one continuous dark block), and the contact section (the white contact-grid card floats on top of it). This is a deliberate, bounded exception to "flat by default": exactly these three sections, never more, chosen because they are the page's highest-stakes moments (first impression, credibility proof, conversion). Buttons additionally carry a colored glow shadow tinted to their own fill (`rgba(15, 118, 110, 0.35)` for turquoise, `rgba(11, 61, 145, 0.35)` for navy) — this is new and applies to every solid-fill button, not just an exception.
+
+The chatbot panel is a second, narrower exception: it's a floating surface (like the mobile nav dropdown), so it earns elevation on its own — but it carries shadow *only*, no border. A hairline border plus a wide diffuse shadow on the same element is a well-documented tell of generated UI (the mechanical detector flags it as `gpt-thin-border-wide-shadow`); commit to one. The mobile nav dropdown still uses `--shadow-lift` (its existing, smaller exception) — don't retrofit it with the chatbot's larger shadow.
 
 ### Named Rules
-**The Border-First Rule.** Reach for a 1px hairline border before reaching for a shadow. Shadow is earned by an active/hover state or by one of the confirmed high-priority exceptions (doctor profile, contact form) — it is never the default way two surfaces separate.
+**The Border-First Rule.** Ordinary cards reach for a 1px hairline border before a shadow. Unchanged.
+
+**The Three Dark Sections Rule.** Exactly three sections carry the full navy gradient: hero, stats banner, contact. Don't add a fourth without a specific reason — the effect works because it's rare and purposeful, not because the whole page is dark.
 
 ## Shapes
 
-A single 4px corner radius (`--radius-sm`) is used everywhere a rectangular element needs softening: buttons, cards, inputs, service icon tiles. Fully round shapes (`border-radius: 50%`) are reserved for anything representing a person or a point — the doctor's avatar initials, step-number badges, the body-part active indicator dot, and the anatomy diagram's hotspot circles. A third radius, `--radius-pill: 9999px`, is reserved for pill-shaped badges and CTAs (trust pills, the floating contact button) — the one deliberate exception to the 4px rule, used only for fully-rounded capsule shapes, never as a stronger "more rounded" version of a rectangular card. There is no sharp-corner treatment anywhere in the system.
+Three radii now carry real weight, where the system previously leaned almost entirely on one. Cards, inputs, and service icon tiles keep the original 4px corner radius (`--radius-sm`) — that part is untouched. **Buttons moved to fully pill-shaped** (`--radius-pill: 9999px`) as part of the "make it noticeable" brief — every `.btn` variant, not just badges and the floating contact button as before. A third step, `--radius-md: 12px`, is reserved for conversational surfaces — the chatbot panel and its message bubbles — softer than a card, short of a pill; don't reuse it for ordinary cards or buttons. Fully round shapes (`border-radius: 50%`) are still reserved for anything representing a person or a point (avatar initials, step-number badges, hotspot circles).
+
+### Named Rules
+**The Pill-Button Rule.** Every button-shaped interactive element is fully rounded. A 4px-radius button next to a pill-radius button reads as an inconsistency, not a hierarchy — if a new button is added, it is a pill.
 
 ## Components
 
 ### Buttons
-- **Shape:** 4px radius, 0.75rem/1.5rem padding, 0.95rem/500-weight label; `background-color` transitions at 0.2s ease, `transform` at 140ms on the strong ease-out curve (`--ease-out: cubic-bezier(0.23,1,0.32,1)`).
-- **Primary (`btn-gold`):** Burnished Gold fill, Ink text (not white — see the Accent contrast note above) — the site's one true call-to-action style ("Solicitar una cita," "Enviar solicitud"). Lifts 2px on hover (pointer-fine only) and presses to scale(0.97) on `:active`.
-- **Secondary (`btn-primary`):** Steady Slate Blue fill, white text — used for the always-visible header CTA ("Agendar cita") and the floating contact button's counterpart interactions. Same hover-lift and press-scale as Primary.
-- **Ghost (`btn-outline`):** transparent fill, Steady Slate Blue border and text, hovers to a 5%-opacity blue wash. Press-scale only, no lift.
-- **White (`btn-white`):** white fill, Deep Navy text — used only on the dark CTA banner, where a gold or blue button would lose contrast against the surrounding navy. Press-scale only.
+- **Shape:** fully pill-shaped (`--radius-pill`), 0.8rem/1.75rem padding, 0.95rem/600-weight label; `background-color` transitions at 0.2s ease, `transform` at 140ms on the strong ease-out curve, plus a `box-shadow` transition for the glow.
+- **Primary (`btn-gold`):** Vivid Turquoise fill, **white** text (not ink — the darker turquoise fails ink contrast), with a turquoise-tinted glow shadow. The site's one true call-to-action style ("Solicitar una cita," "Enviar solicitud"). Lifts 2px on hover (pointer-fine only), glow intensifies on hover, presses to scale(0.97) on `:active`.
+- **Secondary (`btn-primary`):** Deep Navy fill, white text, navy-tinted glow shadow — used for the header CTA. Same hover-lift and press-scale as Primary.
+- **Ghost (`btn-outline`):** transparent fill, Deep Navy border and text, hovers to a 6%-opacity navy wash. For use on light surfaces only (e.g., "Conoce más →" in the doctor section).
+- **Ghost, Light (`btn-outline-light`):** transparent fill, white/60%-white border and text — the dark-background counterpart to Ghost, used for the hero's second CTA ("¿Dónde te duele?"). Never use plain `btn-outline` on a navy section; its navy-on-navy border disappears.
+- **White (`btn-white`):** white fill, Deep Navy text, soft black shadow — used only on the CTA banner section, where it needs to read against the surrounding navy.
 
 ### Named Rules
-**The Warmth-on-Touch Rule.** Interactive elements respond to the visitor, not just recolor: primary buttons lift 2px on hover (gated to `hover:hover and pointer:fine` so touch taps don't get a stuck hover state) and every button presses to scale(0.97) on `:active`. Keep it small; this is a clinical-trust brand, not a playful one.
+**The Colored-Glow Rule.** Every solid-fill button carries a `box-shadow` tinted to its own fill color, not a neutral gray shadow — this is the client's explicit "make buttons stand out" request, and a neutral shadow on a saturated button reads as an oversight, not a choice.
 
 ### Cards / Containers
-- **Corner Style:** 4px radius, matching the button radius.
-- **Background:** Paper White surface on Mist Background pages; one section (testimonials) sits on a distinct pale blue-gray (`#EBF0F2`) to separate it visually without introducing a new border color.
+- **Corner Style:** 4px radius, unchanged.
+- **Background:** Paper White surface on Mist Background pages; testimonials sit on a distinct pale turquoise-tinted background (`#E3F3F1`) to separate visually without a new border color.
 - **Shadow Strategy:** flat by default; see Elevation & Depth for the confirmed exceptions.
-- **Border:** 1px solid Hairline on every card variant (service, step, testimonial, doctor-profile, contact form, body-part accordion).
-- **Internal Padding:** service/step cards use ~2rem/1.25–1.5rem; the doctor-profile and contact cards use the roomier 2.5–3rem padding reserved for the page's two "hero" cards.
+- **Border:** 1px solid Hairline on every card variant.
+- **Internal Padding:** unchanged from the original brief.
 
 ### Inputs / Fields
 - **Style:** 1px Hairline border, 4px radius, Mist Background fill at rest.
-- **Focus:** border shifts to Steady Slate Blue and fill switches from Mist Background to Paper White — the only input state change in the system, no glow or outline ring.
+- **Focus:** border shifts to Deep Navy and fill switches to Paper White. Unchanged in mechanism; the color itself is now the new Deep Navy.
 
 ### Navigation
-- **Style:** sticky white header with a Hairline bottom border; nav links are Ink at rest and transition to Steady Slate Blue on hover (color-only, 0.2s). A dark, thin top-bar (Deep Navy) sits above it carrying the phone number and a gold "Agendar consulta" text link.
-- **Mobile:** below 768px, the nav collapses behind a hamburger toggle (drawn SVG icon, not a Unicode glyph) that opens a bordered, shadow-lifted dropdown card anchored under the header — opacity + an 8px slide, 180ms ease-out, closing again on outside-equivalent actions (selecting a link). Below 480px the header's "Agendar cita" button is hidden in favor of the floating contact button, since the two would otherwise crowd the logo on the smallest phones.
+- **Style:** sticky white header with a Hairline bottom border; nav links are Ink at rest and transition to Deep Navy on hover. The dark top-bar above it is now the Navy Deep gradient-end color, and its "Agendar consulta" link is set in Turquoise Light (not Vivid Turquoise — see the Light-on-Navy Rule).
+- **Mobile:** unchanged mechanism (hamburger toggle, sliding dropdown card, header CTA hidden below 480px in favor of the floating contact button).
 
 ### Interactive Anatomy Diagram (signature component)
-A real photograph of a human skeleton (`assets/esqueleto.jpg`, user-supplied), full-body front view, with each treatable body region marked by a paired "hotspot" positioned over the photo by percentage coordinates: a Burnished Gold outer ring (25% opacity) around a solid gold inner dot with a thin white halo for legibility against the bone. Hovering or activating a hotspot — or its paired list item in the accordion at left — recolors the inner dot to Steady Slate Blue and scales the outer ring to 1.3×, giving the visitor two synchronized ways (list or diagram) to explore the same information. Both the list header and the hotspot are real interactive controls (a `<button>` and a `tabindex="0" role="button"` div with Enter/Space handling), so the sync works by keyboard as well as pointer. This bidirectional list/diagram sync is the site's most distinctive interaction and should be preserved in any redesign of this section. The photo replaced an earlier hand-drawn SVG skeleton, which read as placeholder-ish primitive-shape clip art; the coordinate mapping (percentage `left`/`top` per hotspot) is calibrated to this specific photo's pose and must be re-measured if the photo is ever swapped.
+Unchanged in mechanism. The hotspot ring-and-dot recolored automatically with the palette swap: Vivid Turquoise at rest, Deep Navy on hover/active. Still a real photograph (`assets/esqueleto.jpg`) with percentage-positioned hotspots; still keyboard-operable; still the site's most distinctive interaction.
 
 ### Floating Contact Button (signature component)
-A pill-shaped, Burnished Gold "Contáctanos" button fixed to the bottom-right corner, with a phone icon and Ink text. It stays hidden until the visitor scrolls about 60% of the way through the hero, then fades and slides in (220ms ease-out) so it never competes with the hero's own CTAs. Clicking it scrolls to the contact section and focuses the name field directly, collapsing "find contact info" and "start filling the form" into one tap. This is the site's persistent, always-reachable conversion path — treat it as a fixed invariant of the layout, not a per-page optional.
+Unchanged in mechanism and position. Now Vivid Turquoise with white text (moved off Ink for the same contrast reason as the primary button) and a turquoise-tinted glow shadow (`rgba(15, 118, 110, 0.45)`) instead of a neutral navy shadow.
+
+### Stats Banner (new component)
+A full-bleed navy-gradient strip directly beneath the hero — visually one continuous dark block with it — showing four figures in a row (years of experience, surgeries, patients, and the count of professional associations). Numbers are set large in Fraunces and Turquoise Light (never Vivid Turquoise — fails contrast on navy); labels are white at 85% opacity. Collapses to 2 columns at 768px. The three numeric figures are explicit placeholders pending real data (see PRODUCT.md); the count of associations (6) is real, derived from the confirmed membership list below.
+
+### Professional Associations (new content, "Sobre el doctor")
+A row of trust-pill badges, one per organization, placed below the credentials timeline. These are real, user-confirmed memberships, not placeholders. Rendered as text badges (reusing the existing trust-pill component) rather than recreated logos: hand-drawing an approximation of a third-party organization's official mark (AAOS, SOFCOT, a medical-college seal) would misrepresent it. If real logo files are supplied later, they can replace the text badges directly.
+
+### Virtual Assistant / FAQ Chatbot (signature component)
+A predefined question-and-answer dialogue, not a generative AI chat — every message the bot sends is authored, none is generated at runtime, so there is zero risk of it inventing medical information. The content is a directed graph (JS object, `chatbotGraph`), not a strict tree: multiple branches converge on the same shared answer nodes (e.g., every branch can reach "Agendar cita ahora" or "Escribir por WhatsApp") without duplicating that content. A fixed circular toggle at bottom-left (mirrored from the floating contact button at bottom-right, so the two never collide) opens a panel styled as a real chat: navy-gradient header, message bubbles (bot bubbles bordered Paper White, user-choice echoes filled Deep Navy), and the current node's choices rendered as pill buttons below — one of which may be styled as a gold `chatbot-choice-cta` when it is the answer's primary conversion action. The panel uses `--radius-md` (12px) and a shadow only, no border — see the Elevation note below. Every node offers a path back to the main menu; the user is never trapped in a branch. Keyboard- and screen-reader-operable (real `<button>` choices, `role="dialog"`, Escape closes and returns focus to the toggle).
+
+### Named Rules
+**The Predefined-Content Rule.** The chatbot never calls an LLM or generates text at runtime. Every message is authored in `chatbotGraph` and reviewed before shipping — this is a deliberate liability and accuracy choice for a medical practice, not a placeholder for a future AI integration. If real AI chat is added later, it is a different component, not an upgrade to this one.
+**The No-Dead-End Rule.** Every node in the graph includes a way back to the main menu (`next: 'start'`) or to its immediate parent. A node that only offers "further" choices is a bug, not a decision.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep Burnished Gold rare — one primary action or emphasis point per view (The One Accent Rule).
-- **Do** use Fraunces only for names/titles and IBM Plex Sans for everything read for information (The Serif-Names-Sans-Explains Rule).
-- **Do** default new surfaces to hairline borders before adding shadow (The Border-First Rule).
-- **Do** add a small hover/focus motion signal to interactive elements going forward, not just a color swap (The Warmth-on-Touch Rule).
+- **Do** keep Vivid Turquoise rare — one primary action or emphasis point per view (The One Accent Rule).
+- **Do** use white or Turquoise Light for anything set directly on a navy-gradient section, never Ink or full-strength Turquoise/Navy text-on-navy (The Light-on-Navy Rule).
+- **Do** make every new button pill-shaped with a glow shadow tinted to its own fill (The Pill-Button Rule, The Colored-Glow Rule).
+- **Do** use Fraunces only for names/titles and IBM Plex Sans for everything read for information.
+- **Do** default ordinary cards to hairline borders before adding shadow (The Border-First Rule).
 - **Do** keep the anatomy diagram's list-and-hotspot sync intact when touching that section.
 
 ### Don't:
-- **Don't** let the page read as a generic corporate hospital brochure or a generic tech-startup landing page — both were explicitly rejected as anti-references.
-- **Don't** introduce a second saturated accent color; Steady Slate Blue and Burnished Gold are the complete palette.
-- **Don't** apply the doctor-profile/contact-form shadow exception to ordinary cards (service, step, testimonial) — they stay flat.
-- **Don't** invent real contact details, credentials, statistics, or testimonials — every instance currently on the page is a confirmed placeholder (see PRODUCT.md's Evidence on Hand).
-- **Don't** add a kicker/eyebrow label above a section heading. The heading carries its own weight; work the words into the heading or body copy instead.
-- **Don't** set text directly on Burnished Gold in white — it fails contrast. Use Ink (or Deep Navy for large decorative marks) instead.
+- **Don't** let the page read as a generic corporate hospital brochure or a generic tech-startup landing page.
+- **Don't** introduce a third saturated accent color; Deep Navy and Vivid Turquoise (plus its light variant, text-only) are the complete palette.
+- **Don't** add a fourth full-navy-gradient section without a specific reason (The Three Dark Sections Rule) — the effect depends on rarity.
+- **Don't** apply the doctor-profile/contact-grid shadow exception to ordinary cards (service, step, testimonial) — they stay flat.
+- **Don't** invent real contact details, credentials, or testimonials, and don't invent new statistics beyond the three explicit placeholders already recorded — see PRODUCT.md's Evidence on Hand.
+- **Don't** add a kicker/eyebrow label above a section heading.
+- **Don't** set white or Ink text on Vivid Turquoise interchangeably without checking — Ink fails (~2.7:1), white passes (~5.5:1). Never set Vivid Turquoise as text directly on a navy background — use Turquoise Light instead.
+- **Don't** hand-draw or approximate a third-party organization's logo — the confirmed associations render as text badges until real logo files are supplied.
