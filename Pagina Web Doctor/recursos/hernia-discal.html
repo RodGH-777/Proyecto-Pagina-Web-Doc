@@ -11,18 +11,19 @@
 
 <style>
   :root {
-    --azul-primario: #1D5C7A;
-    --azul-oscuro: #12384B;
-    --dorado-acento: #C98A32;
-    --dorado-hover: #C08430;
-    --fondo-general: #F4F6F5;
+    --azul-primario: #0B3D91;
+    --azul-oscuro: #072659;
+    --dorado-acento: #0F766E;
+    --dorado-hover: #0B5D57;
+    --fondo-general: #F0FAF9;
     --superficie-blanca: #FFFFFF;
     --texto-principal: #1E2A33;
     --texto-secundario: #52626C;
-    --linea-borde: #DBE2E3;
+    --linea-borde: #D3E6E3;
     --font-serif: 'Fraunces', Georgia, serif;
     --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --radius-sm: 4px;
+    --radius-pill: 9999px;
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,8 +59,8 @@
   .article-body li { margin-bottom: 0.5rem; }
 
   .disclaimer {
-    background-color: rgba(201, 138, 50, 0.08);
-    border: 1px solid rgba(201, 138, 50, 0.3);
+    background-color: rgba(15, 118, 110, 0.08);
+    border: 1px solid rgba(15, 118, 110, 0.3);
     border-radius: var(--radius-sm);
     padding: 1rem 1.25rem;
     font-size: 0.85rem;
@@ -79,12 +80,13 @@
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center;
-    padding: 0.75rem 1.75rem; background-color: var(--dorado-acento); color: var(--texto-principal);
-    font-family: var(--font-sans); font-weight: 500; font-size: 0.95rem;
-    border-radius: var(--radius-sm); text-decoration: none; border: none; cursor: pointer;
-    transition: background-color 0.2s ease, transform 140ms var(--ease-out);
+    padding: 0.8rem 1.75rem; background-color: var(--dorado-acento); color: #FFFFFF;
+    font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem;
+    border-radius: var(--radius-pill); text-decoration: none; border: none; cursor: pointer;
+    box-shadow: 0 8px 20px rgba(15, 118, 110, 0.35);
+    transition: background-color 0.2s ease, transform 140ms var(--ease-out), box-shadow 0.2s ease;
   }
-  .btn:hover { background-color: var(--dorado-hover); }
+  .btn:hover { background-color: var(--dorado-hover); box-shadow: 0 12px 26px rgba(15, 118, 110, 0.45); }
   @media (hover: hover) and (pointer: fine) {
     .btn:hover { transform: translateY(-2px); }
   }

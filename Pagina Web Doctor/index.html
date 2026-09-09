@@ -4,6 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dr. Mario Portillo | Cirujano Ortopedista en San Salvador</title>
+  <meta name="description" content="Dr. Mario Portillo, ortopeda en San Salvador especializado en reemplazo articular, artroscopía de rodilla y cirugía de columna. Agenda tu consulta hoy mismo.">
+
+  <!-- Open Graph (valores de dominio/imagen son provisionales hasta publicar el sitio final) -->
+  <meta property="og:title" content="Dr. Mario Portillo | Cirujano Ortopedista en San Salvador">
+  <meta property="og:description" content="Especialista en reemplazo articular, artroscopía de rodilla y traumatología en San Salvador. Agenda tu consulta con el Dr. Mario Portillo.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/doctor.jpg">
+  <meta property="og:url" content="https://www.drmarioportillo.com/">
+  <meta property="og:locale" content="es_SV">
+
+  <!-- Datos estructurados Schema.org: dirección, coordenadas y teléfono son placeholders (ver PRODUCT.md) hasta confirmar datos reales -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Physician",
+    "name": "Dr. Mario Portillo",
+    "image": "assets/doctor.jpg",
+    "url": "https://www.drmarioportillo.com/",
+    "telephone": "+503-2200-8888",
+    "medicalSpecialty": "Orthopedic",
+    "description": "Cirujano ortopedista en San Salvador especializado en reemplazo articular, artroscopía de rodilla y traumatología.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Torre Médica Medicentro, Nivel 4, Local 402",
+      "addressLocality": "San Salvador",
+      "addressCountry": "SV"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 13.6929,
+      "longitude": -89.2182
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:00",
+        "closes": "12:00"
+      }
+    ],
+    "additionalProperty": {
+      "@type": "PropertyValue",
+      "name": "Aseguradoras aceptadas",
+      "value": "SISA, ASESUISA, MAPFRE, Seguros e Inversiones"
+    }
+  }
+  </script>
 
   <!-- Google Fonts: Fraunces & IBM Plex Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -530,6 +583,15 @@
       height: 28px;
       transform: translate(-50%, -50%);
       cursor: pointer;
+      touch-action: manipulation;
+      border-radius: 50%;
+    }
+
+    @media (pointer: coarse) {
+      .hotspot {
+        width: 44px;
+        height: 44px;
+      }
     }
 
     .hotspot-ring {
@@ -537,7 +599,8 @@
       inset: 0;
       border-radius: 50%;
       background-color: var(--dorado-acento);
-      opacity: 0.25;
+      opacity: 0;
+      transform: scale(0.5);
       transition: opacity 0.3s ease, transform 0.3s var(--ease-out);
     }
 
@@ -551,18 +614,41 @@
       border-radius: 50%;
       background-color: var(--dorado-acento);
       box-shadow: 0 0 0 2px #FFFFFF;
-      transition: background-color 0.3s ease;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: opacity 0.3s ease, transform 0.3s var(--ease-out), background-color 0.3s ease;
     }
 
+    /* Vista previa sutil al pasar el mouse o enfocar con teclado: no activa selección, solo insinúa que el punto es interactivo */
     .hotspot:hover .hotspot-ring,
-    .hotspot.active .hotspot-ring {
-      opacity: 0.5;
-      transform: scale(1.3);
+    .hotspot:focus-visible .hotspot-ring {
+      opacity: 0.2;
+      transform: scale(1);
     }
 
     .hotspot:hover .hotspot-dot,
+    .hotspot:focus-visible .hotspot-dot {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+
+    /* El punto solo "se enciende" por completo cuando la zona ha sido seleccionada */
+    .hotspot.active .hotspot-ring {
+      opacity: 0.5;
+      transform: scale(1.3);
+      animation: hotspotPulse 1s var(--ease-out);
+    }
+
     .hotspot.active .hotspot-dot {
+      opacity: 1;
+      transform: scale(1.15);
       background-color: var(--azul-primario);
+    }
+
+    @keyframes hotspotPulse {
+      0% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.45); }
+      70% { box-shadow: 0 0 0 14px rgba(15, 118, 110, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0); }
     }
 
     /* ==========================================================================
@@ -667,14 +753,7 @@
       height: 120px;
       min-width: 120px;
       border-radius: 50%;
-      background-color: var(--azul-oscuro);
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-serif);
-      font-size: 2.5rem;
-      font-weight: 700;
+      object-fit: cover;
       border: 3px solid var(--dorado-acento);
     }
 
@@ -995,6 +1074,27 @@
       gap: 1rem;
     }
 
+    .form-checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin: 0.25rem 0 1.25rem;
+    }
+
+    .form-checkbox-row input[type="checkbox"] {
+      margin-top: 0.2rem;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      accent-color: var(--dorado-acento);
+    }
+
+    .form-checkbox-row label {
+      font-size: 0.85rem;
+      color: var(--texto-secundario);
+      line-height: 1.5;
+    }
+
     .form-group label {
       font-size: 0.85rem;
       font-weight: 500;
@@ -1150,9 +1250,18 @@
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 960px) {
       .header-container .btn-primary {
         display: none;
+      }
+    }
+
+    @media (max-width: 960px) and (min-width: 769px) {
+      .nav-menu {
+        gap: 1.1rem;
+      }
+      .nav-link {
+        font-size: 0.85rem;
       }
     }
 
@@ -1580,7 +1689,7 @@
     <div class="container">
       <div class="hero-content">
         <h1 class="hero-title">Cirugía Ortopédica de Confianza en San Salvador</h1>
-        <p class="hero-subtitle">Atención personalizada y de alta especialidad en patologías de rodilla, cadera y reemplazo articular. Devuélvele la movilidad y calidad a tu vida con un enfoque quirúrgico moderno.</p>
+        <p class="hero-subtitle">Atención personalizada del Dr. Mario Portillo, ortopeda en San Salvador especializado en reemplazo articular, artroscopía de rodilla y cirugía de columna. Devuélvele la movilidad y calidad a tu vida con un enfoque quirúrgico moderno.</p>
         
         <div class="hero-actions">
           <a href="#contacto" class="btn btn-gold">Solicitar una cita</a>
@@ -1722,7 +1831,7 @@
           <div class="skeleton-photo-wrap">
             <img class="skeleton-photo" src="assets/esqueleto.jpg" alt="Fotografía de un esqueleto humano completo, vista frontal, usado como mapa anatómico interactivo">
 
-            <div class="hotspot" id="hs-hombro" data-part="hombro" tabindex="0" role="button" aria-label="Hombro" style="left: 34.1%; top: 20.1%;">
+            <div class="hotspot active" id="hs-hombro" data-part="hombro" tabindex="0" role="button" aria-label="Hombro" style="left: 34.1%; top: 20.1%;">
               <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
             </div>
 
@@ -1784,8 +1893,8 @@
           <div class="service-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
-          <h3 class="service-title">Medicina Deportiva</h3>
-          <p class="service-desc">Recuperación acelerada para atletas y personas activas con lesiones de ligamentos, tendones y meniscos.</p>
+          <h3 class="service-title">Medicina Deportiva y Artroscopía de Rodilla</h3>
+          <p class="service-desc">Recuperación acelerada para atletas y personas activas con lesiones de ligamentos, tendones y meniscos mediante artroscopía de mínima invasión.</p>
         </div>
 
         <div class="service-card">
@@ -1800,7 +1909,7 @@
           <div class="service-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><path d="M12 8v13M8 12h8"/></svg>
           </div>
-          <h3 class="service-title">Reemplazo Articular</h3>
+          <h3 class="service-title">Especialista en Reemplazo Articular</h3>
           <p class="service-desc">Cirugía de prótesis de alta precisión para cadera y rodilla con materiales duraderos de última generación.</p>
         </div>
 
@@ -1820,7 +1929,7 @@
     <div class="container">
       
       <div class="doctor-profile-card">
-        <div class="doctor-avatar">MP</div>
+        <img class="doctor-avatar" src="assets/doctor.jpg" alt="Dr. Mario Portillo, cirujano ortopedista en San Salvador" loading="lazy" width="120" height="120">
         <div class="doctor-info">
           <h3>Mario Portillo, MD</h3>
           <div class="doctor-role">Cirujano Ortopedista Principal</div>
@@ -2085,8 +2194,25 @@
             </div>
 
             <div class="form-group">
+              <label for="cobertura">Aseguradora o consulta privada</label>
+              <select id="cobertura">
+                <option value="">Selecciona una opción</option>
+                <option value="sisa">SISA</option>
+                <option value="asesuisa">ASESUISA</option>
+                <option value="mapfre">MAPFRE</option>
+                <option value="seguros-e-inversiones">Seguros e Inversiones</option>
+                <option value="privada">Consulta privada (sin seguro)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
               <label for="mensaje">Mensaje o síntomas</label>
               <textarea id="mensaje" placeholder="Describe brevemente tus molestias o consulta..."></textarea>
+            </div>
+
+            <div class="form-checkbox-row">
+              <input type="checkbox" id="privacidad" required>
+              <label for="privacidad">He leído y acepto la política de privacidad y el tratamiento de mis datos médicos para fines de esta consulta. *</label>
             </div>
 
             <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 0.5rem;">Enviar solicitud</button>
@@ -2196,10 +2322,9 @@
         });
       });
 
-      // Clics, teclado o hover en hotspots del SVG
+      // Clic o teclado en hotspots de la foto (el punto solo se enciende con una selección intencional)
       hotspots.forEach(hs => {
         hs.addEventListener('click', () => activatePart(hs.dataset.part));
-        hs.addEventListener('mouseenter', () => activatePart(hs.dataset.part));
         hs.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -2313,16 +2438,30 @@
         },
 
         'sintomas-menu': {
-          message: 'Entiendo. Cuéntame más sobre dónde sientes la molestia:',
+          message: 'Entiendo. Para orientarte mejor, ¿de qué tipo es la molestia?',
+          choices: [
+            { label: 'Dolor articular (rodilla, cadera, columna, hombro)', next: 'sintomas-articular' },
+            { label: 'Lesión aguda o deportiva', next: 'sintomas-aguda' },
+            { label: '¿Cuándo es una emergencia?', next: 'sintomas-emergencia' },
+            { label: '← Menú principal', next: 'start' },
+          ],
+        },
+        'sintomas-articular': {
+          message: '¿En qué zona sientes el dolor articular?',
           choices: [
             { label: 'Dolor de rodilla', next: 'sintomas-rodilla' },
             { label: 'Dolor de cadera', next: 'sintomas-cadera' },
             { label: 'Dolor de columna o espalda', next: 'sintomas-columna' },
             { label: 'Dolor de hombro', next: 'sintomas-hombro' },
+            { label: '← Volver', next: 'sintomas-menu' },
+          ],
+        },
+        'sintomas-aguda': {
+          message: '¿Cuál de estas describe mejor lo que te pasó?',
+          choices: [
             { label: 'Lesión deportiva', next: 'sintomas-deportiva' },
             { label: 'Creo que tengo una fractura', next: 'sintomas-fractura' },
-            { label: '¿Cuándo es una emergencia?', next: 'sintomas-emergencia' },
-            { label: '← Menú principal', next: 'start' },
+            { label: '← Volver', next: 'sintomas-menu' },
           ],
         },
         'sintomas-rodilla': {
@@ -2331,7 +2470,7 @@
             { label: 'Leer sobre prótesis de rodilla', action: 'article', url: 'recursos/protesis-rodilla-cadera.html' },
             { label: 'Leer sobre ligamento cruzado', action: 'article', url: 'recursos/ligamento-cruzado-anterior.html' },
             { label: 'Agendar cita ahora', action: 'contact', cta: true },
-            { label: '← Volver', next: 'sintomas-menu' },
+            { label: '← Volver', next: 'sintomas-articular' },
           ],
         },
         'sintomas-cadera': {
@@ -2339,7 +2478,7 @@
           choices: [
             { label: 'Leer sobre prótesis de cadera', action: 'article', url: 'recursos/protesis-rodilla-cadera.html' },
             { label: 'Agendar cita ahora', action: 'contact', cta: true },
-            { label: '← Volver', next: 'sintomas-menu' },
+            { label: '← Volver', next: 'sintomas-articular' },
           ],
         },
         'sintomas-columna': {
@@ -2347,14 +2486,14 @@
           choices: [
             { label: 'Leer sobre hernia discal', action: 'article', url: 'recursos/hernia-discal.html' },
             { label: 'Agendar cita ahora', action: 'contact', cta: true },
-            { label: '← Volver', next: 'sintomas-menu' },
+            { label: '← Volver', next: 'sintomas-articular' },
           ],
         },
         'sintomas-hombro': {
           message: 'El dolor de hombro puede originarse en el manguito rotador, inestabilidad articular o desgaste. El Dr. Portillo trata estos casos frecuentemente mediante artroscopía de mínima invasión cuando es necesario.',
           choices: [
             { label: 'Agendar cita ahora', action: 'contact', cta: true },
-            { label: '← Volver', next: 'sintomas-menu' },
+            { label: '← Volver', next: 'sintomas-articular' },
           ],
         },
         'sintomas-deportiva': {
@@ -2362,7 +2501,7 @@
           choices: [
             { label: 'Leer sobre ligamento cruzado (LCA)', action: 'article', url: 'recursos/ligamento-cruzado-anterior.html' },
             { label: 'Agendar cita ahora', action: 'contact', cta: true },
-            { label: '← Volver', next: 'sintomas-menu' },
+            { label: '← Volver', next: 'sintomas-aguda' },
           ],
         },
         'sintomas-fractura': {
@@ -2371,7 +2510,7 @@
             { label: 'Leer guía completa de primeros pasos', action: 'article', url: 'recursos/fracturas-comunes.html' },
             { label: '¿Cuándo es una emergencia?', next: 'sintomas-emergencia' },
             { label: 'Agendar cita ahora', action: 'contact', cta: true },
-            { label: '← Volver', next: 'sintomas-menu' },
+            { label: '← Volver', next: 'sintomas-aguda' },
           ],
         },
         'sintomas-emergencia': {
