@@ -59,6 +59,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Activa las animaciones de scroll antes del primer pintado; si el script principal no arranca en 3 s, se desactivan para no dejar contenido oculto -->
+  <script>
+    document.documentElement.classList.add('js-motion');
+    window.setTimeout(function () {
+      if (!window.__revealReady) document.documentElement.classList.remove('js-motion');
+    }, 3000);
+  </script>
+
   <style>
     /* ==========================================================================
        VARIABLES Y PALETA DE COLOR (ESTRICTAMENTE SEGÚN ESPECIFICACIÓN)
@@ -318,18 +326,57 @@
     .nav-menu {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 0.25rem;
+      position: relative;
     }
 
     .nav-link {
+      position: relative;
+      z-index: 1;
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
       font-size: 0.95rem;
       color: var(--texto-principal);
       font-weight: 400;
-      transition: color 0.2s;
+      transition: color 0.2s ease, background-color 0.2s ease;
     }
 
-    .nav-link:hover {
-      color: var(--azul-primario);
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      color: var(--dorado-hover);
+    }
+
+    /* Sin JS: cada enlace pinta su propia píldora */
+    .nav-menu:not(.has-indicator) .nav-link:hover {
+      background-color: rgba(15, 118, 110, 0.12);
+    }
+
+    /* Con JS: una sola píldora que se desliza de una opción a otra siguiendo el cursor */
+    .nav-indicator {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: var(--ind-w, 0);
+      height: var(--ind-h, 0);
+      transform: translate(var(--ind-x, 0), var(--ind-y, 0));
+      border-radius: var(--radius-pill);
+      background-color: rgba(15, 118, 110, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.18);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        transform 0.38s var(--ease-arrive),
+        width 0.38s var(--ease-arrive),
+        opacity 0.2s ease;
+    }
+
+    .nav-indicator.is-visible {
+      opacity: 1;
+    }
+
+    .nav-indicator.no-slide {
+      transition: opacity 0.2s ease;
     }
 
     /* Mobile menu button */
@@ -1374,18 +1421,29 @@
       }
     }
 
-    @media (max-width: 960px) {
+    /* Escalones intermedios del header: el botón "Agendar cita" cede su espacio antes que el menú se amontone */
+    @media (max-width: 1200px) {
       .header-container .btn-primary {
         display: none;
       }
     }
 
+    @media (max-width: 1200px) and (min-width: 769px) {
+      .nav-link {
+        padding: 0.5rem 0.7rem;
+      }
+    }
+
     @media (max-width: 960px) and (min-width: 769px) {
       .nav-menu {
-        gap: 1.1rem;
+        gap: 0;
       }
       .nav-link {
-        font-size: 0.85rem;
+        font-size: 0.82rem;
+        padding: 0.45rem 0.4rem;
+      }
+      .logo-name {
+        font-size: 1.15rem;
       }
     }
 
@@ -1719,6 +1777,19 @@
         pointer-events: auto;
       }
 
+      .nav-indicator {
+        display: none;
+      }
+
+      .nav-link {
+        padding: 0.4rem 0.75rem;
+        margin: 0 -0.75rem;
+      }
+
+      .nav-menu .nav-link:hover {
+        background-color: rgba(15, 118, 110, 0.12);
+      }
+
       .mobile-nav-toggle {
         display: flex;
       }
@@ -1769,6 +1840,104 @@
         transform: none;
       }
     }
+
+    /* ==========================================================================
+       MOVIMIENTO AL HACER SCROLL (estilo Apple)
+       Solo se oculta contenido cuando el script activó .js-motion: si el JS falla, todo se ve.
+       ========================================================================== */
+    :root {
+      --ease-arrive: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .js-motion [data-reveal] {
+      opacity: 0;
+      transform: translateY(32px);
+      filter: blur(10px);
+      transition:
+        opacity 0.9s var(--ease-arrive),
+        transform 1.1s var(--ease-arrive),
+        filter 0.9s var(--ease-arrive);
+      transition-delay: calc(var(--reveal-i, 0) * 80ms);
+    }
+
+    .js-motion [data-reveal="scale"] {
+      transform: translateY(24px) scale(0.94);
+    }
+
+    /* Bloques grandes (el de contacto incluye el mapa) entran sin desenfoque: el blur a esa escala cuesta demasiado en celulares */
+    .js-motion .contact-grid[data-reveal],
+    .js-motion .doctor-profile-card[data-reveal] {
+      filter: none;
+    }
+
+    .js-motion [data-reveal].is-revealed {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+
+    /* Titular del hero: cada palabra pasa de desenfocada a nítida */
+    .hero-word {
+      display: inline-block;
+    }
+
+    .js-motion .hero-title .hero-word {
+      opacity: 0;
+      transform: translateY(0.35em);
+      filter: blur(12px);
+      animation: heroWordIn 1s var(--ease-arrive) forwards;
+      animation-delay: calc(120ms + var(--w, 0) * 70ms);
+    }
+
+    @keyframes heroWordIn {
+      to { opacity: 1; transform: none; filter: none; }
+    }
+
+    /* El hero retrocede mientras la página sube: enlazado al scroll, sin JS */
+    @supports (animation-timeline: view()) {
+      .hero-content {
+        animation: heroRecede linear both;
+        animation-timeline: view();
+        animation-range: exit 0% exit 90%;
+      }
+
+      @keyframes heroRecede {
+        to { opacity: 0.25; transform: translateY(-40px) scale(0.96); }
+      }
+    }
+
+    .stat-number {
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .js-motion [data-reveal],
+      .js-motion [data-reveal="scale"] {
+        transform: none;
+        filter: none;
+        transition: opacity 0.6s ease;
+        transition-delay: 0s;
+      }
+
+      .js-motion .hero-title .hero-word {
+        transform: none;
+        filter: none;
+        animation: heroWordFade 0.6s ease forwards;
+        animation-delay: 0s;
+      }
+
+      @keyframes heroWordFade {
+        to { opacity: 1; }
+      }
+
+      .hero-content {
+        animation: none;
+      }
+
+      .nav-indicator {
+        transition: opacity 0.2s ease;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1816,15 +1985,15 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">Cirugía Ortopédica de Confianza en San Salvador</h1>
-        <p class="hero-subtitle">Atención personalizada del Dr. Mario Portillo, ortopeda en San Salvador especializado en reemplazo articular, artroscopía de rodilla y cirugía de columna. Devuélvele la movilidad y calidad a tu vida con un enfoque quirúrgico moderno.</p>
+        <h1 class="hero-title"><span class="hero-word" style="--w:0">Cirugía</span> <span class="hero-word" style="--w:1">Ortopédica</span> <span class="hero-word" style="--w:2">de</span> <span class="hero-word" style="--w:3">Confianza</span> <span class="hero-word" style="--w:4">en</span> <span class="hero-word" style="--w:5">San</span> <span class="hero-word" style="--w:6">Salvador</span></h1>
+        <p class="hero-subtitle" data-reveal style="--reveal-i:6">Atención personalizada del Dr. Mario Portillo, ortopeda en San Salvador especializado en reemplazo articular, artroscopía de rodilla y cirugía de columna. Devuélvele la movilidad y calidad a tu vida con un enfoque quirúrgico moderno.</p>
         
-        <div class="hero-actions">
+        <div class="hero-actions" data-reveal style="--reveal-i:8">
           <a href="#contacto" class="btn btn-gold">Solicitar una cita</a>
           <a href="#donde-duele" class="btn btn-outline-light">¿Dónde te duele?</a>
         </div>
 
-        <div class="trust-checks">
+        <div class="trust-checks" data-reveal style="--reveal-i:10">
           <div class="check-item">
             <span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
             <span>Atención de primer nivel</span>
@@ -2448,6 +2617,74 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // --- Movimiento al hacer scroll (estilo Apple) ---
+      function countUp(el) {
+        const raw = el.textContent.trim();
+        const parts = raw.match(/^(\D*)([\d,]+)(\D*)$/);
+        if (!parts || prefersReducedMotion) return;
+        const target = parseInt(parts[2].replace(/,/g, ''), 10);
+        const duration = 1400;
+        const start = performance.now();
+        const tick = (now) => {
+          const t = Math.min((now - start) / duration, 1);
+          const eased = t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+          el.textContent = parts[1] + Math.round(target * eased).toLocaleString('en-US') + parts[3];
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+
+      if ('IntersectionObserver' in window) {
+        const revealSingles = '.section-title, .section-subtitle, .cta-banner-content, .doctor-profile-card, .contact-grid';
+        const revealLists = ['.body-part-card', '.service-card', '.stat-item', '.timeline-item', '.step-card', '.testimonial-card', '.resource-card', '.trust-pills .trust-pill'];
+
+        document.querySelectorAll(revealSingles).forEach((el) => {
+          if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', '');
+        });
+        const skeletonContainer = document.querySelector('.skeleton-container');
+        if (skeletonContainer) skeletonContainer.setAttribute('data-reveal', 'scale');
+
+        // Las listas entran en cascada; el retraso se topa en 5 pasos para que ninguna espere de más
+        revealLists.forEach((selector) => {
+          const countByParent = new Map();
+          document.querySelectorAll(selector).forEach((el) => {
+            const i = countByParent.get(el.parentElement) || 0;
+            countByParent.set(el.parentElement, i + 1);
+            el.setAttribute('data-reveal', '');
+            el.style.setProperty('--reveal-i', Math.min(i, 5));
+          });
+        });
+
+        // Un bloque ya animado no debe animar de nuevo a sus hijos
+        document.querySelectorAll('[data-reveal] [data-reveal]').forEach((el) => {
+          el.removeAttribute('data-reveal');
+          el.style.removeProperty('--reveal-i');
+        });
+
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            revealObserver.unobserve(el);
+            el.classList.add('is-revealed');
+            // Al terminar se quitan los estilos de entrada para que los hover propios de cada tarjeta vuelvan a funcionar
+            el.addEventListener('transitionend', function settle(e) {
+              if (e.target !== el || e.propertyName !== 'opacity') return;
+              el.removeEventListener('transitionend', settle);
+              el.removeAttribute('data-reveal');
+              el.classList.remove('is-revealed');
+              el.style.removeProperty('--reveal-i');
+            });
+            if (el.classList.contains('stat-item')) countUp(el.querySelector('.stat-number'));
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+        document.querySelectorAll('[data-reveal]').forEach((el) => revealObserver.observe(el));
+        window.__revealReady = true;
+      } else {
+        document.documentElement.classList.remove('js-motion');
+      }
       const bodyCards = document.querySelectorAll('.body-part-card');
       const hotspots = document.querySelectorAll('.hotspot');
 
@@ -2528,6 +2765,38 @@
         const isOpen = navMenu.classList.toggle('open');
         mobileToggle.setAttribute('aria-expanded', String(isOpen));
       });
+      // --- Píldora que sigue al cursor en el menú de escritorio ---
+      const navIndicator = document.createElement('span');
+      navIndicator.className = 'nav-indicator';
+      navIndicator.setAttribute('aria-hidden', 'true');
+      navMenu.appendChild(navIndicator);
+      navMenu.classList.add('has-indicator');
+      const mobileNavQuery = window.matchMedia('(max-width: 768px)');
+
+      function moveNavIndicator(link) {
+        if (mobileNavQuery.matches) return;
+        // La primera vez aparece en su lugar; solo se desliza entre opciones cuando ya está visible
+        const firstShow = !navIndicator.classList.contains('is-visible');
+        navIndicator.classList.toggle('no-slide', firstShow);
+        navIndicator.style.setProperty('--ind-x', link.offsetLeft + 'px');
+        navIndicator.style.setProperty('--ind-y', link.offsetTop + 'px');
+        navIndicator.style.setProperty('--ind-w', link.offsetWidth + 'px');
+        navIndicator.style.setProperty('--ind-h', link.offsetHeight + 'px');
+        navIndicator.classList.add('is-visible');
+        if (firstShow) requestAnimationFrame(() => requestAnimationFrame(() => navIndicator.classList.remove('no-slide')));
+      }
+
+      function hideNavIndicator() {
+        navIndicator.classList.remove('is-visible');
+      }
+
+      navMenu.querySelectorAll('.nav-link').forEach((link) => {
+        link.addEventListener('mouseenter', () => moveNavIndicator(link));
+        link.addEventListener('focus', () => moveNavIndicator(link));
+        link.addEventListener('blur', hideNavIndicator);
+      });
+      navMenu.addEventListener('mouseleave', hideNavIndicator);
+
       navMenu.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
           navMenu.classList.remove('open');

@@ -204,7 +204,9 @@ Three radii now carry real weight, where the system previously leaned almost ent
 
 ### Navigation
 - **Style:** sticky white header with a Hairline bottom border; nav links are Ink at rest and transition to Deep Navy on hover. The dark top-bar above it is now the Navy Deep gradient-end color, and its "Agendar consulta" link is set in Turquoise Light (not Vivid Turquoise — see the Light-on-Navy Rule).
-- **Mobile:** unchanged mechanism (hamburger toggle, sliding dropdown card, header CTA hidden below 480px in favor of the floating contact button).
+- **Hover (desktop):** a single turquoise-tinted pill (`rgba(15,118,110,0.12)` with a 1px inset turquoise edge) glides from link to link under the cursor (0.38s, `--ease-arrive`), and the hovered link turns Turquoise Hover (`#0B5D57`). It appears in place on first hover and fades when the cursor leaves the menu; keyboard focus moves it too. Without JS, each link paints its own pill. Reduced motion: it fades instead of sliding.
+- **Intermediate widths:** the header "Agendar cita" button hides at ≤1200px so the six links never crowd the logo; link padding tightens again at ≤960px.
+- **Mobile:** hamburger toggle and sliding dropdown card; the gliding pill is off and each link gets its own tinted pill on tap/hover.
 
 ### Interactive Anatomy Diagram (signature component)
 A real photograph (`assets/esqueleto.jpg`) with percentage-positioned hotspots, keyboard-operable, and the site's most distinctive interaction. Hotspots are **invisible until selected** (client decision): only the active zone shows its Deep Navy dot and pulsing turquoise ring; hover/focus gives a faint preview without changing selection. To keep the photo discoverable on touch screens, a Vivid Turquoise hint line ("Toca la zona donde te duele") sits above it, and the first time the photo scrolls into view each zone flashes once, top to bottom, then hides again (skipped under reduced motion). Selecting a zone also pre-fills the contact form's "Motivo de consulta".
@@ -224,6 +226,16 @@ A predefined question-and-answer dialogue, not a generative AI chat — every me
 ### Named Rules
 **The Predefined-Content Rule.** The chatbot never calls an LLM or generates text at runtime. Every message is authored in `chatbotGraph` and reviewed before shipping — this is a deliberate liability and accuracy choice for a medical practice, not a placeholder for a future AI integration. If real AI chat is added later, it is a different component, not an upgrade to this one.
 **The No-Dead-End Rule.** Every node in the graph includes a way back to the main menu (`next: 'start'`) or to its immediate parent. A node that only offers "further" choices is a bug, not a decision.
+
+## Motion
+
+Apple-style scroll choreography, requested by the client. One easing for every arrival: `cubic-bezier(0.16, 1, 0.3, 1)` (`--ease-arrive`).
+
+- **Focal moment (hero):** the H1 enters word by word, each rising from blur to sharp (1s per word, 70ms stagger); subtitle, CTAs, and trust checks follow as one continuation. As the visitor scrolls past, `.hero-content` recedes (fades to 0.25, lifts, scales to 0.96) via a CSS scroll-driven animation — no JS; browsers without `animation-timeline` simply skip it.
+- **Section reveals:** titles, subtitles, and key blocks rise 32px from a 10px blur as they enter the viewport, once. Lists (anatomy cards, services, stats, timeline, steps, testimonials, resources, association pills) cascade at 80ms per item, capped at 5 steps. The skeleton photo arrives with a slight scale-up instead. Large blocks (contact, doctor card) skip the blur for mobile performance.
+- **Stats:** each figure counts up from 0 over 1.4s with an exponential ease-out when the banner is revealed; numerals are tabular so the width doesn't jitter.
+- **Safety:** content is only hidden once `js-motion` is set in `<head>`; if the main script hasn't initialized within 3s, the class is removed and everything shows. Reveal styles are removed after each element settles so card hover lifts keep working.
+- **Reduced motion:** no movement, blur, counting, or hero recession — elements just fade in (0.6s) and figures appear at their final value.
 
 ## Do's and Don'ts
 
