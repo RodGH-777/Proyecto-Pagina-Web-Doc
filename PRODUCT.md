@@ -45,6 +45,8 @@ Practice name and title are fixed: "Dr. Mario Portillo — Cirujano Ortopedista.
 
 ## Evidence on Hand
 
+- Images the site actually loads live in `assets/` (`doctor.jpg`, `esqueleto.jpg`). Source files and unused reference/stock photos are kept in `assets/referencias/`; nothing on the page points there.
+
 - No real photography of the doctor, office, or patients exists yet. A real stock-style photograph of a human skeleton (`assets/esqueleto.jpg`, user-supplied) is used for the anatomy diagram — that one asset is real, not a placeholder. The doctor headshot (`assets/doctor.jpg`) in "Sobre el doctor" is a stock/reference photo used only to demo layout for the client (this is a mock page); it is not a photo of Dr. Portillo and must be swapped for a real portrait before the site goes live.
 - The clinic address is real, user-confirmed: Medicentro La Esperanza, Módulo K, Local 111, Colonia Médica, San Salvador, El Salvador. It is embedded in the contact section (with an interactive Google Maps embed and a Waze deep link, both built from the address text so they self-geocode rather than relying on hardcoded coordinates), the footer, the chatbot's `consultorio-menu` node, the Schema.org JSON-LD, and `politica-privacidad.html`. Exact GPS coordinates have not been confirmed — do not add a `geo` field to the JSON-LD until they are.
 - Phone (`+503 2200-8888`/`+503 7890-1234`) and email (`contacto@drmarioportillo.com`) are still explicit placeholders. Real values are not yet available — confirmed pending, do not fabricate replacements.
