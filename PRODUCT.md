@@ -33,7 +33,7 @@ Confirmed specialties/services to represent (all five reflected in the current p
 
 Body regions covered by the existing pain-locator map: hombro, columna, cadera, rodilla, pie y tobillo, mano/muñeca/codo.
 
-Confirmed: the practice accepts the following insurers — SISA, ASESUISA, MAPFRE, and Seguros e Inversiones. Listed in the contact section next to the clinic address.
+Confirmed: the practice accepts the following insurers — SISA, ASESUISA, MAPFRE, and Seguros e Inversiones. Shown early in a strip under the stats banner (insurance acceptance is a top decision factor for Salvadoran patients), and again in the contact section next to the clinic address and as a form option.
 
 Confirmed: Dr. Portillo is a member of six professional associations (real, user-confirmed, not placeholders) — Asociación Salvadoreña de Ortopedia y Traumatología, American Academy of Orthopaedic Surgeons (AAOS), Médicos de El Salvador, SOFCOT Francia, Colegio Médico de El Salvador, and Sociedad Latinoamericana de Ortopedia y Traumatología (SLAOT). Shown as text badges (not logos — see Evidence on Hand) in "Sobre el doctor," and their count (6) appears as a real figure in the stats banner.
 

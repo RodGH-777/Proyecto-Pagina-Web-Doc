@@ -495,6 +495,50 @@
       font-weight: 500;
     }
 
+    /* Franja de aseguradoras: responde "¿aceptan mi seguro?" en la primera pantalla de scroll */
+    .insurers-strip {
+      margin-top: 2.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem 1.25rem;
+    }
+
+    .insurers-label {
+      color: var(--turquesa-claro);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .insurers-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .insurers-list li {
+      color: #FFFFFF;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius-pill);
+    }
+
+    .insurers-note {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.9rem;
+    }
+
     /* ==========================================================================
        4. SECCIÓN ANATÓMICA Y ZONAS
        ========================================================================== */
@@ -642,90 +686,51 @@
       display: block;
     }
 
+    /* Zonas de clic: rectángulos invisibles que cubren cada hueso (las zonas pares tienen una copia espejo) */
     .hotspot {
       position: absolute;
-      width: 28px;
-      height: 28px;
-      transform: translate(-50%, -50%);
       cursor: pointer;
-      touch-action: manipulation;
-      border-radius: 50%;
+      border-radius: var(--radius-md);
     }
 
-    @media (pointer: coarse) {
-      .hotspot {
-        width: 44px;
-        height: 44px;
-      }
-    }
-
-    .hotspot-ring {
+    /* Capas de hueso: recortadas de la foto real, así que siguen el contorno exacto de cada hueso */
+    .bone-highlight {
       position: absolute;
       inset: 0;
-      border-radius: 50%;
-      background-color: var(--dorado-acento);
+      width: 100%;
+      height: 100%;
       opacity: 0;
-      transform: scale(0.5);
-      transition: opacity 0.3s ease, transform 0.3s var(--ease-out);
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      transition: opacity 0.35s var(--ease-out);
     }
 
-    .hotspot-dot {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 10px;
-      height: 10px;
-      margin: -5px 0 0 -5px;
-      border-radius: 50%;
-      background-color: var(--dorado-acento);
-      box-shadow: 0 0 0 2px #FFFFFF;
-      opacity: 0;
-      transform: scale(0.5);
-      transition: opacity 0.3s ease, transform 0.3s var(--ease-out), background-color 0.3s ease;
+    /* Vista previa al pasar el mouse o enfocar con teclado: no cambia la selección */
+    .bone-highlight.is-preview {
+      opacity: 0.4;
     }
 
-    /* Vista previa sutil al pasar el mouse o enfocar con teclado: no activa selección, solo insinúa que el punto es interactivo */
-    .hotspot:hover .hotspot-ring,
-    .hotspot:focus-visible .hotspot-ring {
-      opacity: 0.2;
-      transform: scale(1);
+    .bone-highlight.active {
+      opacity: 0.9;
+      filter: drop-shadow(0 0 6px rgba(20, 184, 166, 0.85));
+      animation: boneLight 0.9s var(--ease-arrive);
     }
 
-    .hotspot:hover .hotspot-dot,
-    .hotspot:focus-visible .hotspot-dot {
-      opacity: 0.6;
-      transform: scale(1);
+    @keyframes boneLight {
+      0% { opacity: 0; }
+      45% { opacity: 1; }
+      100% { opacity: 0.9; }
     }
 
-    /* El punto solo "se enciende" por completo cuando la zona ha sido seleccionada */
-    .hotspot.active .hotspot-ring {
-      opacity: 0.5;
-      transform: scale(1.3);
-      animation: hotspotPulse 1s var(--ease-out);
+    /* Barrido único al entrar en pantalla: cada hueso se ilumina una vez de arriba hacia abajo y vuelve a apagarse */
+    .hint-sweep .bone-highlight:not(.active) {
+      animation: boneHint 1.1s var(--ease-out) calc(var(--i, 0) * 160ms) both;
     }
 
-    .hotspot.active .hotspot-dot {
-      opacity: 1;
-      transform: scale(1.15);
-      background-color: var(--azul-primario);
-    }
-
-    /* Barrido único al entrar en pantalla: cada zona parpadea una vez de arriba hacia abajo y vuelve a ocultarse */
-    .hint-sweep .hotspot:not(.active) .hotspot-dot,
-    .hint-sweep .hotspot:not(.active) .hotspot-ring {
-      animation: hotspotHint 1.1s var(--ease-out) calc(var(--i, 0) * 160ms) both;
-    }
-
-    @keyframes hotspotHint {
-      0% { opacity: 0; transform: scale(0.5); }
-      35% { opacity: 0.85; transform: scale(1.15); }
-      100% { opacity: 0; transform: scale(0.5); }
-    }
-
-    @keyframes hotspotPulse {
-      0% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.45); }
-      70% { box-shadow: 0 0 0 14px rgba(15, 118, 110, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0); }
+    @keyframes boneHint {
+      0% { opacity: 0; }
+      35% { opacity: 0.6; }
+      100% { opacity: 0; }
     }
 
     /* ==========================================================================
@@ -1687,7 +1692,7 @@
         animation: none;
       }
       .form-success,
-      .hotspot.active .hotspot-ring {
+      .bone-highlight.active {
         animation: none;
       }
     }
@@ -1718,6 +1723,10 @@
       }
       .anatomy-grid {
         grid-template-columns: 1fr;
+      }
+      /* En una sola columna la foto quedaría debajo de la lista y fuera de vista al elegir una zona: se oculta */
+      .skeleton-container {
+        display: none;
       }
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1969,8 +1978,8 @@
         <a href="#atencion" class="nav-link">Atención</a>
         <a href="#sobre-el-doctor" class="nav-link">Sobre el doctor</a>
         <a href="#testimonios" class="nav-link">Testimonios</a>
-        <a href="#para-pacientes" class="nav-link">Para pacientes</a>
         <a href="#contacto" class="nav-link">Contacto</a>
+        <a href="#para-pacientes" class="nav-link">Para pacientes</a>
       </nav>
 
       <a href="#contacto" class="btn btn-primary">Agendar cita</a>
@@ -2015,7 +2024,7 @@
     </div>
   </section>
 
-  <!-- 3b. BANNER DE CIFRAS -->
+  <!-- 4. BANNER DE CIFRAS Y ASEGURADORAS -->
   <section class="stats-banner">
     <div class="container">
       <div class="stats-grid">
@@ -2036,10 +2045,21 @@
           <div class="stat-label">Sociedades y Asociaciones Médicas</div>
         </div>
       </div>
+
+      <div class="insurers-strip" data-reveal>
+        <span class="insurers-label">Aceptamos tu seguro</span>
+        <ul class="insurers-list">
+          <li>SISA</li>
+          <li>ASESUISA</li>
+          <li>MAPFRE</li>
+          <li>Seguros e Inversiones</li>
+        </ul>
+        <span class="insurers-note">o consulta privada</span>
+      </div>
     </div>
   </section>
 
-  <!-- 4. SECCIÓN "DONDEQUIERA QUE TE DUELA, PODEMOS AYUDARTE" -->
+  <!-- 5. SECCIÓN "DONDEQUIERA QUE TE DUELA, PODEMOS AYUDARTE" -->
   <section id="donde-duele" class="section-padding">
     <div class="container">
       <h2 class="section-title">Dondequiera que te duela, podemos ayudarte</h2>
@@ -2127,50 +2147,31 @@
         <div class="skeleton-container">
           <p class="skeleton-hint">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a2 2 0 1 1 4 0v5"/><path d="M13 10.5V9a2 2 0 1 1 4 0v4.5a6.5 6.5 0 0 1-6.5 6.5h-.3a6 6 0 0 1-4.6-2.2L3.4 15a1.8 1.8 0 0 1 2.7-2.3L9 15"/></svg>
-            Toca la zona donde te duele
+            Haz clic en la zona donde te duele
           </p>
           <div class="skeleton-photo-wrap" id="skeletonPhotoWrap">
             <img class="skeleton-photo" src="assets/esqueleto.jpg" alt="Fotografía de un esqueleto humano completo, vista frontal, usado como mapa anatómico interactivo">
 
-            <div class="hotspot active" id="hs-hombro" data-part="hombro" tabindex="0" role="button" aria-label="Hombro" style="left: 34.1%; top: 20.1%;">
-              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
-            </div>
+            <img class="bone-highlight active" data-part="hombro" src="assets/huesos/hombro.png" alt="" aria-hidden="true">
+            <img class="bone-highlight" data-part="columna" src="assets/huesos/columna.png" alt="" aria-hidden="true">
+            <img class="bone-highlight" data-part="codo" src="assets/huesos/codo.png" alt="" aria-hidden="true">
+            <img class="bone-highlight" data-part="cadera" src="assets/huesos/cadera.png" alt="" aria-hidden="true">
+            <img class="bone-highlight" data-part="rodilla" src="assets/huesos/rodilla.png" alt="" aria-hidden="true">
+            <img class="bone-highlight" data-part="tobillo" src="assets/huesos/tobillo.png" alt="" aria-hidden="true">
 
-            <div class="hotspot" id="hs-columna" data-part="columna" tabindex="0" role="button" aria-label="Columna y espalda" style="left: 50%; top: 25.5%;">
-              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
-            </div>
-
-            <div class="hotspot" id="hs-cadera" data-part="cadera" tabindex="0" role="button" aria-label="Cadera y pelvis" style="left: 62.5%; top: 47%;">
-              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
-            </div>
-
-            <div class="hotspot" id="hs-rodilla" data-part="rodilla" tabindex="0" role="button" aria-label="Rodilla" style="left: 40.5%; top: 69.8%;">
-              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
-            </div>
-
-            <div class="hotspot" id="hs-tobillo" data-part="tobillo" tabindex="0" role="button" aria-label="Pie y tobillo" style="left: 64.6%; top: 88.6%;">
-              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
-            </div>
-
-            <div class="hotspot" id="hs-codo" data-part="codo" tabindex="0" role="button" aria-label="Mano, muñeca y codo" style="left: 71.7%; top: 36.2%;">
-              <span class="hotspot-ring"></span><span class="hotspot-dot"></span>
-            </div>
+            <div class="hotspot" id="hs-hombro" data-part="hombro" tabindex="0" role="button" aria-label="Hombro" style="left: 25.6%; top: 17.4%; width: 13.1%; height: 5.9%;"></div>
+            <div class="hotspot" data-part="hombro" aria-hidden="true" style="left: 64.5%; top: 17.4%; width: 13.1%; height: 5.9%;"></div>
+            <div class="hotspot" id="hs-columna" data-part="columna" tabindex="0" role="button" aria-label="Columna y espalda" style="left: 46.3%; top: 12.9%; width: 11.1%; height: 27.4%;"></div>
+            <div class="hotspot" id="hs-codo" data-part="codo" tabindex="0" role="button" aria-label="Mano, muñeca y codo" style="left: 12.5%; top: 33.6%; width: 20.5%; height: 25.8%;"></div>
+            <div class="hotspot" data-part="codo" aria-hidden="true" style="left: 70.2%; top: 33.6%; width: 20.7%; height: 25.8%;"></div>
+            <div class="hotspot" id="hs-cadera" data-part="cadera" tabindex="0" role="button" aria-label="Cadera y pelvis" style="left: 34.4%; top: 40.3%; width: 36.1%; height: 11.7%;"></div>
+            <div class="hotspot" id="hs-rodilla" data-part="rodilla" tabindex="0" role="button" aria-label="Rodilla" style="left: 33.5%; top: 66.1%; width: 12.2%; height: 9.1%;"></div>
+            <div class="hotspot" data-part="rodilla" aria-hidden="true" style="left: 57.4%; top: 66.1%; width: 12.2%; height: 9.1%;"></div>
+            <div class="hotspot" id="hs-tobillo" data-part="tobillo" tabindex="0" role="button" aria-label="Pie y tobillo" style="left: 28.4%; top: 88.5%; width: 16.3%; height: 9.5%;"></div>
+            <div class="hotspot" data-part="tobillo" aria-hidden="true" style="left: 59.7%; top: 88.5%; width: 15.6%; height: 9.5%;"></div>
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. BANNER CTA DE ANCHO COMPLETO -->
-  <section class="cta-banner">
-    <div class="container">
-      <div class="cta-banner-content">
-        <div>
-          <h2>No tienes que vivir con el dolor</h2>
-          <p>Una evaluación a tiempo previene el desgaste articular severo. Agenda tu cita de valoración hoy.</p>
-        </div>
-        <a href="#contacto" class="btn btn-white">Solicitar una cita</a>
       </div>
     </div>
   </section>
@@ -2235,7 +2236,7 @@
           <h3>Mario Portillo, MD</h3>
           <div class="doctor-role">Cirujano Ortopedista Principal</div>
           <p class="doctor-bio">El Dr. Mario Portillo es especialista en ortopedia y traumatología, con subespecialidad en cirugía de reemplazo articular y artroscopía realizada en centros hospitalarios de alto prestigio en EE.UU. Su práctica se basa en la precisión técnica y un trato humano, transparente y directo con cada paciente.</p>
-          <a href="#contacto" class="btn btn-outline">Conoce más &rarr;</a>
+          <a href="#contacto" class="btn btn-outline">Agenda una consulta &rarr;</a>
         </div>
       </div>
 
@@ -2278,43 +2279,7 @@
     </div>
   </section>
 
-  <!-- 8. QUÉ ESPERAR EN TU PRIMERA CONSULTA -->
-  <section class="section-padding">
-    <div class="container">
-      <div style="text-align: center;">
-        <h2 class="section-title">Qué esperar en tu primera consulta</h2>
-        <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">Queremos que te sientas seguro y acompañado desde el primer segundo.</p>
-      </div>
-
-      <div class="steps-container">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <h3 class="step-title">Agenda tu cita</h3>
-          <p class="step-desc">Elige la fecha y horario que mejor se adapten a tu agenda vía web o teléfono.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <h3 class="step-title">Evaluación inicial</h3>
-          <p class="step-desc">Examen físico minucioso y revisión clínica detallada sin prisas.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <h3 class="step-title">Diagnóstico y plan</h3>
-          <p class="step-desc">Análisis de radiografías/resonancias e indicación del plan adecuado.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-number">4</div>
-          <h3 class="step-title">Tratamiento</h3>
-          <p class="step-desc">Inicio del tratamiento conservador o programación de cirugía con seguimiento lineal.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. TESTIMONIOS -->
+  <!-- 8. TESTIMONIOS -->
   <section id="testimonios" class="section-padding" style="background-color: #E3F3F1;">
     <div class="container">
       <div style="text-align: center;">
@@ -2364,61 +2329,56 @@
     </div>
   </section>
 
-  <!-- 9b. PARA PACIENTES (RECURSOS) -->
-  <section id="para-pacientes" class="section-padding">
+  <!-- 9. BANNER CTA DE ANCHO COMPLETO -->
+  <section class="cta-banner">
     <div class="container">
-      <h2 class="section-title">Para pacientes</h2>
-      <p class="section-subtitle">Información verificada sobre las dudas más comunes antes y después de un tratamiento. Haz clic en cualquier tema para leer la guía completa.</p>
-
-      <div class="resources-grid">
-        <a href="recursos/protesis-rodilla-cadera.html" class="resource-card">
-          <div class="resource-card-visual">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v5a4 4 0 0 0 8 0V3"/><path d="M8 21v-5a4 4 0 0 1 8 0v5"/></svg>
-          </div>
-          <div class="resource-card-body">
-            <h3 class="resource-card-title">Prótesis de rodilla y cadera: qué esperar</h3>
-            <p class="resource-card-desc">Cuándo se recomienda un reemplazo articular, cómo es la recuperación y qué tan duradera es una prótesis moderna.</p>
-            <span class="resource-card-cta">Leer más &rarr;</span>
-          </div>
-        </a>
-
-        <a href="recursos/ligamento-cruzado-anterior.html" class="resource-card">
-          <div class="resource-card-visual">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M6 8l12 8M18 8L6 16"/></svg>
-          </div>
-          <div class="resource-card-body">
-            <h3 class="resource-card-title">Ligamento cruzado anterior: preguntas frecuentes</h3>
-            <p class="resource-card-desc">¿Un LCA roto puede sanar sin cirugía? Señales de alarma y opciones de tratamiento según el nivel de actividad.</p>
-            <span class="resource-card-cta">Leer más &rarr;</span>
-          </div>
-        </a>
-
-        <a href="recursos/hernia-discal.html" class="resource-card">
-          <div class="resource-card-visual">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="4" rx="1"/><rect x="7" y="10" width="10" height="4" rx="1"/><rect x="7" y="17.5" width="10" height="4" rx="1"/></svg>
-          </div>
-          <div class="resource-card-body">
-            <h3 class="resource-card-title">Hernia discal y dolor de espalda: cuándo preocuparse</h3>
-            <p class="resource-card-desc">Diferencias entre un dolor muscular pasajero y señales que sí requieren evaluación con un especialista.</p>
-            <span class="resource-card-cta">Leer más &rarr;</span>
-          </div>
-        </a>
-
-        <a href="recursos/fracturas-comunes.html" class="resource-card">
-          <div class="resource-card-visual">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>
-          </div>
-          <div class="resource-card-body">
-            <h3 class="resource-card-title">Fracturas comunes: primeros pasos</h3>
-            <p class="resource-card-desc">Qué hacer (y qué no) ante una sospecha de fractura mientras llegas a una evaluación médica.</p>
-            <span class="resource-card-cta">Leer más &rarr;</span>
-          </div>
-        </a>
+      <div class="cta-banner-content">
+        <div>
+          <h2>No tienes que vivir con el dolor</h2>
+          <p>Una evaluación a tiempo previene el desgaste articular severo. Agenda tu cita de valoración hoy.</p>
+        </div>
+        <a href="#contacto" class="btn btn-white">Solicitar una cita</a>
       </div>
     </div>
   </section>
 
-  <!-- 10. SECCIÓN DE CONTACTO -->
+  <!-- 10. QUÉ ESPERAR EN TU PRIMERA CONSULTA -->
+  <section class="section-padding">
+    <div class="container">
+      <div style="text-align: center;">
+        <h2 class="section-title">Qué esperar en tu primera consulta</h2>
+        <p class="section-subtitle" style="margin-left: auto; margin-right: auto;">Queremos que te sientas seguro y acompañado desde el primer segundo.</p>
+      </div>
+
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Agenda tu cita</h3>
+          <p class="step-desc">Elige la fecha y horario que mejor se adapten a tu agenda vía web o teléfono.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Evaluación inicial</h3>
+          <p class="step-desc">Examen físico minucioso y revisión clínica detallada sin prisas.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Diagnóstico y plan</h3>
+          <p class="step-desc">Análisis de radiografías/resonancias e indicación del plan adecuado.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Tratamiento</h3>
+          <p class="step-desc">Inicio del tratamiento conservador o programación de cirugía con seguimiento lineal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. SECCIÓN DE CONTACTO -->
   <section id="contacto" class="section-padding">
     <div class="container">
       <div class="contact-grid">
@@ -2544,7 +2504,61 @@
     </div>
   </section>
 
-  <!-- 11. FOOTER -->
+  <!-- 12. PARA PACIENTES (RECURSOS) -->
+  <section id="para-pacientes" class="section-padding">
+    <div class="container">
+      <h2 class="section-title">¿Aún con dudas? Lee antes de tu consulta</h2>
+      <p class="section-subtitle">Guías sobre las preguntas más comunes antes y después de un tratamiento, para que llegues a tu cita sabiendo qué esperar.</p>
+
+      <div class="resources-grid">
+        <a href="recursos/protesis-rodilla-cadera.html" class="resource-card">
+          <div class="resource-card-visual">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v5a4 4 0 0 0 8 0V3"/><path d="M8 21v-5a4 4 0 0 1 8 0v5"/></svg>
+          </div>
+          <div class="resource-card-body">
+            <h3 class="resource-card-title">Prótesis de rodilla y cadera: qué esperar</h3>
+            <p class="resource-card-desc">Cuándo se recomienda un reemplazo articular, cómo es la recuperación y qué tan duradera es una prótesis moderna.</p>
+            <span class="resource-card-cta">Leer más &rarr;</span>
+          </div>
+        </a>
+
+        <a href="recursos/ligamento-cruzado-anterior.html" class="resource-card">
+          <div class="resource-card-visual">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M6 8l12 8M18 8L6 16"/></svg>
+          </div>
+          <div class="resource-card-body">
+            <h3 class="resource-card-title">Ligamento cruzado anterior: preguntas frecuentes</h3>
+            <p class="resource-card-desc">¿Un LCA roto puede sanar sin cirugía? Señales de alarma y opciones de tratamiento según el nivel de actividad.</p>
+            <span class="resource-card-cta">Leer más &rarr;</span>
+          </div>
+        </a>
+
+        <a href="recursos/hernia-discal.html" class="resource-card">
+          <div class="resource-card-visual">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="4" rx="1"/><rect x="7" y="10" width="10" height="4" rx="1"/><rect x="7" y="17.5" width="10" height="4" rx="1"/></svg>
+          </div>
+          <div class="resource-card-body">
+            <h3 class="resource-card-title">Hernia discal y dolor de espalda: cuándo preocuparse</h3>
+            <p class="resource-card-desc">Diferencias entre un dolor muscular pasajero y señales que sí requieren evaluación con un especialista.</p>
+            <span class="resource-card-cta">Leer más &rarr;</span>
+          </div>
+        </a>
+
+        <a href="recursos/fracturas-comunes.html" class="resource-card">
+          <div class="resource-card-visual">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>
+          </div>
+          <div class="resource-card-body">
+            <h3 class="resource-card-title">Fracturas comunes: primeros pasos</h3>
+            <p class="resource-card-desc">Qué hacer (y qué no) ante una sospecha de fractura mientras llegas a una evaluación médica.</p>
+            <span class="resource-card-cta">Leer más &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. FOOTER -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -2561,8 +2575,8 @@
             <a href="#atencion">Atención</a>
             <a href="#sobre-el-doctor">Sobre el doctor</a>
             <a href="#testimonios">Testimonios</a>
-            <a href="#para-pacientes">Para pacientes</a>
             <a href="#contacto">Contacto</a>
+            <a href="#para-pacientes">Para pacientes</a>
           </div>
         </div>
 
@@ -2687,6 +2701,7 @@
       }
       const bodyCards = document.querySelectorAll('.body-part-card');
       const hotspots = document.querySelectorAll('.hotspot');
+      const boneLayers = document.querySelectorAll('.bone-highlight');
 
       function activatePart(partName) {
         // Activar tarjeta y encabezado correspondientes
@@ -2697,9 +2712,8 @@
           if (header) header.setAttribute('aria-expanded', String(isActive));
         });
 
-        // Activar hotspot correspondiente en el SVG
-        hotspots.forEach(hs => {
-          hs.classList.toggle('active', hs.dataset.part === partName);
+        boneLayers.forEach(layer => {
+          layer.classList.toggle('active', layer.dataset.part === partName);
         });
 
         prefillMotivo(partName);
@@ -2731,9 +2745,19 @@
         });
       });
 
-      // Clic o teclado en hotspots de la foto (el punto solo se enciende con una selección intencional)
+      // Clic o teclado sobre un hueso de la foto; pasar el mouse solo ilumina a medias, sin cambiar la selección
+      function previewPart(partName, on) {
+        boneLayers.forEach(layer => {
+          layer.classList.toggle('is-preview', on && layer.dataset.part === partName);
+        });
+      }
+
       hotspots.forEach(hs => {
         hs.addEventListener('click', () => activatePart(hs.dataset.part));
+        hs.addEventListener('mouseenter', () => previewPart(hs.dataset.part, true));
+        hs.addEventListener('mouseleave', () => previewPart(hs.dataset.part, false));
+        hs.addEventListener('focus', () => previewPart(hs.dataset.part, true));
+        hs.addEventListener('blur', () => previewPart(hs.dataset.part, false));
         hs.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -2744,16 +2768,15 @@
 
       // Barrido de pista: una sola vez, de arriba hacia abajo, cuando la foto entra en pantalla
       const skeletonWrap = document.getElementById('skeletonPhotoWrap');
-      [...hotspots]
-        .sort((a, b) => parseFloat(a.style.top) - parseFloat(b.style.top))
-        .forEach((hs, i) => hs.style.setProperty('--i', i));
+      const sweepOrder = ['hombro', 'columna', 'codo', 'cadera', 'rodilla', 'tobillo'];
+      boneLayers.forEach(layer => layer.style.setProperty('--i', sweepOrder.indexOf(layer.dataset.part)));
 
       if (!prefersReducedMotion && 'IntersectionObserver' in window) {
         const sweepObserver = new IntersectionObserver((entries) => {
           if (!entries[0].isIntersecting) return;
           sweepObserver.disconnect();
           skeletonWrap.classList.add('hint-sweep');
-          window.setTimeout(() => skeletonWrap.classList.remove('hint-sweep'), hotspots.length * 160 + 1200);
+          window.setTimeout(() => skeletonWrap.classList.remove('hint-sweep'), sweepOrder.length * 160 + 1200);
         }, { threshold: 0.5 });
         sweepObserver.observe(skeletonWrap);
       }
