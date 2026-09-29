@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!-- Borrador para la maqueta del cliente: texto pendiente de revisión por un abogado salvadoreño antes de publicar el sitio real. Ver PRODUCT.md. -->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad | Dr. Mario Portillo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --azul-primario: #0B3D91;
+    --azul-oscuro: #072659;
+    --dorado-acento: #0F766E;
+    --dorado-hover: #0B5D57;
+    --fondo-general: #F0FAF9;
+    --superficie-blanca: #FFFFFF;
+    --texto-principal: #1E2A33;
+    --texto-secundario: #52626C;
+    --linea-borde: #D3E6E3;
+    --font-serif: 'Fraunces', Georgia, serif;
+    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --radius-sm: 4px;
+    --radius-pill: 9999px;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background-color: var(--fondo-general); color: var(--texto-principal); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  h1, h2 { font-family: var(--font-serif); color: var(--azul-oscuro); font-weight: 600; line-height: 1.25; }
+  a { color: inherit; }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--azul-primario); outline-offset: 2px; }
+
+  header.site-header { background-color: var(--superficie-blanca); border-bottom: 1px solid var(--linea-borde); padding: 1.25rem 0; }
+  header.site-header .container { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; flex-wrap: wrap; gap: 0.75rem; }
+  .logo-name { font-family: var(--font-serif); font-weight: 700; font-size: 1.2rem; color: var(--azul-oscuro); }
+  .logo-spec { font-size: 0.78rem; color: var(--texto-secundario); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .back-link { font-size: 0.9rem; color: var(--azul-primario); font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s ease, transform 140ms var(--ease-out); }
+  .back-link:hover { color: var(--azul-oscuro); }
+  @media (hover: hover) and (pointer: fine) {
+    .back-link:hover { transform: translateX(-3px); }
+  }
+
+  main { padding: 3.5rem 0 4rem; }
+
+  h1.page-title { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  p.lead { font-size: 1.05rem; color: var(--texto-secundario); margin-bottom: 0.5rem; }
+  p.updated { font-size: 0.85rem; color: var(--texto-secundario); margin-bottom: 2.5rem; }
+
+  .policy-section { margin-bottom: 2rem; }
+  .policy-section h2 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+  .policy-section p, .policy-section li { color: var(--texto-secundario); margin-bottom: 0.75rem; }
+  .policy-section ul { margin-left: 1.25rem; }
+  .policy-section li { margin-bottom: 0.4rem; }
+  .policy-section strong { color: var(--texto-principal); }
+
+  .contact-box {
+    padding: 1.5rem;
+    background-color: var(--superficie-blanca);
+    border: 1px solid var(--linea-borde);
+    border-radius: var(--radius-sm);
+  }
+  .contact-box p { margin-bottom: 0.4rem; color: var(--texto-secundario); }
+  .contact-box p:last-child { margin-bottom: 0; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.8rem 1.75rem; background-color: var(--dorado-acento); color: #FFFFFF;
+    font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem;
+    border-radius: var(--radius-pill); text-decoration: none; border: none; cursor: pointer;
+    box-shadow: 0 8px 20px rgba(15, 118, 110, 0.35);
+    transition: background-color 0.2s ease, transform 140ms var(--ease-out), box-shadow 0.2s ease;
+  }
+  .btn:hover { background-color: var(--dorado-hover); box-shadow: 0 12px 26px rgba(15, 118, 110, 0.45); }
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover { transform: translateY(-2px); }
+  }
+  .btn:active { transform: scale(0.97); }
+
+  footer.site-footer { background-color: var(--azul-oscuro); color: rgba(255, 255, 255, 0.75); padding: 2rem 0; text-align: center; font-size: 0.85rem; margin-top: 2rem; }
+  footer.site-footer a { color: rgba(255, 255, 255, 0.9); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <div>
+        <div class="logo-name">Dr. Mario Portillo</div>
+        <div class="logo-spec">Cirujano Ortopedista</div>
+      </div>
+      <a href="index.html" class="back-link">&larr; Volver al inicio</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1 class="page-title">Política de Privacidad y Tratamiento de Datos Médicos</h1>
+      <p class="lead">Esta política explica qué datos recopilamos a través del formulario de contacto de este sitio, para qué los usamos y qué derechos tienes sobre ellos.</p>
+      <p class="updated">Última actualización: 29 de septiembre de 2026.</p>
+
+      <div class="policy-section">
+        <h2>1. Responsable del tratamiento</h2>
+        <p>El responsable de los datos recopilados en este sitio es el <strong>Dr. Mario Portillo</strong>, Cirujano Ortopedista, con consultorio en Medicentro La Esperanza, Módulo K, Local 111, Colonia Médica, San Salvador, El Salvador.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>2. Qué datos recopilamos</h2>
+        <p>A través del formulario de contacto de este sitio podemos recopilar:</p>
+        <ul>
+          <li>Nombre completo</li>
+          <li>Teléfono</li>
+          <li>Correo electrónico</li>
+          <li>Motivo de consulta y fecha preferida</li>
+          <li>Aseguradora, o indicación de que la consulta será privada</li>
+          <li>Cualquier síntoma o información de salud que describas en el mensaje</li>
+        </ul>
+        <p>Esta última categoría constituye datos relacionados con tu salud, y los tratamos con el mismo cuidado y confidencialidad que el resto de tu expediente clínico.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>3. Para qué usamos tus datos</h2>
+        <p>Usamos la información que nos proporcionas únicamente para:</p>
+        <ul>
+          <li>Agendar, confirmar o reprogramar tu cita</li>
+          <li>Contactarte en relación con tu consulta médica</li>
+          <li>Preparar tu primera evaluación con la información que ya nos compartiste</li>
+        </ul>
+        <p>No utilizamos tus datos con fines de mercadeo ni los usamos para ningún propósito distinto a los aquí descritos, salvo que nos des tu autorización expresa por separado.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>4. Tu consentimiento</h2>
+        <p>Al marcar la casilla de aceptación en el formulario de contacto, otorgas tu consentimiento expreso para que tratemos los datos descritos en esta política, incluyendo datos relacionados con tu salud, exclusivamente para los fines aquí indicados. Puedes retirar este consentimiento en cualquier momento escribiéndonos a los datos de contacto al final de esta página.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>5. Con quién compartimos tus datos</h2>
+        <p>Tus datos no se venden ni se comparten con terceros ajenos al consultorio. Solo podrían compartirse con tu aseguradora médica si autorizas expresamente la gestión de tu cobertura, o cuando así lo exija una autoridad competente conforme a la ley.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>6. Cuánto tiempo conservamos tus datos</h2>
+        <p>Conservamos tu información mientras exista una relación médico-paciente activa, y posteriormente durante el tiempo que las normas de conservación de expedientes clínicos y la práctica médica en El Salvador lo requieran.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>7. Tus derechos</h2>
+        <p>Puedes solicitarnos en cualquier momento:</p>
+        <ul>
+          <li>Acceder a los datos que tenemos sobre ti</li>
+          <li>Corregir información incorrecta o desactualizada</li>
+          <li>Solicitar la eliminación de tus datos, cuando no exista una obligación legal o médica de conservarlos</li>
+        </ul>
+        <p>Para ejercer cualquiera de estos derechos, contáctanos con los datos que aparecen abajo.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>8. Seguridad de tu información</h2>
+        <p>Aplicamos medidas razonables de seguridad para proteger tus datos frente a acceso, uso o divulgación no autorizados.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>9. Cambios a esta política</h2>
+        <p>Podemos actualizar esta política ocasionalmente. La fecha de la última actualización siempre aparecerá al inicio de esta página.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>10. Contacto</h2>
+        <div class="contact-box">
+          <p><strong>Dr. Mario Portillo — Cirujano Ortopedista</strong></p>
+          <p>Medicentro La Esperanza, Módulo K, Local 111, Colonia Médica, San Salvador, El Salvador</p>
+          <p>Teléfono: +503 2200-8888</p>
+          <p>Correo: contacto@drmarioportillo.com</p>
+        </div>
+      </div>
+
+      <a href="index.html#contacto" class="btn">Volver al formulario de contacto</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      &copy; 2026 Dr. Mario Portillo — Cirujano Ortopedista. <a href="index.html">Volver al sitio principal</a>
+    </div>
+  </footer>
+
+</body>
+</html>

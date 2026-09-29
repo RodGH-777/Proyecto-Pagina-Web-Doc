@@ -12,6 +12,8 @@ colors:
   ink: "#1E2A33"
   ink-soft: "#52626C"
   border: "#D3E6E3"
+  error: "#B42318"
+  testimonial-bg: "#E3F3F1"
 typography:
   display:
     fontFamily: "Fraunces, Georgia, serif"
@@ -19,9 +21,24 @@ typography:
     fontWeight: 600
     lineHeight: 1.25
     letterSpacing: "-0.02em"
+  display-compact:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "2.5rem"
+    fontWeight: 600
+    lineHeight: 1.25
+  numeral:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "2.75rem"
+    fontWeight: 700
+    lineHeight: 1
   headline:
     fontFamily: "Fraunces, Georgia, serif"
     fontSize: "2.25rem"
+    fontWeight: 600
+    lineHeight: 1.25
+  title-lg:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "1.75rem"
     fontWeight: 600
     lineHeight: 1.25
   title:
@@ -181,13 +198,16 @@ Three radii now carry real weight, where the system previously leaned almost ent
 ### Inputs / Fields
 - **Style:** 1px Hairline border, 4px radius, Mist Background fill at rest.
 - **Focus:** border shifts to Deep Navy and fill switches to Paper White. Unchanged in mechanism; the color itself is now the new Deep Navy.
+- **Invalid:** border shifts to Error Red (`#B42318`, 6.5:1 on white) via `:user-invalid`, so it only appears after the visitor has touched the field — never on page load. Error Red is reserved for this; it never decorates.
+- **Required fields:** nombre, teléfono, correo, motivo de consulta, and the privacy checkbox. "Motivo" is pre-filled from the anatomy diagram's selection unless the visitor has already chosen one manually.
+- **Success state:** on submit the form is replaced in place (no modal, no `alert()`) by a Mist-filled confirmation block with a turquoise check disc, the visitor's first name, a concrete next step, and a WhatsApp fallback for urgent cases. Focus moves to it and it is announced as `role="status"`.
 
 ### Navigation
 - **Style:** sticky white header with a Hairline bottom border; nav links are Ink at rest and transition to Deep Navy on hover. The dark top-bar above it is now the Navy Deep gradient-end color, and its "Agendar consulta" link is set in Turquoise Light (not Vivid Turquoise — see the Light-on-Navy Rule).
 - **Mobile:** unchanged mechanism (hamburger toggle, sliding dropdown card, header CTA hidden below 480px in favor of the floating contact button).
 
 ### Interactive Anatomy Diagram (signature component)
-Unchanged in mechanism. The hotspot ring-and-dot recolored automatically with the palette swap: Vivid Turquoise at rest, Deep Navy on hover/active. Still a real photograph (`assets/esqueleto.jpg`) with percentage-positioned hotspots; still keyboard-operable; still the site's most distinctive interaction.
+A real photograph (`assets/esqueleto.jpg`) with percentage-positioned hotspots, keyboard-operable, and the site's most distinctive interaction. Hotspots are **invisible until selected** (client decision): only the active zone shows its Deep Navy dot and pulsing turquoise ring; hover/focus gives a faint preview without changing selection. To keep the photo discoverable on touch screens, a Vivid Turquoise hint line ("Toca la zona donde te duele") sits above it, and the first time the photo scrolls into view each zone flashes once, top to bottom, then hides again (skipped under reduced motion). Selecting a zone also pre-fills the contact form's "Motivo de consulta".
 
 ### Floating Contact Button (signature component)
 Unchanged in mechanism and position. Now Vivid Turquoise with white text (moved off Ink for the same contrast reason as the primary button) and a turquoise-tinted glow shadow (`rgba(15, 118, 110, 0.45)`) instead of a neutral navy shadow.

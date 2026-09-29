@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://www.drmarioportillo.com/">
   <meta property="og:locale" content="es_SV">
 
-  <!-- Datos estructurados Schema.org: dirección, coordenadas y teléfono son placeholders (ver PRODUCT.md) hasta confirmar datos reales -->
+  <!-- Datos estructurados Schema.org: teléfono es placeholder (ver PRODUCT.md) hasta confirmar dato real. La dirección es real y confirmada; no se incluyen coordenadas exactas aquí porque no han sido verificadas — agregar "geo" una vez confirmadas en Google Maps. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -27,14 +27,10 @@
     "description": "Cirujano ortopedista en San Salvador especializado en reemplazo articular, artroscopía de rodilla y traumatología.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Torre Médica Medicentro, Nivel 4, Local 402",
+      "streetAddress": "Medicentro La Esperanza, Módulo K, Local 111, Colonia Médica",
       "addressLocality": "San Salvador",
+      "addressRegion": "San Salvador",
       "addressCountry": "SV"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 13.6929,
-      "longitude": -89.2182
     },
     "openingHoursSpecification": [
       {
@@ -79,6 +75,7 @@
       --texto-principal: #1E2A33;
       --texto-secundario: #52626C;
       --linea-borde: #D3E6E3;
+      --rojo-error: #B42318;
 
       --font-serif: 'Fraunces', Georgia, serif;
       --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -123,6 +120,10 @@
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    [hidden] {
+      display: none !important;
     }
 
     ul {
@@ -560,9 +561,26 @@
       border-radius: var(--radius-sm);
       padding: 2rem;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 1.25rem;
       position: relative;
+    }
+
+    .skeleton-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--dorado-acento);
+    }
+
+    .skeleton-hint svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
     }
 
     .skeleton-photo-wrap {
@@ -645,6 +663,18 @@
       background-color: var(--azul-primario);
     }
 
+    /* Barrido único al entrar en pantalla: cada zona parpadea una vez de arriba hacia abajo y vuelve a ocultarse */
+    .hint-sweep .hotspot:not(.active) .hotspot-dot,
+    .hint-sweep .hotspot:not(.active) .hotspot-ring {
+      animation: hotspotHint 1.1s var(--ease-out) calc(var(--i, 0) * 160ms) both;
+    }
+
+    @keyframes hotspotHint {
+      0% { opacity: 0; transform: scale(0.5); }
+      35% { opacity: 0.85; transform: scale(1.15); }
+      100% { opacity: 0; transform: scale(0.5); }
+    }
+
     @keyframes hotspotPulse {
       0% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.45); }
       70% { box-shadow: 0 0 0 14px rgba(15, 118, 110, 0); }
@@ -670,7 +700,7 @@
 
     .cta-banner h2 {
       color: #FFFFFF;
-      font-size: 2rem;
+      font-size: 2.25rem;
       text-align: left;
     }
 
@@ -925,7 +955,7 @@
 
     .quote-mark {
       font-family: var(--font-serif);
-      font-size: 3rem;
+      font-size: 3.25rem;
       color: var(--azul-oscuro);
       line-height: 1;
       margin-bottom: -0.5rem;
@@ -1056,6 +1086,25 @@
       font-size: 0.95rem;
     }
 
+    .map-embed {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--linea-borde);
+      margin: 0.75rem 0 1rem;
+    }
+
+    .map-embed iframe {
+      display: block;
+      width: 100%;
+      height: 260px;
+    }
+
+    .waze-link {
+      padding: 0.6rem 1.25rem;
+      font-size: 0.85rem;
+      gap: 0.5rem;
+    }
+
     .contact-form {
       display: flex;
       flex-direction: column;
@@ -1128,6 +1177,73 @@
       min-height: 100px;
     }
 
+    /* :user-invalid solo se activa después de que la persona interactuó con el campo, no al cargar */
+    .form-group input:user-invalid,
+    .form-group select:user-invalid,
+    .form-group textarea:user-invalid {
+      border-color: var(--rojo-error);
+      background-color: #FFFFFF;
+    }
+
+    .form-checkbox-row input[type="checkbox"]:user-invalid {
+      outline: 2px solid var(--rojo-error);
+      outline-offset: 2px;
+    }
+
+    .form-success {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-sm);
+      background-color: var(--fondo-general);
+      animation: formSuccessIn 0.4s var(--ease-out);
+    }
+
+    .form-success:focus {
+      outline: none;
+    }
+
+    .form-success-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: var(--dorado-acento);
+      color: #FFFFFF;
+      box-shadow: 0 8px 20px rgba(15, 118, 110, 0.35);
+      margin-bottom: 1.25rem;
+    }
+
+    .form-success-title {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .form-success-text {
+      color: var(--texto-principal);
+      max-width: 42ch;
+      margin: 0 auto 0.75rem;
+    }
+
+    .form-success-hint {
+      color: var(--texto-secundario);
+      font-size: 0.9rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .form-success-hint a {
+      color: var(--azul-primario);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    @keyframes formSuccessIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* ==========================================================================
        11. FOOTER
        ========================================================================== */
@@ -1186,6 +1302,14 @@
       text-align: center;
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-bottom a {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: underline;
+    }
+    .footer-bottom a:hover {
+      color: var(--turquesa-claro);
     }
 
     /* ==========================================================================
@@ -1504,6 +1628,10 @@
         transform: none;
         animation: none;
       }
+      .form-success,
+      .hotspot.active .hotspot-ring {
+        animation: none;
+      }
     }
 
     @media (max-width: 480px) {
@@ -1711,7 +1839,7 @@
           </div>
           <div class="check-item">
             <span class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
-            <span>Pacientes 5 estrellas</span>
+            <span>Miembro de 6 sociedades médicas</span>
           </div>
         </div>
       </div>
@@ -1828,7 +1956,11 @@
 
         <!-- Ilustración Esqueleto Humano Anatómico (fotografía real) -->
         <div class="skeleton-container">
-          <div class="skeleton-photo-wrap">
+          <p class="skeleton-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V6a2 2 0 1 1 4 0v5"/><path d="M13 10.5V9a2 2 0 1 1 4 0v4.5a6.5 6.5 0 0 1-6.5 6.5h-.3a6 6 0 0 1-4.6-2.2L3.4 15a1.8 1.8 0 0 1 2.7-2.3L9 15"/></svg>
+            Toca la zona donde te duele
+          </p>
+          <div class="skeleton-photo-wrap" id="skeletonPhotoWrap">
             <img class="skeleton-photo" src="assets/esqueleto.jpg" alt="Fotografía de un esqueleto humano completo, vista frontal, usado como mapa anatómico interactivo">
 
             <div class="hotspot active" id="hs-hombro" data-part="hombro" tabindex="0" role="button" aria-label="Hombro" style="left: 34.1%; top: 20.1%;">
@@ -1893,8 +2025,8 @@
           <div class="service-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
-          <h3 class="service-title">Medicina Deportiva y Artroscopía de Rodilla</h3>
-          <p class="service-desc">Recuperación acelerada para atletas y personas activas con lesiones de ligamentos, tendones y meniscos mediante artroscopía de mínima invasión.</p>
+          <h3 class="service-title">Medicina Deportiva</h3>
+          <p class="service-desc">Recuperación acelerada para atletas y personas activas con lesiones de ligamentos, tendones y meniscos mediante artroscopía de rodilla y hombro de mínima invasión.</p>
         </div>
 
         <div class="service-card">
@@ -2130,7 +2262,17 @@
           <div class="contact-info-list">
             <div class="contact-info-item">
               <h3>Ubicación de la Clínica</h3>
-              <p>Torre Médica Medicentro, Nivel 4, Local 402<br>San Salvador, El Salvador</p>
+              <p>Medicentro La Esperanza, Módulo K, Local 111<br>Colonia Médica, San Salvador, El Salvador</p>
+              <div class="map-embed">
+                <iframe
+                  src="https://www.google.com/maps?q=Medicentro+La+Esperanza,+Modulo+K,+Local+111,+Colonia+Medica,+San+Salvador,+El+Salvador&output=embed"
+                  width="100%" height="260" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                  title="Mapa de ubicación: Medicentro La Esperanza, Módulo K, Local 111, Colonia Médica, San Salvador"></iframe>
+              </div>
+              <a href="https://waze.com/ul?q=Medicentro+La+Esperanza,+Modulo+K,+Local+111,+Colonia+Medica,+San+Salvador,+El+Salvador&navigate=yes" target="_blank" rel="noopener" class="btn btn-outline waze-link">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                Cómo llegar con Waze
+              </a>
             </div>
 
             <div class="contact-info-item">
@@ -2157,32 +2299,34 @@
 
         <!-- Formulario Derecha -->
         <div>
-          <form class="contact-form" onsubmit="event.preventDefault(); alert('Solicitud enviada con éxito. Nos comunicaremos contigo en breve.');">
+          <form class="contact-form" id="contactForm">
             <div class="form-group">
               <label for="nombre">Nombre completo *</label>
-              <input type="text" id="nombre" placeholder="Ej. Ana María Gómez" required>
+              <input type="text" id="nombre" placeholder="Ej. Ana María Gómez" autocomplete="name" pattern=".*\S.*" title="Escribe tu nombre completo" required>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label for="telefono">Teléfono *</label>
-                <input type="tel" id="telefono" placeholder="Ej. 7000-0000" required>
+                <input type="tel" id="telefono" placeholder="Ej. 7000-0000" autocomplete="tel" required>
               </div>
               <div class="form-group">
                 <label for="correo">Correo electrónico *</label>
-                <input type="email" id="correo" placeholder="ejemplo@correo.com" required>
+                <input type="email" id="correo" placeholder="ejemplo@correo.com" autocomplete="email" required>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label for="motivo">Motivo de consulta</label>
-                <select id="motivo">
+                <label for="motivo">Motivo de consulta *</label>
+                <select id="motivo" required>
                   <option value="">Selecciona una opción</option>
-                  <option value="dolor-rodilla">Dolor / Lesión en Rodilla</option>
-                  <option value="dolor-cadera">Dolor / Problema en Cadera</option>
                   <option value="hombro">Dolor / Lesión en Hombro</option>
                   <option value="columna">Dolor de Columna / Espalda</option>
+                  <option value="dolor-cadera">Dolor / Problema en Cadera</option>
+                  <option value="dolor-rodilla">Dolor / Lesión en Rodilla</option>
+                  <option value="tobillo">Dolor / Lesión en Pie o Tobillo</option>
+                  <option value="codo">Dolor en Mano, Muñeca o Codo</option>
                   <option value="segunda-opinion">Segunda Opinión Quirúrgica</option>
                   <option value="otro">Otro Padecimiento</option>
                 </select>
@@ -2212,11 +2356,19 @@
 
             <div class="form-checkbox-row">
               <input type="checkbox" id="privacidad" required>
-              <label for="privacidad">He leído y acepto la política de privacidad y el tratamiento de mis datos médicos para fines de esta consulta. *</label>
+              <label for="privacidad">He leído y acepto la <a href="politica-privacidad.html" target="_blank" rel="noopener" style="color: var(--azul-primario); text-decoration: underline;">política de privacidad</a> y el tratamiento de mis datos médicos para fines de esta consulta. *</label>
             </div>
 
             <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 0.5rem;">Enviar solicitud</button>
           </form>
+
+          <div class="form-success" id="formSuccess" role="status" tabindex="-1" hidden>
+            <span class="form-success-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+            <h3 class="form-success-title">Recibimos tu solicitud</h3>
+            <p class="form-success-text">Gracias, <span id="formSuccessName"></span>. Te llamaremos en las próximas 24 horas hábiles para confirmar la fecha y hora de tu cita.</p>
+            <p class="form-success-hint">¿Es urgente? Escríbenos por WhatsApp al <a href="https://wa.me/50378901234" target="_blank" rel="noopener">+503 7890-1234</a>.</p>
+            <button type="button" class="btn btn-outline" id="formReset">Enviar otra solicitud</button>
+          </div>
         </div>
 
       </div>
@@ -2248,8 +2400,8 @@
         <div>
           <h4 class="footer-title">Contacto</h4>
           <div class="footer-links">
-            <span>Torre Médica Medicentro, Nivel 4</span>
-            <span>San Salvador, El Salvador</span>
+            <span>Medicentro La Esperanza, Módulo K, Local 111</span>
+            <span>Colonia Médica, San Salvador, El Salvador</span>
             <span>+503 2200-8888</span>
             <span>contacto@drmarioportillo.com</span>
           </div>
@@ -2258,7 +2410,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Dr. Mario Portillo — Cirujano Ortopedista. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Dr. Mario Portillo — Cirujano Ortopedista. Todos los derechos reservados. · <a href="politica-privacidad.html">Política de Privacidad</a></p>
       </div>
     </div>
   </footer>
@@ -2270,12 +2422,12 @@
   </a>
 
   <!-- ASISTENTE VIRTUAL -->
-  <button type="button" class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir asistente virtual de preguntas frecuentes" aria-expanded="false" aria-controls="chatbotPanel">
+  <button type="button" class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir asistente virtual de preguntas frecuentes" aria-expanded="false" aria-controls="chatbotPanel" hidden>
     <svg class="icon-chat" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
     <svg class="icon-close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
   </button>
 
-  <div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-modal="false" aria-label="Asistente virtual de preguntas frecuentes" aria-hidden="true">
+  <div class="chatbot-panel" id="chatbotPanel" role="dialog" aria-modal="false" aria-label="Asistente virtual de preguntas frecuentes" aria-hidden="true" hidden>
     <div class="chatbot-header">
       <div class="chatbot-header-info">
         <span class="chatbot-avatar">MP</span>
@@ -2288,7 +2440,7 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
       </button>
     </div>
-    <div class="chatbot-messages" id="chatbotMessages"></div>
+    <div class="chatbot-messages" id="chatbotMessages" aria-live="polite"></div>
     <div class="chatbot-choices" id="chatbotChoices"></div>
   </div>
 
@@ -2312,6 +2464,26 @@
         hotspots.forEach(hs => {
           hs.classList.toggle('active', hs.dataset.part === partName);
         });
+
+        prefillMotivo(partName);
+      }
+
+      // La zona elegida en el esqueleto viaja al formulario, sin pisar una elección manual del paciente
+      const motivoSelect = document.getElementById('motivo');
+      const partToMotivo = {
+        hombro: 'hombro',
+        columna: 'columna',
+        cadera: 'dolor-cadera',
+        rodilla: 'dolor-rodilla',
+        tobillo: 'tobillo',
+        codo: 'codo',
+      };
+      let motivoChosenManually = false;
+      motivoSelect.addEventListener('change', () => { motivoChosenManually = true; });
+
+      function prefillMotivo(partName) {
+        if (motivoChosenManually || !partToMotivo[partName]) return;
+        motivoSelect.value = partToMotivo[partName];
       }
 
       // Clics en la lista vertical (el encabezado ya es un <button>, con soporte de teclado nativo)
@@ -2332,6 +2504,22 @@
           }
         });
       });
+
+      // Barrido de pista: una sola vez, de arriba hacia abajo, cuando la foto entra en pantalla
+      const skeletonWrap = document.getElementById('skeletonPhotoWrap');
+      [...hotspots]
+        .sort((a, b) => parseFloat(a.style.top) - parseFloat(b.style.top))
+        .forEach((hs, i) => hs.style.setProperty('--i', i));
+
+      if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+        const sweepObserver = new IntersectionObserver((entries) => {
+          if (!entries[0].isIntersecting) return;
+          sweepObserver.disconnect();
+          skeletonWrap.classList.add('hint-sweep');
+          window.setTimeout(() => skeletonWrap.classList.remove('hint-sweep'), hotspots.length * 160 + 1200);
+        }, { threshold: 0.5 });
+        sweepObserver.observe(skeletonWrap);
+      }
 
       // --- Menú móvil ---
       const mobileToggle = document.getElementById('mobileNavToggle');
@@ -2371,7 +2559,35 @@
         }
       });
 
+      // --- Formulario: confirmación dentro de la página (la maqueta aún no envía a un servidor) ---
+      const contactForm = document.getElementById('contactForm');
+      const formSuccess = document.getElementById('formSuccess');
+      const formSuccessName = document.getElementById('formSuccessName');
+
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const firstName = document.getElementById('nombre').value.trim().split(/\s+/)[0];
+        formSuccessName.textContent = firstName;
+        contactForm.hidden = true;
+        formSuccess.hidden = false;
+        formSuccess.focus();
+      });
+
+      document.getElementById('formReset').addEventListener('click', () => {
+        contactForm.reset();
+        motivoChosenManually = false;
+        formSuccess.hidden = true;
+        contactForm.hidden = false;
+        document.getElementById('nombre').focus();
+      });
+
       // --- Asistente virtual (bot de preguntas y respuestas en grafo) ---
+      // Desactivado a pedido del cliente; el código se conserva completo. Cambiar a true para volver a mostrarlo.
+      const CHATBOT_ENABLED = false;
+      if (!CHATBOT_ENABLED) return;
+      document.getElementById('chatbotToggle').hidden = false;
+      document.getElementById('chatbotPanel').hidden = false;
+
       const chatbotGraph = {
         start: {
           message: '¡Hola! Soy el asistente virtual del consultorio del Dr. Mario Portillo. ¿En qué puedo ayudarte hoy?',
@@ -2583,7 +2799,7 @@
           ],
         },
         'consultorio-ubicacion': {
-          message: 'Estamos en Torre Médica Medicentro, Nivel 4, Local 402, San Salvador, El Salvador.',
+          message: 'Estamos en Medicentro La Esperanza, Módulo K, Local 111, Colonia Médica, San Salvador, El Salvador.',
           choices: [
             { label: 'Agendar cita ahora', action: 'contact', cta: true },
             { label: '← Volver', next: 'consultorio-menu' },
