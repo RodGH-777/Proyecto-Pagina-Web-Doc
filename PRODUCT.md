@@ -60,7 +60,7 @@ Practice name and title are fixed: "Dr. Mario Portillo — Cirujano Ortopedista.
 Things that are fine for the client mock but must change before the real site goes live:
 - `og:image` and the JSON-LD `image` both point to `assets/doctor.jpg` (the stock placeholder), so it would appear in WhatsApp/Facebook link previews and search results. Swap together with the real portrait.
 - The form's success message promises a call "en las próximas 24 horas hábiles." That turnaround is a placeholder commitment — confirm the practice can actually meet it, or change the copy.
-- The contact form does not submit anywhere yet; the success state is shown client-side only. A real submission handler (email service or backend) is needed.
+- The contact form posts to a Google Apps Script web app (`integraciones/formulario-google-apps-script.gs`) that appends each request to a Google Sheet and emails a notice. It is wired through the `FORM_ENDPOINT` constant in `index.html`; when empty, the form runs in demo mode (shows success, sends nothing). For the client demo it is deployed on the developer's own Google account; before launch, redeploy the same script from the practice's Google account, point `FORM_ENDPOINT` at the new URL, and set `NOTIFY_EMAIL` to the secretary's address if it differs from that account.
 - The hero trust check "Pacientes 5 estrellas" was replaced with "Miembro de 6 sociedades médicas" because the former rested on placeholder testimonials. Don't reintroduce a star-rating claim until there are real reviews to back it.
 
 ## Privacy Policy (`politica-privacidad.html`)

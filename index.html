@@ -1242,6 +1242,34 @@
       outline-offset: 2px;
     }
 
+    .form-honeypot {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .form-error {
+      color: var(--rojo-error);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(180, 35, 24, 0.3);
+      border-radius: var(--radius-sm);
+      background-color: #FFFFFF;
+    }
+
+    .form-error a {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .contact-form button[type="submit"]:disabled {
+      opacity: 0.7;
+      cursor: progress;
+    }
+
     .form-success {
       text-align: center;
       padding: 2.5rem 1.5rem;
@@ -2488,7 +2516,15 @@
               <label for="privacidad">He leído y acepto la <a href="politica-privacidad.html" target="_blank" rel="noopener" style="color: var(--azul-primario); text-decoration: underline;">política de privacidad</a> y el tratamiento de mis datos médicos para fines de esta consulta. *</label>
             </div>
 
-            <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 0.5rem;">Enviar solicitud</button>
+            <!-- Campo trampa para bots: invisible para personas y lectores de pantalla -->
+            <div class="form-honeypot" aria-hidden="true">
+              <label for="website">Deja este campo vacío</label>
+              <input type="text" id="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <p class="form-error" id="formError" role="alert" hidden>No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo, o escríbenos por WhatsApp al <a href="https://wa.me/50378901234" target="_blank" rel="noopener">+503 7890-1234</a>.</p>
+
+            <button type="submit" class="btn btn-gold" id="formSubmit" style="width: 100%; margin-top: 0.5rem;">Enviar solicitud</button>
           </form>
 
           <div class="form-success" id="formSuccess" role="status" tabindex="-1" hidden>
@@ -2851,23 +2887,76 @@
         }
       });
 
-      // --- Formulario: confirmación dentro de la página (la maqueta aún no envía a un servidor) ---
+      // --- Formulario: envío a Google Sheets + correo (ver integraciones/formulario-google-apps-script.gs) ---
+      // Pegar aquí la URL /exec de la aplicación web de Apps Script. Vacía = modo demostración (no envía nada).
+      const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzXo2n21-I5W8fZXhsYJUNwA31qDzkksvNYkC5QWpzRrBr0oUZpaRyuALRXmoEZBPKN2g/exec';
+
       const contactForm = document.getElementById('contactForm');
       const formSuccess = document.getElementById('formSuccess');
       const formSuccessName = document.getElementById('formSuccessName');
+      const formError = document.getElementById('formError');
+      const formSubmit = document.getElementById('formSubmit');
 
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const firstName = document.getElementById('nombre').value.trim().split(/\s+/)[0];
-        formSuccessName.textContent = firstName;
+      const fieldValue = (id) => document.getElementById(id).value.trim();
+      const selectedLabel = (id) => {
+        const select = document.getElementById(id);
+        return select.value ? select.options[select.selectedIndex].text : '';
+      };
+
+      function showFormSuccess() {
+        formSuccessName.textContent = fieldValue('nombre').split(/\s+/)[0];
         contactForm.hidden = true;
         formSuccess.hidden = false;
         formSuccess.focus();
+      }
+
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        formError.hidden = true;
+
+        if (!FORM_ENDPOINT) {
+          showFormSuccess();
+          return;
+        }
+
+        // Se envía como texto plano para que el navegador no haga una consulta previa (CORS) que Apps Script no responde
+        const payload = {
+          nombre: fieldValue('nombre'),
+          telefono: fieldValue('telefono'),
+          correo: fieldValue('correo'),
+          motivo: selectedLabel('motivo'),
+          fecha: fieldValue('fecha'),
+          cobertura: selectedLabel('cobertura'),
+          mensaje: fieldValue('mensaje'),
+          privacidad: document.getElementById('privacidad').checked,
+          website: fieldValue('website'),
+        };
+
+        const originalLabel = formSubmit.textContent;
+        formSubmit.disabled = true;
+        formSubmit.textContent = 'Enviando…';
+
+        try {
+          const response = await fetch(FORM_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload),
+          });
+          const result = await response.json();
+          if (!result.ok) throw new Error(result.error || 'send-failed');
+          showFormSuccess();
+        } catch (err) {
+          formError.hidden = false;
+        } finally {
+          formSubmit.disabled = false;
+          formSubmit.textContent = originalLabel;
+        }
       });
 
       document.getElementById('formReset').addEventListener('click', () => {
         contactForm.reset();
         motivoChosenManually = false;
+        formError.hidden = true;
         formSuccess.hidden = true;
         contactForm.hidden = false;
         document.getElementById('nombre').focus();
