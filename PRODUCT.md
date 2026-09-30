@@ -65,9 +65,9 @@ Things that are fine for the client mock but must change before the real site go
 
 ## Contact Form Rules
 
-- **WhatsApp:** the clinic's WhatsApp is `7842-0023` (an example number supplied by the user for the demo; replace before launch). On phones (≤768px) the floating "Contáctanos" button opens a WhatsApp chat with that number and a pre-written greeting; on desktop it scrolls to the form.
+- **WhatsApp:** the clinic's WhatsApp is `7842-0023` (an example number supplied by the user for the demo; replace before launch). On phones (≤768px) the floating "Contáctanos" button is visible from the first screen through the whole scroll, shows a chat-bubble icon, and opens a WhatsApp chat with that number and a pre-written greeting. On desktop it keeps the phone icon, appears after the hero, and scrolls to the form.
 - **Required vs optional:** name, phone, reason for visit, and the privacy checkbox are required. Email is optional (most patients leave only a phone number); when given, it becomes the reply-to of the notice email.
-- **Phone field:** Salvadoran numbers only — 8 digits starting with 2 (landline), 6 or 7 (mobile). Visitors never type +503: non-digits are stripped, a pasted +503 prefix is removed, and the hyphen is inserted automatically (`7842-0023`).
+- **Phone field:** Salvadoran numbers only — 8 digits starting with 2 (landline), 6 or 7 (mobile). Visitors never type +503: non-digits are stripped, a pasted +503 prefix is removed, and the hyphen is inserted automatically. The placeholder example is `7284-2500` (deliberately not the clinic number).
 - **Offensive language:** the name and message are checked against a list of Spanish (including Salvadoran) and English profanity and insults before sending. If one is found, nothing is sent and the only feedback is "Tu solicitud no se envió debido al lenguaje utilizado." Matching is whole-word on normalized text (accents, repeated letters, and digit substitutions like "p3nd3j0" are handled), so medical words such as "músculo" don't trigger it. The check runs in the browser only; a determined sender could bypass it, so repeat it in the Apps Script if abuse ever becomes a problem.
 
 ## Privacy Policy (`politica-privacidad.html`)
