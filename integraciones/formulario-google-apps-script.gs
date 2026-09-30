@@ -38,7 +38,8 @@ function doPost(e) {
     // Campo trampa: los bots lo llenan, las personas no lo ven. Se responde "ok" para no darles pistas.
     if (data.website) return json_({ ok: true });
 
-    if (!clean_(data.nombre) || !clean_(data.telefono) || !clean_(data.correo) || !clean_(data.motivo) || data.privacidad !== true) {
+    // El correo es opcional: la mayoría de pacientes deja solo su teléfono
+    if (!clean_(data.nombre) || !clean_(data.telefono) || !clean_(data.motivo) || data.privacidad !== true) {
       return json_({ ok: false, error: 'missing-fields' });
     }
 

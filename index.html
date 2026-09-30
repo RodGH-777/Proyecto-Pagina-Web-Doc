@@ -1273,6 +1273,11 @@
       color: var(--texto-principal);
     }
 
+    .label-optional {
+      font-weight: 400;
+      color: var(--texto-secundario);
+    }
+
     .form-group input,
     .form-group select,
     .form-group textarea {
@@ -2527,7 +2532,7 @@
 
             <div class="contact-info-item">
               <h3>Teléfonos y WhatsApp</h3>
-              <p>+503 2200-8888<br>+503 7890-1234 (WhatsApp)</p>
+              <p>+503 2200-8888<br>+503 7842-0023 (WhatsApp)</p>
             </div>
 
             <div class="contact-info-item">
@@ -2558,11 +2563,11 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="telefono">Teléfono *</label>
-                <input type="tel" id="telefono" placeholder="Ej. 7000-0000" autocomplete="tel" required>
+                <input type="tel" id="telefono" placeholder="Ej. 7842-0023" autocomplete="tel-national" inputmode="numeric" maxlength="9" pattern="[267][0-9]{3}-[0-9]{4}" title="Número de 8 dígitos que empiece con 2, 6 o 7, por ejemplo 7842-0023" required>
               </div>
               <div class="form-group">
-                <label for="correo">Correo electrónico *</label>
-                <input type="email" id="correo" placeholder="ejemplo@correo.com" autocomplete="email" required>
+                <label for="correo">Correo electrónico <span class="label-optional">(opcional)</span></label>
+                <input type="email" id="correo" placeholder="ejemplo@correo.com" autocomplete="email">
               </div>
             </div>
 
@@ -2615,7 +2620,9 @@
               <input type="text" id="website" tabindex="-1" autocomplete="off">
             </div>
 
-            <p class="form-error" id="formError" role="alert" hidden>No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo, o escríbenos por WhatsApp al <a href="https://wa.me/50378901234" target="_blank" rel="noopener">+503 7890-1234</a>.</p>
+            <p class="form-error" id="formLanguageError" role="alert" hidden>Tu solicitud no se envió debido al lenguaje utilizado.</p>
+
+            <p class="form-error" id="formError" role="alert" hidden>No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo, o escríbenos por WhatsApp al <a href="https://wa.me/50378420023" target="_blank" rel="noopener">+503 7842-0023</a>.</p>
 
             <button type="submit" class="btn btn-gold" id="formSubmit" style="width: 100%; margin-top: 0.5rem;">Enviar solicitud</button>
           </form>
@@ -2624,7 +2631,7 @@
             <span class="form-success-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
             <h3 class="form-success-title">Recibimos tu solicitud</h3>
             <p class="form-success-text">Gracias, <span id="formSuccessName"></span>. Te llamaremos en las próximas 24 horas hábiles para confirmar la fecha y hora de tu cita.</p>
-            <p class="form-success-hint">¿Es urgente? Escríbenos por WhatsApp al <a href="https://wa.me/50378901234" target="_blank" rel="noopener">+503 7890-1234</a>.</p>
+            <p class="form-success-hint">¿Es urgente? Escríbenos por WhatsApp al <a href="https://wa.me/50378420023" target="_blank" rel="noopener">+503 7842-0023</a>.</p>
             <button type="button" class="btn btn-outline" id="formReset">Enviar otra solicitud</button>
           </div>
         </div>
@@ -2969,8 +2976,35 @@
       toggleFloatingContact();
       window.addEventListener('scroll', toggleFloatingContact, { passive: true });
 
+      // En celular el botón abre WhatsApp con un saludo ya escrito; en escritorio lleva al formulario
+      const CLINIC_WHATSAPP = '50378420023';
+      const whatsappUrl = 'https://wa.me/' + CLINIC_WHATSAPP + '?text=' +
+        encodeURIComponent('Hola, me gustaría agendar una consulta con el Dr. Mario Portillo.');
+      const floatingMobileQuery = window.matchMedia('(max-width: 768px)');
+
+      function syncFloatingContact() {
+        if (floatingMobileQuery.matches) {
+          floatingContact.href = whatsappUrl;
+          floatingContact.target = '_blank';
+          floatingContact.rel = 'noopener';
+          floatingContact.setAttribute('aria-label', 'Escríbenos por WhatsApp');
+        } else {
+          floatingContact.href = '#contacto';
+          floatingContact.removeAttribute('target');
+          floatingContact.removeAttribute('rel');
+          floatingContact.setAttribute('aria-label', 'Contáctanos: ir al teléfono, dirección y formulario de contacto');
+        }
+      }
+      syncFloatingContact();
+      floatingMobileQuery.addEventListener('change', syncFloatingContact);
+
       floatingContact.addEventListener('click', (e) => {
         e.preventDefault();
+        // Se decide al momento del clic para no depender de que el navegador avise el cambio de tamaño
+        if (floatingMobileQuery.matches) {
+          window.open(whatsappUrl, '_blank', 'noopener');
+          return;
+        }
         const target = document.getElementById('contacto');
         if (!target) return;
         target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
@@ -2990,6 +3024,63 @@
       const formError = document.getElementById('formError');
       const formSubmit = document.getElementById('formSubmit');
 
+      const formLanguageError = document.getElementById('formLanguageError');
+
+      // Teléfono salvadoreño: solo dígitos, guion automático (7842-0023) y sin necesidad de escribir +503
+      const phoneInput = document.getElementById('telefono');
+
+      function formatPhone(raw) {
+        let digits = raw.replace(/\D/g, '');
+        if (digits.length > 8 && digits.startsWith('503')) digits = digits.slice(3);
+        digits = digits.slice(0, 8);
+        return digits.length > 4 ? digits.slice(0, 4) + '-' + digits.slice(4) : digits;
+      }
+
+      phoneInput.addEventListener('input', () => {
+        const caretFromEnd = phoneInput.value.length - phoneInput.selectionStart;
+        phoneInput.value = formatPhone(phoneInput.value);
+        const caret = Math.max(0, phoneInput.value.length - caretFromEnd);
+        phoneInput.setSelectionRange(caret, caret);
+        phoneInput.setCustomValidity('');
+      });
+
+      phoneInput.addEventListener('invalid', () => {
+        const digits = phoneInput.value.replace(/\D/g, '');
+        if (!digits) return;
+        phoneInput.setCustomValidity(
+          digits.length < 8
+            ? 'El número debe tener 8 dígitos, por ejemplo 7842-0023.'
+            : 'El número debe empezar con 2, 6 o 7, por ejemplo 7842-0023.'
+        );
+      });
+
+      // Filtro de lenguaje ofensivo. Se normaliza el texto (sin tildes, sin letras repetidas, sin sustituciones tipo "p3nd3j0")
+      // y se buscan palabras completas, para no confundir términos médicos como "músculo" con "culo".
+      const OFFENSIVE_PATTERNS = [
+        'put[oa]s?', 'putit[oa]s?', 'hij[oa]s? ?de ?(la )?put[oa]', 'hijueput[oa]s?', 'jueput[oa]s?', 'hdp', 'ctm',
+        'pendej[oa]s?', 'pendejadas?', 'vergas?', 'verg[oa]n(es)?', 'cerotes?', 'culer[oa]s?', 'culos?',
+        'mierdas?', 'cabron(es|as?)?', 'maricon(es|as?)?', 'maricas?', 'pijas?', 'pinches?',
+        'chinga(r|d[oa]s?|s|tumadre)?', 'jodid[oa]s?', 'joder', 'coño', 'malparid[oa]s?', 'mamaguev[oa]s?',
+        'idiotas?', 'imbecil(es)?', 'estupid[oa]s?', 'babos[oa]s?',
+        'fuck\\w*', 'shit', 'bitch(es)?', 'ashole',
+      ];
+      const offensiveRegex = new RegExp('(^|[^a-zñ])(' + OFFENSIVE_PATTERNS.join('|') + ')(?=$|[^a-zñ])');
+
+      function normalizeForFilter(text) {
+        return text
+          .toLowerCase()
+          .replace(/ñ/g, '\u0001')
+          .normalize('NFD').replace(/[̀-ͯ]/g, '')
+          .replace(/\u0001/g, 'ñ')
+          .replace(/[0@4]/g, (c) => ({ '0': 'o', '@': 'a', '4': 'a' }[c]))
+          .replace(/1/g, 'i').replace(/3/g, 'e').replace(/\$/g, 's')
+          .replace(/([a-zñ])\1+/g, '$1');
+      }
+
+      function containsOffensiveLanguage(...texts) {
+        return texts.some((t) => offensiveRegex.test(normalizeForFilter(t)));
+      }
+
       const fieldValue = (id) => document.getElementById(id).value.trim();
       const selectedLabel = (id) => {
         const select = document.getElementById(id);
@@ -3006,6 +3097,12 @@
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         formError.hidden = true;
+        formLanguageError.hidden = true;
+
+        if (containsOffensiveLanguage(fieldValue('nombre'), fieldValue('mensaje'))) {
+          formLanguageError.hidden = false;
+          return;
+        }
 
         if (!FORM_ENDPOINT) {
           showFormSuccess();
@@ -3050,6 +3147,7 @@
         contactForm.reset();
         motivoChosenManually = false;
         formError.hidden = true;
+        formLanguageError.hidden = true;
         formSuccess.hidden = true;
         contactForm.hidden = false;
         document.getElementById('nombre').focus();
@@ -3086,7 +3184,7 @@
           ],
         },
         'agendar-como': {
-          message: 'Puedes agendar tu cita de tres formas: completando el formulario en la sección de Contacto de esta página, llamando al +503 2200-8888, o escribiéndonos por WhatsApp al +503 7890-1234. Te confirmaremos fecha y hora lo antes posible.',
+          message: 'Puedes agendar tu cita de tres formas: completando el formulario en la sección de Contacto de esta página, llamando al +503 2200-8888, o escribiéndonos por WhatsApp al +503 7842-0023. Te confirmaremos fecha y hora lo antes posible.',
           choices: [
             { label: 'Agendar cita ahora', action: 'contact', cta: true },
             { label: 'Escribir por WhatsApp', action: 'whatsapp' },
@@ -3298,7 +3396,7 @@
         },
 
         'contacto-directo': {
-          message: 'Claro, puedes escribirnos o llamarnos directamente: +503 2200-8888 (también WhatsApp: +503 7890-1234) o contacto@drmarioportillo.com. También puedes usar el formulario en la sección de Contacto de esta página.',
+          message: 'Claro, puedes escribirnos o llamarnos directamente: +503 2200-8888 (también WhatsApp: +503 7842-0023) o contacto@drmarioportillo.com. También puedes usar el formulario en la sección de Contacto de esta página.',
           choices: [
             { label: 'Agendar cita ahora', action: 'contact', cta: true },
             { label: 'Escribir por WhatsApp', action: 'whatsapp' },
@@ -3354,8 +3452,8 @@
         }
 
         if (choice.action === 'whatsapp') {
-          window.open('https://wa.me/50378901234', '_blank', 'noopener');
-          addChatbotBubble('Te estamos abriendo WhatsApp en una nueva pestaña. Si no se abrió, escríbenos al +503 7890-1234.', 'bot');
+          window.open('https://wa.me/50378420023', '_blank', 'noopener');
+          addChatbotBubble('Te estamos abriendo WhatsApp en una nueva pestaña. Si no se abrió, escríbenos al +503 7842-0023.', 'bot');
           return;
         }
 
