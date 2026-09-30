@@ -305,6 +305,30 @@
 
     .logo {
       display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-primario) 100%);
+      color: #FFFFFF;
+      box-shadow: inset 0 0 0 1px rgba(94, 234, 212, 0.25);
+    }
+
+    .logo-mark svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .logo-text {
+      display: flex;
       flex-direction: column;
     }
 
@@ -962,6 +986,53 @@
     /* ==========================================================================
        9. TESTIMONIOS
        ========================================================================== */
+    /* Logos de asociaciones: tarjetas blancas del mismo alto para que logos de proporciones distintas se vean parejos */
+    .association-logos {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .association-logos li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 108px;
+      padding: 1rem 1.25rem;
+      background-color: var(--superficie-blanca);
+      border: 1px solid var(--linea-borde);
+      border-radius: var(--radius-md);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .association-logos li:hover {
+      border-color: var(--dorado-acento);
+      box-shadow: var(--shadow-lift);
+    }
+
+    .association-logos img {
+      max-width: 100%;
+      max-height: 72px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 600px) {
+      .association-logos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+      .association-logos li {
+        height: 92px;
+        padding: 0.75rem;
+      }
+      .association-logos img {
+        max-height: 60px;
+      }
+    }
+
     .trust-pills {
       display: flex;
       gap: 1rem;
@@ -1455,28 +1526,42 @@
     }
 
     /* Escalones intermedios del header: el botón "Agendar cita" cede su espacio antes que el menú se amontone */
-    @media (max-width: 1200px) {
+    @media (max-width: 1260px) {
       .header-container .btn-primary {
         display: none;
       }
     }
 
-    @media (max-width: 1200px) and (min-width: 769px) {
+    @media (max-width: 1260px) and (min-width: 769px) {
       .nav-link {
         padding: 0.5rem 0.7rem;
       }
     }
 
-    @media (max-width: 960px) and (min-width: 769px) {
+    @media (max-width: 1080px) and (min-width: 769px) {
       .nav-menu {
         gap: 0;
       }
       .nav-link {
-        font-size: 0.82rem;
-        padding: 0.45rem 0.4rem;
+        font-size: 0.8rem;
+        padding: 0.45rem 0.3rem;
+      }
+      .logo {
+        gap: 0.5rem;
+      }
+      .logo-mark {
+        width: 32px;
+        height: 32px;
+      }
+      .logo-mark svg {
+        width: 16px;
+        height: 16px;
       }
       .logo-name {
-        font-size: 1.15rem;
+        font-size: 1rem;
+      }
+      .logo-spec {
+        font-size: 0.68rem;
       }
     }
 
@@ -1996,9 +2081,17 @@
   <!-- 2. HEADER STICKY -->
   <header class="header-sticky">
     <div class="container header-container">
-      <a href="#" class="logo">
-        <span class="logo-name">Dr. Mario Portillo</span>
-        <span class="logo-spec">Cirujano Ortopedista</span>
+      <a href="#" class="logo" aria-label="Dr. Mario Portillo, Cirujano Ortopedista — inicio">
+        <span class="logo-mark" aria-hidden="true">
+          <!-- Cruz médica: se lee como "salud" a cualquier tamaño (la Vara de Asclepio parecía un "$" a 24px) -->
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9.6 3h4.8a1.1 1.1 0 0 1 1.1 1.1v4.4h4.4A1.1 1.1 0 0 1 21 9.6v4.8a1.1 1.1 0 0 1-1.1 1.1h-4.4v4.4a1.1 1.1 0 0 1-1.1 1.1H9.6a1.1 1.1 0 0 1-1.1-1.1v-4.4H4.1A1.1 1.1 0 0 1 3 14.4V9.6a1.1 1.1 0 0 1 1.1-1.1h4.4V4.1A1.1 1.1 0 0 1 9.6 3z"/>
+          </svg>
+        </span>
+        <span class="logo-text">
+          <span class="logo-name">Dr. Mario Portillo</span>
+          <span class="logo-spec">Cirujano Ortopedista</span>
+        </span>
       </a>
 
       <nav class="nav-menu" id="navMenu">
@@ -2294,14 +2387,14 @@
       <div style="max-width: 800px; margin: 2.5rem auto 0;">
         <h4 class="font-serif" style="font-size: 1.3rem; margin-bottom: 1.25rem; color: var(--azul-oscuro);">Miembro de estas asociaciones</h4>
 
-        <div class="trust-pills" style="justify-content: flex-start;">
-          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Asociación Salvadoreña de Ortopedia y Traumatología</span>
-          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> American Academy of Orthopaedic Surgeons (AAOS)</span>
-          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Médicos de El Salvador</span>
-          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> SOFCOT Francia</span>
-          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Colegio Médico de El Salvador</span>
-          <span class="trust-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg> Sociedad Latinoamericana de Ortopedia y Traumatología (SLAOT)</span>
-        </div>
+        <ul class="association-logos">
+          <li title="Asociación Salvadoreña de Ortopedia y Traumatología"><img src="assets/asociaciones/asot.png" alt="Asociación Salvadoreña de Ortopedia y Traumatología" loading="lazy"></li>
+          <li title="American Academy of Orthopaedic Surgeons (AAOS)"><img src="assets/asociaciones/aaos.png" alt="American Academy of Orthopaedic Surgeons (AAOS)" loading="lazy"></li>
+          <li title="Médicos de El Salvador"><img src="assets/asociaciones/medicos-el-salvador.png" alt="Médicos de El Salvador" loading="lazy"></li>
+          <li title="SOFCOT — Société Française de Chirurgie Orthopédique et Traumatologique"><img src="assets/asociaciones/sofcot.png" alt="SOFCOT — Société Française de Chirurgie Orthopédique et Traumatologique" loading="lazy"></li>
+          <li title="Colegio Médico de El Salvador"><img src="assets/asociaciones/colegio-medico.png" alt="Colegio Médico de El Salvador" loading="lazy"></li>
+          <li title="Sociedad Latinoamericana de Ortopedia y Traumatología (SLAOT)"><img src="assets/asociaciones/slaot.png" alt="Sociedad Latinoamericana de Ortopedia y Traumatología (SLAOT)" loading="lazy"></li>
+        </ul>
       </div>
 
     </div>
@@ -2687,7 +2780,7 @@
 
       if ('IntersectionObserver' in window) {
         const revealSingles = '.section-title, .section-subtitle, .cta-banner-content, .doctor-profile-card, .contact-grid';
-        const revealLists = ['.body-part-card', '.service-card', '.stat-item', '.timeline-item', '.step-card', '.testimonial-card', '.resource-card', '.trust-pills .trust-pill'];
+        const revealLists = ['.body-part-card', '.service-card', '.stat-item', '.timeline-item', '.step-card', '.testimonial-card', '.resource-card', '.trust-pills .trust-pill', '.association-logos li'];
 
         document.querySelectorAll(revealSingles).forEach((el) => {
           if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', '');
